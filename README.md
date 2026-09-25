@@ -14,6 +14,6 @@ To re-export after editing, open `poster.html` in Chrome and print to PDF at A3 
 
 - `igbc-green-interiors-poster.png` – 2× resolution image (2160 × 2700 px) for sharing online
 - `igbc-green-interiors-poster.pdf` – single-page PDF of the same design; the email address is a clickable link that opens a pre-filled draft
-- `green-interiors-poster.html` – editable source (uses `assets/` logos and Google Fonts: Bricolage Grotesque, DM Sans)
+- `green-interiors-poster.html` – editable source (uses `assets/` logos and Google Fonts: Fraunces, Plus Jakarta Sans)
 
 To re-export, render `green-interiors-poster.html` with Playwright at a 1080 × 1350 viewport and `deviceScaleFactor: 2`.

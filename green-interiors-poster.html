@@ -4,29 +4,29 @@
 <meta charset="utf-8">
 <title>IGBC Green Interiors Poster</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* Digital poster, 4:5 portrait (1080 x 1350) for social media, WhatsApp, email and web. */
   :root {
-    --night: #0d3326;
-    --forest: #155a3c;
-    --paper: #fbfaf4;
-    --ink: #1d2b25;
-    --muted: #5a6a62;
-    --lime: #c8f06a;
+    --paper: #f7f6f1;
+    --ink: #1f2b28;
+    --muted: #56645f;
+    --forest: #25604a;
+    --sketch: #8fa39b;
 
-    --c-eco: #2fa55f;
-    --c-water: #1a9ee0;
-    --c-energy: #f4a31c;
-    --c-material: #e2653a;
-    --c-indoor: #10b3a3;
-    --c-innov: #8a5cd8;
-    --c-health: #e8488a;
+    /* pastel plates (bg) with a deep tone of the same hue for text/icons */
+    --eco-bg: #d9f0de;      --eco: #1f6b3a;
+    --water-bg: #d7ebf8;    --water: #16608d;
+    --energy-bg: #fcebc6;   --energy: #8a5800;
+    --material-bg: #fadccf; --material: #9a3c1c;
+    --indoor-bg: #d3f0ea;   --indoor: #0d6a60;
+    --innov-bg: #e7defa;    --innov: #5b37a8;
+    --health-bg: #fad9e6;   --health: #a2255a;
   }
   @page { size: 1080px 1350px; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: #d9e2dc; }
-  body { font-family: "DM Sans", "Liberation Sans", Arial, sans-serif; color: var(--ink); }
+  html, body { background: #e3e6e0; }
+  body { font-family: "Plus Jakarta Sans", "Liberation Sans", Arial, sans-serif; color: var(--ink); word-spacing: .06em; }
 
   .poster {
     width: 1080px; height: 1350px; margin: 0 auto;
@@ -34,158 +34,171 @@
     position: relative; overflow: hidden;
     display: flex; flex-direction: column;
   }
-  .poster > * { flex-shrink: 0; }
-  .display { font-family: "Bricolage Grotesque", "DM Sans", Arial, sans-serif; }
+  .poster > * { flex-shrink: 0; position: relative; }
+  .display { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-optical-sizing: auto; word-spacing: normal; }
+
+  /* ---------- Background sketch ---------- */
+  .poster > .sketch { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .sketch g, .sk g { fill: none; stroke: var(--sketch); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .sk { position: absolute; pointer-events: none; overflow: visible; }
+  .hero { position: relative; }
+  .hero > :not(.hero-sk) { position: relative; }
+  .hero-sk { left: 0; top: 0; width: 100%; height: 100%; opacity: .75; }
+  .sec-head { position: relative; }
+  .sofa-sk { right: 0; bottom: 6px; width: 330px; height: 58px; opacity: .9; }
+  .sec-head .rule { visibility: hidden; }
+  .benefits, .cats, .ideal { position: relative; }
+  .lamp-sk { right: -48px; top: 0; width: 40px; height: 180px; opacity: .85; }
+  .plant-sk { left: -52px; bottom: 0; width: 46px; height: 144px; opacity: .85; }
+  .board-sk { right: 0; bottom: 0; width: 300px; height: 36px; opacity: .85; }
 
   /* ---------- Hero ---------- */
   .hero {
-    position: relative;
-    background: var(--night);
-    color: #fff;
     padding: 38px 56px 0;
-    overflow: hidden;
+    background: linear-gradient(120deg, rgba(214,240,227,.78) 0%, rgba(233,226,248,.62) 55%, rgba(253,230,217,.72) 100%);
   }
-  /* colour spectrum of the seven categories, as a soft glow behind the hero */
-  .hero::before {
-    content: ""; position: absolute; right: -180px; top: -200px; width: 640px; height: 640px; border-radius: 50%;
-    background: conic-gradient(from 200deg, var(--c-eco), var(--c-water), var(--c-indoor), var(--c-innov), var(--c-health), var(--c-material), var(--c-energy), var(--c-eco));
-    filter: blur(70px); opacity: .55;
-  }
-  .hero > * { position: relative; }
-
   .topbar { display: flex; align-items: center; gap: 20px; }
   .logo {
     width: 92px; height: 92px; border-radius: 22px; background: #fff; flex: none;
-    position: relative; overflow: hidden;
+    position: relative; overflow: hidden; box-shadow: 0 4px 14px rgba(37,96,74,.12);
   }
   .logo img { position: absolute; width: 190px; left: -49px; top: 1px; }
-  .brand .kicker { font-size: 15px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); }
-  .brand .name { font-size: 26px; font-weight: 800; line-height: 1.15; margin-top: 4px; }
+  .brand .kicker { font-size: 14px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--forest); }
+  .brand .name { font-size: 27px; font-weight: 600; line-height: 1.15; margin-top: 4px; color: var(--ink); }
   .online {
     margin-left: auto; align-self: flex-start;
     display: flex; align-items: center; gap: 8px;
-    border: 1.5px solid rgba(255,255,255,.35); border-radius: 40px;
-    padding: 8px 16px; font-size: 14px; font-weight: 500; color: #e3efe8;
+    background: rgba(255,255,255,.7); border: 1.5px solid #cfe0d7; border-radius: 40px;
+    padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--forest);
   }
-  .online i { width: 9px; height: 9px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(200,240,106,.25); }
+  .online i { width: 9px; height: 9px; border-radius: 50%; background: #3fb57a; box-shadow: 0 0 0 4px rgba(63,181,122,.2); }
 
   .hero-grid {
     display: grid; grid-template-columns: 330px 1fr; gap: 36px; align-items: end;
-    margin-top: 18px;
+    margin-top: 14px;
   }
   .ninety .num {
-    font-size: 168px; font-weight: 800; line-height: .8; letter-spacing: -.04em;
-    background: linear-gradient(160deg, #e7ff9e 0%, var(--lime) 40%, #57d38c 100%);
+    font-size: 176px; font-weight: 700; line-height: .82; letter-spacing: -.045em;
+    background: linear-gradient(160deg, #3d9a73 0%, var(--forest) 55%, #1d4e5e 100%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .ninety .num sup { font-size: 84px; vertical-align: 72px; margin-left: 4px; }
-  .ninety .cap { font-size: 21px; line-height: 1.3; margin-top: 12px; color: #d4e6dc; }
-  .ninety .cap b { color: #fff; }
+  .ninety .num sup { font-size: 80px; vertical-align: 74px; margin-left: 2px; }
+  .ninety .cap { font-size: 20px; line-height: 1.35; margin-top: 12px; color: var(--muted); }
+  .ninety .cap b { color: var(--ink); }
 
-  h1 { font-size: 52px; font-weight: 800; line-height: 1.02; letter-spacing: -.02em; text-wrap: balance; }
-  h1 .hl { color: var(--lime); }
-  .lede { font-size: 18px; line-height: 1.5; color: #cfe2d7; margin-top: 16px; max-width: 520px; }
+  h1 { font-size: 54px; font-weight: 600; line-height: 1.04; letter-spacing: -.02em; text-wrap: balance; color: var(--ink); }
+  h1 em { font-style: italic; font-weight: 500; color: var(--forest); }
+  .lede { font-size: 17.5px; line-height: 1.55; color: var(--muted); margin-top: 16px; max-width: 540px; }
 
-  /* national concerns ribbon */
   .concerns {
-    margin: 20px -56px 0; padding: 11px 56px;
-    background: rgba(255,255,255,.07); border-top: 1px solid rgba(255,255,255,.12);
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-    font-size: 14.5px; color: #e0ede5;
+    margin: 22px -56px 0; padding: 11px 56px;
+    background: rgba(255,255,255,.62); border-top: 1px solid rgba(37,96,74,.12); border-bottom: 1px solid rgba(37,96,74,.12);
+    display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; white-space: nowrap;
+    font-size: 13.5px; font-weight: 500; color: var(--ink);
   }
-  .concerns .lbl { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 12.5px; color: var(--lime); }
-  .concerns span.dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.4); }
+  .concerns .lbl { font-weight: 800; letter-spacing: .12em; margin-right: 4px; text-transform: uppercase; font-size: 12px; color: var(--forest); }
+  .concerns span.dot { width: 5px; height: 5px; border-radius: 50%; background: #a9c2b6; }
+
+  /* ---------- Section heads ---------- */
+  .section { padding: 0 56px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-top: 22px; }
+  .sec-head h2 { font-size: 29px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+  .sec-head .note { font-size: 15px; color: var(--muted); }
+  .sec-head .rule { flex: 1; height: 1.5px; background: linear-gradient(90deg, #c9d6cf, transparent); align-self: center; }
 
   /* ---------- Benefits ---------- */
-  .section { padding: 0 56px; }
-  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-top: 26px; }
-  .sec-head h2 { font-size: 27px; font-weight: 800; color: var(--forest); letter-spacing: -.01em; }
-  .sec-head .note { font-size: 15px; color: var(--muted); }
-  .sec-head .rule { flex: 1; height: 2px; background: linear-gradient(90deg, #cfdcd3, transparent); align-self: center; }
-
   .benefits { display: grid; grid-template-columns: 1fr 1fr 1.55fr; gap: 16px; margin-top: 16px; }
-  .stat {
-    border-radius: 22px; padding: 20px 22px 18px; color: #fff; position: relative; overflow: hidden;
-  }
-  .stat.energy { background: linear-gradient(145deg, #f7b536, #ec8a12); }
-  .stat.water { background: linear-gradient(145deg, #2cb0ef, #1580c9); }
-  .stat svg { position: absolute; right: -14px; bottom: -16px; width: 110px; height: 110px; opacity: .22; }
-  .stat .big { font-size: 58px; font-weight: 800; line-height: 1; letter-spacing: -.03em; }
+  .stat { border-radius: 22px; padding: 20px 22px 18px; position: relative; overflow: hidden; }
+  .stat.energy { background: var(--energy-bg); color: var(--energy); }
+  .stat.water { background: var(--water-bg); color: var(--water); }
+  .stat svg { position: absolute; right: -12px; bottom: -14px; width: 104px; height: 104px; opacity: .16; }
+  .stat .big { font-size: 60px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
   .stat .big small { font-size: 30px; }
-  .stat .what { font-size: 17px; font-weight: 500; line-height: 1.3; margin-top: 8px; }
-  .stat .what b { display: block; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+  .stat .what { font-size: 17px; font-weight: 600; line-height: 1.3; margin-top: 8px; color: var(--ink); }
+  .stat .what b { display: block; font-size: 12.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .stat.energy .what b { color: var(--energy); }
+  .stat.water .what b { color: var(--water); }
 
-  .perks { display: flex; flex-direction: column; gap: 4px; justify-content: center; }
-  .perk { display: flex; align-items: center; gap: 12px; font-size: 16.5px; font-weight: 500; }
+  .perks {
+    display: flex; flex-direction: column; gap: 4px; justify-content: center;
+    background: rgba(255,255,255,.72); border-radius: 22px; padding: 8px 16px;
+  }
+  .perk { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; }
   .perk .ic { width: 30px; height: 30px; border-radius: 10px; flex: none; display: grid; place-items: center; }
-  .perk .ic svg { width: 20px; height: 20px; }
+  .perk .ic svg { width: 19px; height: 19px; }
 
   /* ---------- Seven categories ---------- */
   .cats { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 16px; }
   .cat {
-    border-radius: 20px; padding: 14px 10px; text-align: center; color: #fff;
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    border-radius: 20px; padding: 12px 8px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 9px;
   }
-  .cat .n { font-size: 13px; font-weight: 700; opacity: .8; letter-spacing: .06em; }
-  .cat .disc { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.22); display: grid; place-items: center; }
-  .cat .disc svg { width: 32px; height: 32px; }
-  .cat .t { font-size: 15px; font-weight: 700; line-height: 1.2; }
+  .cat .n { font-size: 13px; font-weight: 800; letter-spacing: .08em; opacity: .75; }
+  .cat .disc { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.7); display: grid; place-items: center; }
+  .cat .disc svg { width: 28px; height: 28px; }
+  .cat .t { font-size: 14.5px; font-weight: 700; line-height: 1.22; color: var(--ink); }
+
+  .cat.eco { background: var(--eco-bg); color: var(--eco); }
+  .cat.water { background: var(--water-bg); color: var(--water); }
+  .cat.energy { background: var(--energy-bg); color: var(--energy); }
+  .cat.material { background: var(--material-bg); color: var(--material); }
+  .cat.indoor { background: var(--indoor-bg); color: var(--indoor); }
+  .cat.innov { background: var(--innov-bg); color: var(--innov); }
+  .cat.health { background: var(--health-bg); color: var(--health); }
+  .cat svg { stroke: currentColor; }
 
   /* ---------- Sectors ---------- */
-  .ideal { display: flex; align-items: flex-start; gap: 18px; margin-top: 26px; }
-  .ideal h2 { font-size: 27px; font-weight: 800; color: var(--forest); flex: none; line-height: 38px; }
+  .ideal { display: flex; align-items: flex-start; gap: 18px; margin-top: 22px; }
+  .ideal h2 { font-size: 29px; font-weight: 600; flex: none; line-height: 38px; }
   .sectors { display: flex; flex-wrap: wrap; gap: 8px; }
   .sector {
     display: flex; align-items: center; gap: 8px;
-    padding: 7px 13px 7px 10px; border-radius: 40px;
-    background: #fff; border: 1.5px solid #dbe5de;
-    font-size: 14px; font-weight: 500;
+    padding: 7px 14px 7px 10px; border-radius: 40px;
+    font-size: 14px; font-weight: 600; color: var(--ink);
   }
   .sector i { width: 10px; height: 10px; border-radius: 50%; }
 
   /* ---------- Designers' USP ---------- */
   .usp {
-    margin: 22px 56px 22px; padding: 16px 24px; border-radius: 20px;
+    margin: 18px 56px 18px; padding: 13px 24px; border-radius: 22px;
     display: flex; align-items: center; gap: 18px;
-    background: linear-gradient(100deg, #efe6ff, #ffe4ef 50%, #fff1d6);
-    border: 1.5px solid #e6d8f7;
+    background: linear-gradient(100deg, var(--innov-bg), var(--health-bg) 55%, var(--energy-bg));
   }
-  .usp .ic { width: 50px; height: 50px; border-radius: 14px; background: var(--c-innov); display: grid; place-items: center; flex: none; }
+  .usp .ic { width: 50px; height: 50px; border-radius: 14px; background: #fff; display: grid; place-items: center; flex: none; }
   .usp .ic svg { width: 28px; height: 28px; }
-  .usp .eb { font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #6b3fbf; }
-  .usp .hd { font-size: 28px; font-weight: 800; line-height: 1.1; color: var(--ink); margin-top: 2px; }
-  .usp .hd span { color: var(--c-health); }
-  .usp p { margin-left: auto; max-width: 330px; font-size: 14.5px; line-height: 1.4; color: #4d4a5a; }
+  .usp .eb { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--innov); }
+  .usp .hd { font-size: 29px; font-weight: 600; line-height: 1.1; color: var(--ink); margin-top: 3px; }
+  .usp .hd em { font-style: italic; color: var(--health); }
+  .usp p { margin-left: auto; max-width: 280px; font-size: 14.5px; font-weight: 500; line-height: 1.4; color: #4f4a5c; }
 
   /* ---------- CTA ---------- */
   .cta {
     margin-top: auto;
-    background: var(--forest); color: #fff;
-    padding: 20px 56px 20px;
+    background: linear-gradient(110deg, rgba(211,240,228,.94), rgba(215,235,248,.94));
+    padding: 22px 56px 22px;
     display: grid; grid-template-columns: 1fr 250px; gap: 32px; align-items: center;
-    position: relative;
   }
   .cta::before {
     content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px;
-    background: linear-gradient(90deg, var(--c-eco), var(--c-water), var(--c-energy), var(--c-material), var(--c-indoor), var(--c-innov), var(--c-health));
+    background: linear-gradient(90deg, #9fdcb0, #9fcdef, #f7d58e, #f3b39c, #93ddd1, #c3aef2, #f2a9c7);
   }
-  .cta h3 { font-size: 30px; font-weight: 800; line-height: 1.12; letter-spacing: -.01em; }
-  .cta h3 span { color: var(--lime); }
-  .cta .pitch { font-size: 15.5px; color: #cfe2d7; margin-top: 6px; }
+  .cta h3 { font-size: 32px; font-weight: 600; line-height: 1.12; letter-spacing: -.01em; color: var(--ink); }
+  .cta h3 em { font-style: italic; color: var(--forest); }
+  .cta .pitch { font-size: 15.5px; color: var(--muted); margin-top: 6px; }
   .contact { display: flex; gap: 26px; margin-top: 14px; flex-wrap: wrap; }
   .contact .row { display: flex; align-items: center; gap: 10px; }
   .contact svg { width: 26px; height: 26px; flex: none; }
-  .contact .name { font-size: 19px; font-weight: 700; }
-  .contact .cred { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: var(--lime); margin-left: 6px; }
-  .contact .email { font-size: 19px; font-weight: 700; color: #fff; text-decoration: none; }
-  .ap-card { background: #fff; border-radius: 18px; padding: 12px 12px 10px; text-align: center; }
+  .contact .name { font-size: 19px; font-weight: 800; }
+  .contact .cred { font-size: 12px; font-weight: 800; letter-spacing: .1em; color: var(--forest); margin-left: 6px; }
+  .contact .email { font-size: 19px; font-weight: 800; color: var(--forest); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .ap-card { background: #fff; border-radius: 18px; padding: 12px 12px 10px; text-align: center; box-shadow: 0 4px 16px rgba(37,96,74,.12); }
   .ap-card img { width: 100%; display: block; }
-  .ap-card .cap { color: var(--forest); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-  .tags { font-size: 13.5px; color: #9fc3ae; margin-top: 8px; letter-spacing: .02em; }
+  .ap-card .cap { color: var(--forest); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .tags { font-size: 13.5px; font-weight: 500; color: #6c8479; margin-top: 8px; letter-spacing: .02em; }
 
   @media screen {
     body { padding: 24px 0; }
-    .poster { box-shadow: 0 10px 40px rgba(0,0,0,.18); }
+    .poster { box-shadow: 0 10px 40px rgba(0,0,0,.14); }
   }
   @media print {
     html, body { background: #fff; }
@@ -196,8 +209,43 @@
 <body>
 <div class="poster">
 
+  <!-- ================= BACKGROUND SKETCH: pencil line-art of a furnished room ================= -->
+  <svg class="sketch" viewBox="0 0 1080 1350" aria-hidden="true">
+    <defs>
+      <filter id="pencil" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/>
+        <feDisplacementMap in="SourceGraphic" scale="2.4"/>
+      </filter>
+    </defs>
+    <!-- floor boards converging to the room's vanishing point -->
+    <g filter="url(#pencil)" opacity=".42">
+      <path d="M430 445 L60 1350 M500 445 L330 1350 M580 445 L600 1350 M650 445 L870 1350 M720 445 L1080 1260"/>
+      <path d="M360 445 L0 1080 M790 445 L1080 900"/>
+    </g>
+  </svg>
+
   <!-- ================= HERO ================= -->
   <header class="hero">
+    <svg class="sk hero-sk" viewBox="0 0 1080 445" preserveAspectRatio="none" aria-hidden="true">
+      <g filter="url(#pencil)">
+        <!-- ceiling and wall corners in one-point perspective -->
+        <path d="M0 0 L190 96 H890 L1080 0" opacity=".7"/>
+        <path d="M190 96 V445 M890 96 V445" opacity=".7"/>
+        <path d="M200 106 H880" opacity=".35"/>
+        <!-- window on the right wall, with curtains -->
+        <path d="M925 150 L1052 118 V372 L925 352 Z"/>
+        <path d="M988 134 V362 M925 250 L1052 244"/>
+        <path d="M914 140 C926 220 906 300 918 372 M1062 110 C1052 200 1070 290 1060 382" opacity=".8"/>
+        <!-- framed art on the left wall -->
+        <path d="M24 170 L120 196 V318 L24 330 Z"/>
+        <path d="M36 186 L108 205 V306 L36 316 Z" opacity=".6"/>
+        <path d="M42 296 C60 262 76 286 88 260 C96 244 104 256 106 266" opacity=".7"/>
+        <!-- pendant lamps -->
+        <path d="M690 0 V136 M690 136 C664 138 654 154 652 166 H728 C726 154 716 138 690 136 Z"/>
+        <path d="M752 0 V110 M752 110 C734 112 727 123 726 131 H778 C777 123 770 112 752 110 Z"/>
+        <path d="M670 174 L664 186 M710 174 L716 186 M690 176 V190" opacity=".5"/>
+      </g>
+    </svg>
     <div class="topbar">
       <div class="logo"><img src="assets/igbc-logo.jpg" alt="Indian Green Building Council (IGBC) logo"></div>
       <div class="brand">
@@ -213,7 +261,7 @@
         <p class="cap">of our time is spent <b>indoors</b>. Aesthetics, air quality and comfort matter most.</p>
       </div>
       <div>
-        <h1 class="display">Design interiors that care for <span class="hl">people &amp; planet</span></h1>
+        <h1 class="display">Design interiors that care for <em>people &amp; planet</em></h1>
         <p class="lede">Designers the world over are building interiors around health, comfort and resource efficiency. Get yours assessed and certified under the IGBC Green Interiors rating.</p>
       </div>
     </div>
@@ -230,24 +278,45 @@
       <h2 class="display">Multifold benefits</h2>
       <span class="note">of sustainable interior design</span>
       <span class="rule"></span>
+      <svg class="sk sofa-sk" viewBox="0 0 400 70" aria-hidden="true">
+        <g filter="url(#pencil)">
+          <!-- sofa -->
+          <path d="M40 66 V26 C40 18 46 12 54 12 H246 C254 12 260 18 260 26 V66"/>
+          <path d="M28 66 V38 C28 30 34 26 42 26 C50 26 56 32 56 40 V66"/>
+          <path d="M244 66 V40 C244 32 250 26 258 26 C266 26 272 30 272 38 V66"/>
+          <path d="M56 46 H244 M150 46 V66"/>
+          <path d="M70 44 C68 30 76 24 92 24 C106 24 112 32 110 44 M190 44 C188 30 196 24 212 24 C226 24 232 32 230 44"/>
+          <!-- side table with plant -->
+          <path d="M300 66 V40 H350 V66 M300 52 H350"/>
+          <path d="M314 40 L318 26 H332 L336 40"/>
+          <path d="M325 26 C322 14 326 6 325 0 M325 20 C314 18 306 10 304 2 C316 4 322 12 325 20 M325 16 C336 14 344 6 346 0 C334 2 328 8 325 16"/>
+        </g>
+      </svg>
     </div>
     <div class="benefits">
+      <svg class="sk lamp-sk" viewBox="0 0 44 190" aria-hidden="true">
+        <g filter="url(#pencil)">
+          <path d="M6 40 H38 L30 6 H14 Z"/>
+          <path d="M22 40 V184 M8 186 H36"/>
+          <path d="M22 110 C28 100 32 100 34 104" opacity=".5"/>
+        </g>
+      </svg>
       <div class="stat energy">
-        <svg viewBox="0 0 48 48"><path d="M27 4 10 28h11l-3 16 20-26H26l1-14z" fill="#fff"/></svg>
+        <svg viewBox="0 0 48 48"><path d="M27 4 10 28h11l-3 16 20-26H26l1-14z" fill="#8a5800"/></svg>
         <div class="big display">30&ndash;40<small>%</small></div>
         <div class="what"><b>Reduction</b>in energy cost</div>
       </div>
       <div class="stat water">
-        <svg viewBox="0 0 48 48"><path d="M24 4C17 14 11 21 11 28a13 13 0 0 0 26 0c0-7-6-14-13-24z" fill="#fff"/></svg>
+        <svg viewBox="0 0 48 48"><path d="M24 4C17 14 11 21 11 28a13 13 0 0 0 26 0c0-7-6-14-13-24z" fill="#16608d"/></svg>
         <div class="big display">20&ndash;30<small>%</small></div>
         <div class="what"><b>Reduction</b>in water requirement</div>
       </div>
       <div class="perks">
-        <div class="perk"><span class="ic" style="background:#dff6f3"><svg viewBox="0 0 24 24" fill="none" stroke="#0e9486" stroke-width="2.2" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 13h15a3 3 0 1 1-3 3M3 18h7"/></svg></span>Enhanced indoor air quality</div>
-        <div class="perk"><span class="ic" style="background:#fff1d6"><svg viewBox="0 0 24 24" fill="none" stroke="#d98a06" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span>Human-centric lighting</div>
-        <div class="perk"><span class="ic" style="background:#fde5dc"><svg viewBox="0 0 24 24" fill="none" stroke="#c9502a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 12c0-5 3.5-8 9-8 0 5.5-3.5 8-9 8zM12 15c0-4-3-7-8-7 0 4.5 3 7 8 7z"/></svg></span>Non-toxic materials</div>
-        <div class="perk"><span class="ic" style="background:#ece3fb"><svg viewBox="0 0 24 24" fill="none" stroke="#7446c6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6L8 10H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></span>Superior acoustics &amp; ergonomics</div>
-        <div class="perk"><span class="ic" style="background:#fde0ec"><svg viewBox="0 0 24 24" fill="#e8488a"><path d="M12 20.5S3 15.2 3 9.2A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 9 2.2c0 6-9 11.3-9 11.3z"/></svg></span>Improved health &amp; well-being</div>
+        <div class="perk"><span class="ic" style="background:var(--indoor-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="#0d6a60" stroke-width="2.2" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 13h15a3 3 0 1 1-3 3M3 18h7"/></svg></span>Enhanced indoor air quality</div>
+        <div class="perk"><span class="ic" style="background:var(--energy-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="#8a5800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span>Human-centric lighting</div>
+        <div class="perk"><span class="ic" style="background:var(--material-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="#9a3c1c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 12c0-5 3.5-8 9-8 0 5.5-3.5 8-9 8zM12 15c0-4-3-7-8-7 0 4.5 3 7 8 7z"/></svg></span>Non-toxic materials</div>
+        <div class="perk"><span class="ic" style="background:var(--innov-bg)"><svg viewBox="0 0 24 24" fill="none" stroke="#5b37a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6L8 10H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></span>Superior acoustics &amp; ergonomics</div>
+        <div class="perk"><span class="ic" style="background:var(--health-bg)"><svg viewBox="0 0 24 24" fill="#a2255a"><path d="M12 20.5S3 15.2 3 9.2A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 9 2.2c0 6-9 11.3-9 11.3z"/></svg></span>Improved health &amp; well-being</div>
       </div>
     </div>
   </section>
@@ -260,39 +329,46 @@
       <span class="rule"></span>
     </div>
     <div class="cats">
-      <div class="cat" style="background:var(--c-eco)">
+      <svg class="sk plant-sk" viewBox="0 0 48 150" aria-hidden="true">
+        <g filter="url(#pencil)">
+          <path d="M10 146 L6 110 H42 L38 146 Z"/>
+          <path d="M24 110 C22 80 26 50 24 20"/>
+          <path d="M24 92 C10 88 4 76 4 64 C16 68 22 78 24 92 M24 74 C38 70 44 58 44 46 C32 50 26 60 24 74 M24 56 C12 52 8 40 10 28 C20 34 24 44 24 56 M24 40 C34 34 38 24 36 12 C28 18 24 28 24 40"/>
+        </g>
+      </svg>
+      <div class="cat eco">
         <span class="n">01</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27 27 5"/><path d="M8 24c-2-8 3-15 17-17-1 13-8 19-17 17z"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 27 27 5"/><path d="M8 24c-2-8 3-15 17-17-1 13-8 19-17 17z"/></svg></span>
         <span class="t">Eco Design Approach</span>
       </div>
-      <div class="cat" style="background:var(--c-water)">
+      <div class="cat water">
         <span class="n">02</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4c-5 7-9 11.5-9 16a9 9 0 0 0 18 0c0-4.5-4-9-9-16z"/><path d="M12 21a4 4 0 0 0 4 4"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4c-5 7-9 11.5-9 16a9 9 0 0 0 18 0c0-4.5-4-9-9-16z"/><path d="M12 21a4 4 0 0 0 4 4"/></svg></span>
         <span class="t">Water Conservation</span>
       </div>
-      <div class="cat" style="background:var(--c-energy)">
+      <div class="cat energy">
         <span class="n">03</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3 7 18h8l-2 11 12-16h-8l1-10z"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3 7 18h8l-2 11 12-16h-8l1-10z"/></svg></span>
         <span class="t">Energy Efficiency</span>
       </div>
-      <div class="cat" style="background:var(--c-material)">
+      <div class="cat material">
         <span class="n">04</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 4 10l12 6 12-6-12-6z"/><path d="m4 16 12 6 12-6M4 22l12 6 12-6"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 4 10l12 6 12-6-12-6z"/><path d="m4 16 12 6 12-6M4 22l12 6 12-6"/></svg></span>
         <span class="t">GreenPro Materials</span>
       </div>
-      <div class="cat" style="background:var(--c-indoor)">
+      <div class="cat indoor">
         <span class="n">05</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15 16 5l12 10"/><path d="M7 13v14h18V13"/><path d="M11 19h7a2.5 2.5 0 1 0-2.5-2.5M11 23h10"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15 16 5l12 10"/><path d="M7 13v14h18V13"/><path d="M11 19h7a2.5 2.5 0 1 0-2.5-2.5M11 23h10"/></svg></span>
         <span class="t">Indoor Environment</span>
       </div>
-      <div class="cat" style="background:var(--c-innov)">
+      <div class="cat innov">
         <span class="n">06</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3"/><circle cx="16" cy="16" r="5"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3"/><circle cx="16" cy="16" r="5"/></svg></span>
         <span class="t">Innovation in Interior Design</span>
       </div>
-      <div class="cat" style="background:var(--c-health)">
+      <div class="cat health">
         <span class="n">07</span>
-        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 27S4 20 4 12a6 6 0 0 1 12-2.5A6 6 0 0 1 28 12c0 8-12 15-12 15z"/><path d="M9 15h4l2-3 3 6 2-3h3"/></svg></span>
+        <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 27S4 20 4 12a6 6 0 0 1 12-2.5A6 6 0 0 1 28 12c0 8-12 15-12 15z"/><path d="M9 15h4l2-3 3 6 2-3h3"/></svg></span>
         <span class="t">Health &amp; Wellness</span>
       </div>
     </div>
@@ -301,25 +377,33 @@
   <!-- ================= SECTORS ================= -->
   <section class="section">
     <div class="ideal">
-    <h2 class="display">Ideal for</h2>
-    <div class="sectors">
-      <span class="sector"><i style="background:var(--c-material)"></i>Retail</span>
-      <span class="sector"><i style="background:var(--c-water)"></i>Commercial spaces</span>
-      <span class="sector"><i style="background:var(--c-energy)"></i>Food courts</span>
-      <span class="sector"><i style="background:var(--c-health)"></i>Restaurants</span>
-      <span class="sector"><i style="background:var(--c-innov)"></i>Hospitality</span>
-      <span class="sector"><i style="background:var(--c-indoor)"></i>Health care</span>
-      <span class="sector"><i style="background:var(--c-eco)"></i>Fully furnished dwellings by developers</span>
-    </div>
+      <h2 class="display">Ideal for</h2>
+      <svg class="sk board-sk" viewBox="0 0 380 44" aria-hidden="true">
+        <g filter="url(#pencil)">
+          <path d="M30 42 V30 M350 42 V30 M20 30 H360 V12 H20 Z M146 12 V30 M234 12 V30"/>
+          <path d="M80 21 H92 M184 21 H196 M290 21 H302" opacity=".6"/>
+          <path d="M60 12 C54 4 58 -2 64 -2 H72 C78 -2 82 4 76 12 Z" opacity=".8"/>
+          <path d="M268 12 V2 H316 V12 M276 2 V-6 H308 V2" opacity=".8"/>
+        </g>
+      </svg>
+      <div class="sectors">
+        <span class="sector" style="background:var(--material-bg)"><i style="background:var(--material)"></i>Retail</span>
+        <span class="sector" style="background:var(--water-bg)"><i style="background:var(--water)"></i>Commercial spaces</span>
+        <span class="sector" style="background:var(--energy-bg)"><i style="background:var(--energy)"></i>Food courts</span>
+        <span class="sector" style="background:var(--health-bg)"><i style="background:var(--health)"></i>Restaurants</span>
+        <span class="sector" style="background:var(--innov-bg)"><i style="background:var(--innov)"></i>Hospitality</span>
+        <span class="sector" style="background:var(--indoor-bg)"><i style="background:var(--indoor)"></i>Health care</span>
+        <span class="sector" style="background:var(--eco-bg)"><i style="background:var(--eco)"></i>Fully furnished dwellings by developers</span>
+      </div>
     </div>
   </section>
 
   <!-- ================= DESIGNERS' USP ================= -->
   <section class="usp">
-    <span class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5l6 6L12 26H6v-6L21 5z"/><path d="M17 9l6 6"/></svg></span>
+    <span class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="#5b37a8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5l6 6L12 26H6v-6L21 5z"/><path d="M17 9l6 6"/></svg></span>
     <div>
       <div class="eb">For interior designers</div>
-      <div class="hd display">Promote Green Interiors as <span>your USP</span></div>
+      <div class="hd display">Promote Green Interiors as <em>your USP</em></div>
     </div>
     <p>Stand out with clients who want healthier spaces and lower running costs.</p>
   </section>
@@ -327,15 +411,15 @@
   <!-- ================= CTA ================= -->
   <section class="cta">
     <div>
-      <h3 class="display">Get your interiors <span>IGBC Green Rated</span></h3>
+      <h3 class="display">Get your interiors <em>IGBC Green Rated</em></h3>
       <p class="pitch">Green Interiors rating consultancy, from assessment and documentation to certification.</p>
       <div class="contact">
         <div class="row">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#c8f06a" stroke-width="3.2" stroke-linecap="round"><circle cx="24" cy="16" r="8"/><path d="M9 42c0-8.3 6.7-14 15-14s15 5.7 15 14"/></svg>
+          <svg viewBox="0 0 48 48" fill="none" stroke="#25604a" stroke-width="3.2" stroke-linecap="round"><circle cx="24" cy="16" r="8"/><path d="M9 42c0-8.3 6.7-14 15-14s15 5.7 15 14"/></svg>
           <span><span class="name">Ameet Vikram Kothaari</span><span class="cred">IGBC AP</span></span>
         </div>
         <div class="row">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#c8f06a" stroke-width="3.2" stroke-linejoin="round"><rect x="5" y="11" width="38" height="26" rx="3"/><path d="m6 13 18 14 18-14"/></svg>
+          <svg viewBox="0 0 48 48" fill="none" stroke="#25604a" stroke-width="3.2" stroke-linejoin="round"><rect x="5" y="11" width="38" height="26" rx="3"/><path d="m6 13 18 14 18-14"/></svg>
           <a class="email" href="mailto:green@everestcomputer.com?subject=Enquiry%3A%20IGBC%20Green%20Interiors%20rating%20consultancy&amp;body=Hello%20Ameet%2C%0D%0A%0D%0AI%20would%20like%20to%20know%20more%20about%20getting%20our%20interiors%20IGBC%20Green%20Interiors%20rated.%0D%0A%0D%0AProject%20type%3A%20%0D%0ALocation%3A%20%0D%0AArea%20(sq.%20ft.)%3A%20%0D%0A%0D%0AThanks%2C%0D%0A" title="Email Ameet Vikram Kothaari">green@everestcomputer.com</a>
         </div>
       </div>
