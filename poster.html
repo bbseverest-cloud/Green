@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IGBC Green Schools Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --leaf: #8dc04b;
+    --leaf-dark: #4f8a2b;
+    --forest: #1f4d2b;
+    --sky: #00b5e2;
+    --sky-dark: #0a7fa6;
+    --mint: #eef6e6;
+    --ink: #2f3336;
+    --muted: #5b6468;
+    --paper: #ffffff;
+  }
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #dfe6dc; }
+  body { font-family: "Poppins", "Liberation Sans", Arial, sans-serif; color: var(--ink); }
+
+  .poster {
+    width: 297mm; height: 420mm; margin: 0 auto;
+    background: var(--paper);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+
+  /* ---------- Header ---------- */
+  .header {
+    position: relative;
+    padding: 14mm 16mm 0;
+    display: flex; align-items: center; gap: 10mm;
+  }
+  .logo-igbc {
+    width: 44mm; height: 67.5mm; overflow: hidden; position: relative; flex: none;
+  }
+  .logo-igbc img {
+    position: absolute; width: 105mm; left: -30.5mm; top: -3.7mm;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--forest); color: #fff;
+    font-weight: 600; font-size: 11pt; letter-spacing: .18em; text-transform: uppercase;
+    padding: 3.5mm 7mm; border-radius: 30mm;
+  }
+
+  .hero { flex: 1; }
+  .eyebrow {
+    margin-top: 6mm;
+    color: var(--sky-dark); font-weight: 600; font-size: 15pt; letter-spacing: .08em; text-transform: uppercase;
+  }
+  h1 {
+    font-family: "Merriweather", Georgia, serif; font-weight: 900;
+    font-size: 43pt; line-height: 1.1; color: var(--forest);
+    margin-top: 2mm;
+  }
+  h1 .hl { color: var(--leaf-dark); }
+  .lede {
+    margin: 6mm 16mm 0; font-size: 15.5pt; line-height: 1.55; color: var(--muted);
+  }
+  .lede strong { color: var(--ink); }
+
+  /* ---------- Tangible / intangible ---------- */
+  .benefits {
+    margin: 8mm 16mm 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6mm;
+  }
+  .bcard {
+    border-radius: 6mm; padding: 6mm 8mm;
+  }
+  .bcard.tangible { background: linear-gradient(135deg, #e3f6fc, #f3fbfe); border: 1.2mm solid #bfe9f6; }
+  .bcard.intangible { background: linear-gradient(135deg, #e8f4dc, #f5faef); border: 1.2mm solid #cfe6b6; }
+  .bcard h3 {
+    font-size: 13pt; letter-spacing: .14em; text-transform: uppercase; font-weight: 700;
+  }
+  .tangible h3 { color: var(--sky-dark); }
+  .intangible h3 { color: var(--leaf-dark); }
+  .bcard .sub { font-size: 11.5pt; color: var(--muted); margin-top: 1mm; }
+  .chips { margin-top: 5mm; display: flex; flex-direction: column; gap: 3.5mm; }
+  .chip {
+    display: flex; align-items: center; gap: 4mm;
+    font-size: 14.5pt; font-weight: 500; color: var(--ink);
+  }
+  .chip svg { width: 12.5mm; height: 12.5mm; flex: none; }
+
+  /* ---------- Four pillars ---------- */
+  .pillars-head {
+    margin: 8mm 16mm 0;
+    display: flex; align-items: baseline; gap: 5mm;
+  }
+  .pillars-head h2 {
+    font-family: "Merriweather", Georgia, serif; font-size: 26pt; color: var(--forest);
+  }
+  .pillars-head .rule { flex: 1; height: .8mm; background: linear-gradient(90deg, var(--leaf), transparent); }
+
+  .pillars {
+    margin: 5mm 16mm 13mm;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5mm;
+  }
+  .pillar {
+    display: flex; border-radius: 5mm; overflow: hidden;
+    background: var(--mint);
+  }
+  .pillar .side {
+    background: var(--leaf); color: var(--forest);
+    width: 26mm; flex: none;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2mm;
+    padding: 4mm 0;
+  }
+  .pillar .num { font-weight: 800; font-size: 11pt; opacity: .7; }
+  .pillar .side svg { width: 14mm; height: 14mm; }
+  .pillar .body { padding: 5mm 7mm 5.5mm; }
+  .pillar h4 {
+    font-size: 18pt; font-weight: 800; letter-spacing: .04em; color: var(--forest);
+  }
+  .pillar .focus {
+    font-style: italic; font-size: 12pt; color: var(--leaf-dark); margin-top: .5mm; font-weight: 500;
+  }
+  .pillar p { font-size: 12pt; line-height: 1.45; margin-top: 2.5mm; color: var(--ink); }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    margin-top: auto;
+    position: relative;
+    background: linear-gradient(120deg, var(--forest) 0%, #2d6b36 55%, #3f8a3c 100%);
+    color: #fff;
+    padding: 8mm 16mm 10mm;
+  }
+  .cta::before {
+    content: ""; position: absolute; left: 0; right: 0; top: -7mm; height: 8mm;
+    background: var(--forest);
+    clip-path: ellipse(75% 100% at 50% 100%);
+    background: linear-gradient(120deg, var(--forest) 0%, #2d6b36 55%, #3f8a3c 100%);
+  }
+  .cta-grid { display: grid; grid-template-columns: 1fr 78mm; gap: 10mm; align-items: center; position: relative; }
+  .cta h2 {
+    font-family: "Merriweather", Georgia, serif; font-size: 27pt; line-height: 1.2;
+  }
+  .cta h2 span { color: #c6ec8f; }
+  .cta .pitch { font-size: 13.5pt; line-height: 1.5; margin-top: 3mm; color: #dcebd6; }
+  .contact {
+    margin-top: 6mm; display: flex; flex-direction: column; gap: 3mm;
+  }
+  .contact .row { display: flex; align-items: center; gap: 4mm; font-size: 14pt; }
+  .contact .row svg { width: 9mm; height: 9mm; flex: none; }
+  .contact .name { font-weight: 700; font-size: 17pt; }
+  .contact .cred { font-weight: 500; color: #c6ec8f; font-size: 12pt; margin-left: 2mm; letter-spacing: .04em; }
+  .contact .email { font-weight: 600; font-size: 17pt; color: #fff; text-decoration: none; }
+
+  .ap-card {
+    background: #fff; border-radius: 5mm; padding: 5mm 4mm 4mm; text-align: center;
+    box-shadow: 0 2mm 6mm rgba(0,0,0,.25);
+  }
+  .ap-card img { width: 100%; display: block; }
+  .ap-card .cap { color: var(--forest); font-size: 9.5pt; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-top: 1mm; }
+
+
+  @media screen {
+    body { padding: 10mm 0; }
+    .poster { box-shadow: 0 4mm 14mm rgba(0,0,0,.18); }
+  }
+  @media print {
+    html, body { background: #fff; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+
+  <header class="header">
+    <div class="logo-igbc"><img src="assets/igbc-logo.jpg" alt="Indian Green Building Council (IGBC) logo"></div>
+    <div class="hero">
+      <div class="tag">Calling all educational institutions</div>
+      <div class="eyebrow">IGBC Green Schools Rating</div>
+      <h1>Build a <span class="hl">Green &amp; Healthy</span><br>School for Tomorrow</h1>
+    </div>
+  </header>
+
+  <p class="lede">Schools can gain <strong>tremendous benefits &mdash; both tangible and intangible</strong> &mdash; by going green. Get your campus assessed and certified under the IGBC Green Schools rating system.</p>
+
+  <section class="benefits">
+    <div class="bcard tangible">
+      <h3>Tangible benefits</h3>
+      <div class="sub">Savings you can measure</div>
+      <div class="chips">
+        <div class="chip">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#00b5e2"/><path d="M24 11c-5 7-8 11.5-8 15.5a8 8 0 0 0 16 0C32 22.5 29 18 24 11z" fill="#fff"/></svg>
+          Reduced water consumption
+        </div>
+        <div class="chip">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#00b5e2"/><path d="M26 9 14 27h9l-2 12 13-19h-9l1-11z" fill="#fff"/></svg>
+          Reduced energy consumption
+        </div>
+      </div>
+    </div>
+    <div class="bcard intangible">
+      <h3>Intangible benefits</h3>
+      <div class="sub">A better place to learn and teach</div>
+      <div class="chips">
+        <div class="chip">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#8dc04b"/><path d="M24 36s-11-6.5-11-14a6 6 0 0 1 11-3.3A6 6 0 0 1 35 22c0 7.5-11 14-11 14z" fill="#fff"/></svg>
+          Health &amp; wellbeing of children,<br>tutors &amp; staff
+        </div>
+        <div class="chip">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#8dc04b"/><path d="M12 19h17a4 4 0 1 0-4-4M12 25h22a4 4 0 1 1-4 4M12 31h10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+          Enhanced indoor air quality
+        </div>
+        <div class="chip">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="#8dc04b"/><circle cx="24" cy="24" r="6" fill="#fff"/><g stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M24 10v4M24 34v4M10 24h4M34 24h4M14 14l2.8 2.8M31.2 31.2 34 34M14 34l2.8-2.8M31.2 16.8 34 14"/></g></svg>
+          Excellent daylighting
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pillars-head">
+    <h2>Benefits of Green &amp; Healthy Schools</h2>
+    <div class="rule"></div>
+  </div>
+
+  <section class="pillars">
+    <div class="pillar">
+      <div class="side">
+        <div class="num">01</div>
+        <svg viewBox="0 0 48 48" fill="none" stroke="#1f4d2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38h36"/><path d="M10 38V28M19 38V22M28 38V16M37 38V10"/><path d="M8 20 18 12l8 5 14-10"/></svg>
+      </div>
+      <div class="body">
+        <h4>PERFORMANCE</h4>
+        <div class="focus">Student&rsquo;s &amp; building&rsquo;s performance</div>
+        <p>Fresh air, daylight and an improved indoor environment enhance the performance of students. Water efficiency, energy efficiency and post-occupancy monitoring improve building performance.</p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="side">
+        <div class="num">02</div>
+        <svg viewBox="0 0 48 48" fill="none" stroke="#1f4d2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 12c-5-3-11-4-18-3v26c7-1 13 0 18 3 5-3 11-4 18-3V9c-7-1-13 0-18 3z"/><path d="M24 12v26"/></svg>
+      </div>
+      <div class="body">
+        <h4>PEDAGOGY</h4>
+        <div class="focus">Science &amp; art of education</div>
+        <p>Eco-sensitivity is both a passion and a science. Children get sensitised to environmental aspects as part of everyday learning.</p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="side">
+        <div class="num">03</div>
+        <svg viewBox="0 0 48 48" fill="none" stroke="#1f4d2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="5"/><circle cx="11" cy="20" r="4"/><circle cx="37" cy="20" r="4"/><path d="M15 38v-4a9 9 0 0 1 18 0v4M4 36v-2a7 7 0 0 1 9-6.7M44 36v-2a7 7 0 0 0-9-6.7"/></svg>
+      </div>
+      <div class="body">
+        <h4>COMMUNITY</h4>
+        <div class="focus">Help to educate the greater community</div>
+        <p>Knowledge sharing within the school helps in reaching out to parents and nearby communities.</p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="side">
+        <div class="num">04</div>
+        <svg viewBox="0 0 48 48" fill="none" stroke="#1f4d2b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 42V24"/><path d="M24 26c0-9 6-15 16-15 0 10-6 15-16 15z"/><path d="M24 30c0-7-5-12-14-12 0 8 5 12 14 12z"/><path d="M14 42h20"/></svg>
+      </div>
+      <div class="body">
+        <h4>RESPONSIBILITY</h4>
+        <div class="focus">Towards the environment</div>
+        <p>Children learn to take responsibility for their own actions that concern the environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-grid">
+      <div>
+        <h2>Get your school <span>IGBC Green Rated!</span></h2>
+        <p class="pitch">Avail expert green rating consultancy &mdash; from assessment and documentation to certification.</p>
+        <div class="contact">
+          <div class="row">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c6ec8f" stroke-width="3.2" stroke-linecap="round"><circle cx="24" cy="16" r="8"/><path d="M8 42c0-9 7-15 16-15s16 6 16 15"/></svg>
+            <span><span class="name">Ameet Vikram Kothaari</span><span class="cred">IGBC AP</span></span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c6ec8f" stroke-width="3.2" stroke-linejoin="round"><rect x="5" y="11" width="38" height="26" rx="3"/><path d="m6 13 18 14 18-14"/></svg>
+            <a class="email" href="mailto:green@everestcomputer.com">green@everestcomputer.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="ap-card">
+        <img src="assets/igbc-ap-logo.jpg" alt="IGBC Accredited Professional logo">
+        <div class="cap">Accredited Professional</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
