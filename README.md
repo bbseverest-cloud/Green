@@ -37,7 +37,8 @@ Folder `edm/consulting/`, aimed at architects and interior designers of commerci
 - `igbc-consulting-edm.html` – email HTML (same build as the EDM above; images come from `edm/images/`)
 - `igbc-consulting-linkedin.png` – LinkedIn feed image (4:5), rendered from `linkedin-post.html`
 - `igbc-consulting-carousel.pdf` – 7-slide LinkedIn carousel (upload as a document post), rendered from `linkedin-carousel.html`; single slides in `carousel/`
-- `send-kit.md` – subject lines, preheader, plain-text email, LinkedIn post, carousel post, short repost and first comment
+- `whatsapp-status/status-1.jpg` … `status-5.jpg` – WhatsApp Status sequence (1080 × 1920), rendered from `whatsapp-status.html`
+- `send-kit.md` – subject lines, preheader, plain-text email, LinkedIn post, carousel post, short repost, first comment, WhatsApp Status captions and group message
 - `web/index.html` – "view in browser" page, built with
   `python3 edm/build-web-version.py consulting/igbc-consulting-edm.html consulting/web/index.html "IGBC Interiors Consulting"`
 - Web version: https://claude.ai/artifact/QadLS3HWBgV8iRoFW3unXz (set sharing to "anyone with the link" before sending)

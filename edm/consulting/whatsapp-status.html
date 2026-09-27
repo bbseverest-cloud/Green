@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IGBC Interiors WhatsApp Status</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* WhatsApp Status sequence: 5 frames at 1080 x 1920 (9:16).
+     Safe zones: WhatsApp overlays the name/progress bar on the top ~220px and the reply bar on the bottom ~260px,
+     so all text sits between them. */
+  :root {
+    --paper: #f7f6f1; --ink: #1f2b28; --muted: #56645f; --forest: #25604a; --sketch: #9aaea5;
+    --eco-bg: #d9f0de; --eco: #1f6b3a; --water-bg: #d7ebf8; --water: #16608d;
+    --energy-bg: #fcebc6; --energy: #8a5800; --material-bg: #fadccf; --material: #9a3c1c;
+    --indoor-bg: #d3f0ea; --indoor: #0d6a60; --innov-bg: #e7defa; --innov: #5b37a8;
+    --health-bg: #fad9e6; --health: #a2255a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d9ddd6; }
+  body { font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); word-spacing: .05em; }
+  .display { font-family: "Fraunces", Georgia, serif; word-spacing: normal; }
+  em { font-style: italic; font-weight: 500; color: var(--forest); }
+
+  .frame {
+    width: 1080px; height: 1920px; position: relative; overflow: hidden; margin: 0 auto 24px;
+    background: linear-gradient(165deg, #d6f0e3 0%, #ece6f8 50%, #fde8dc 100%);
+    display: flex; flex-direction: column; padding: 230px 80px 280px;
+  }
+  .frame > * { position: relative; }
+  .frame .band { position: absolute; left: 0; top: 0; width: 1080px; height: 540px; object-fit: cover; object-position: top; opacity: .9; }
+
+  .tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; background: #fff; border-radius: 60px; padding: 10px 32px 10px 12px; box-shadow: 0 6px 18px rgba(37,96,74,.12); }
+  .tag img { height: 84px; display: block; }
+  .tag span { font-size: 30px; font-weight: 800; letter-spacing: .06em; color: var(--forest); }
+  .eyebrow { font-size: 28px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--innov); }
+  h1 { font-size: 118px; line-height: .98; font-weight: 600; letter-spacing: -.03em; margin-top: 22px; }
+  h2 { font-size: 100px; line-height: 1.0; font-weight: 600; letter-spacing: -.025em; margin-top: 18px; }
+  .lead { font-size: 44px; line-height: 1.35; color: var(--muted); margin-top: 34px; }
+  .lead b { color: var(--ink); }
+  .mid { margin: auto 0; }
+  .tap { margin-top: auto; align-self: center; display: flex; align-items: center; gap: 14px; font-size: 30px; font-weight: 800; color: var(--forest); background: rgba(255,255,255,.7); border-radius: 50px; padding: 16px 32px; }
+  .tap svg { width: 42px; height: 24px; }
+
+  .sk { position: absolute; pointer-events: none; }
+  .sk g { fill: none; stroke: var(--sketch); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* frame 2 */
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 60px; }
+  .chip { border-radius: 30px; padding: 30px 30px; font-size: 38px; font-weight: 700; line-height: 1.18; min-height: 170px; display: flex; align-items: center; }
+
+  /* frame 3 */
+  .steps { margin-top: 60px; position: relative; }
+  .steps::before { content: ""; position: absolute; left: 55px; top: 70px; bottom: 70px; border-left: 4px dashed #b0c3b9; }
+  .step { display: flex; gap: 36px; align-items: center; padding: 26px 0; position: relative; }
+  .step .dot { width: 112px; height: 112px; border-radius: 50%; display: grid; place-items: center; font-size: 46px; font-weight: 800; flex: none; border: 8px solid #f1eef5; }
+  .step h3 { font-size: 50px; font-weight: 800; line-height: 1.12; }
+  .step p { font-size: 32px; color: var(--muted); margin-top: 6px; line-height: 1.35; }
+
+  /* frame 4 */
+  .stat { border-radius: 40px; padding: 48px 50px; margin-top: 30px; }
+  .stat .v { font-size: 170px; line-height: .95; font-weight: 600; letter-spacing: -.04em; }
+  .stat .l { font-size: 46px; font-weight: 700; margin-top: 12px; }
+  .stat.soft { font-size: 42px; line-height: 1.4; font-weight: 600; }
+
+  /* frame 5 */
+  .card { background: #fff; border-radius: 44px; padding: 56px 54px; margin-top: 60px; box-shadow: 0 10px 30px rgba(37,96,74,.1); }
+  .card img { width: 300px; display: block; }
+  .card .who { font-size: 56px; font-weight: 800; margin-top: 30px; }
+  .card .who span { font-size: 26px; letter-spacing: .12em; color: var(--forest); margin-left: 12px; }
+  .card .role { font-size: 32px; color: var(--muted); margin-top: 8px; }
+  .card .mail { font-size: 50px; font-weight: 800; color: var(--forest); margin-top: 36px; word-break: break-all; }
+  .reply { margin-top: 44px; font-size: 40px; line-height: 1.4; color: var(--muted); }
+  .reply b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- 1 · HOOK -->
+<section class="frame">
+  <img class="band" src="../images/header-sketch.jpg" alt="">
+  <div class="tag"><img src="../images/igbc-ap-logo.jpg" alt="IGBC AP"><span>Ameet Vikram Kothaari</span></div>
+  <div class="mid">
+    <div class="eyebrow">Architects &amp; interior designers</div>
+    <h1 class="display">Your next fit-out can be <em>IGBC Green Interiors certified</em></h1>
+    <p class="lead">We handle it <b>from design stage to handover</b>, so you can keep designing.</p>
+  </div>
+  <svg class="sk" viewBox="0 0 220 260" style="right:70px;bottom:400px;width:200px;height:236px" aria-hidden="true"><g>
+    <path d="M60 256 L50 190 H170 L160 256 Z"/><path d="M110 190 C106 140 114 90 110 30"/>
+    <path d="M110 170 C80 164 58 144 52 116 C80 120 102 140 110 170 M111 140 C140 132 158 110 162 82 C134 88 116 110 111 140 M110 110 C86 98 76 76 78 52 C98 62 108 84 110 110 M111 84 C130 74 138 54 136 30 C118 40 112 60 111 84"/>
+  </g></svg>
+  <div class="tap">Tap for more <svg viewBox="0 0 34 20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h28M22 2l8 8-8 8"/></svg></div>
+</section>
+
+<!-- 2 · PROJECTS -->
+<section class="frame">
+  <div class="mid">
+    <div class="eyebrow">Projects we certify</div>
+    <h2 class="display">Designing one of these?</h2>
+    <div class="chips">
+      <div class="chip" style="background:var(--material-bg)">Retail &amp; showrooms</div>
+      <div class="chip" style="background:var(--energy-bg)">Restaurants &amp; food joints</div>
+      <div class="chip" style="background:var(--water-bg)">Office &amp; IT fit-outs</div>
+      <div class="chip" style="background:var(--innov-bg)">Malls &amp; large interiors</div>
+      <div class="chip" style="background:var(--health-bg)">Hotels &amp; hospitality</div>
+      <div class="chip" style="background:var(--eco-bg)">Bank branches</div>
+      <div class="chip" style="background:var(--indoor-bg)">Clinics</div>
+      <div class="chip" style="background:#fff">Other commercial spaces</div>
+    </div>
+  </div>
+  <div class="tap">Tap for more <svg viewBox="0 0 34 20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h28M22 2l8 8-8 8"/></svg></div>
+</section>
+
+<!-- 3 · HOW WE WORK -->
+<section class="frame">
+  <div class="mid">
+    <div class="eyebrow">How we work</div>
+    <h2 class="display">End to end, <em>one point of contact</em></h2>
+    <div class="steps">
+      <div class="step"><div class="dot" style="background:var(--eco-bg);color:var(--eco)">1</div><div><h3>Design stage</h3><p>Set the target, fold green into the brief</p></div></div>
+      <div class="step"><div class="dot" style="background:var(--water-bg);color:var(--water)">2</div><div><h3>Registration</h3><p>Register the project with IGBC</p></div></div>
+      <div class="step"><div class="dot" style="background:var(--energy-bg);color:var(--energy)">3</div><div><h3>GreenPro products</h3><p>Certified materials that fit the design</p></div></div>
+      <div class="step"><div class="dot" style="background:var(--innov-bg);color:var(--innov)">4</div><div><h3>Certification</h3><p>Through to the award, ready for handover</p></div></div>
+    </div>
+  </div>
+  <div class="tap">Tap for more <svg viewBox="0 0 34 20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h28M22 2l8 8-8 8"/></svg></div>
+</section>
+
+<!-- 4 · BENEFITS -->
+<section class="frame">
+  <div class="mid">
+    <div class="eyebrow">What your clients gain</div>
+    <div class="stat" style="background:var(--energy-bg);margin-top:36px"><div class="v display" style="color:var(--energy)">30&ndash;40%</div><div class="l">lower energy cost</div></div>
+    <div class="stat" style="background:var(--water-bg)"><div class="v display" style="color:var(--water)">20&ndash;30%</div><div class="l">lower water requirement</div></div>
+    <div class="stat soft" style="background:var(--health-bg)">Better air, light and acoustics, and healthier occupants</div>
+  </div>
+  <div class="tap">Tap for more <svg viewBox="0 0 34 20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h28M22 2l8 8-8 8"/></svg></div>
+</section>
+
+<!-- 5 · CTA -->
+<section class="frame">
+  <img class="band" src="../images/header-sketch.jpg" alt="">
+  <div class="mid">
+    <div class="eyebrow">Let&rsquo;s talk</div>
+    <h2 class="display">Have a fit-out on your <em>drawing board?</em></h2>
+    <div class="card">
+      <img src="../images/igbc-ap-logo.jpg" alt="IGBC Accredited Professional">
+      <div class="who">Ameet Vikram Kothaari<span>IGBC AP</span></div>
+      <div class="role">IGBC Green Interiors certification consultant</div>
+      <div class="mail">green@everestcomputer.com</div>
+    </div>
+    <p class="reply"><b>Reply to this status</b> with your project type and city, and I&rsquo;ll get back to you.</p>
+  </div>
+</section>
+
+</body>
+</html>
