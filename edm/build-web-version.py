@@ -1,11 +1,14 @@
-"""Build edm/web/index.html (the "view in browser" page) from the email source.
+"""Build the "view in browser" page for an email.
 
-Run after editing green-interiors-edm.html:  python3 edm/build-web-version.py
+  python3 edm/build-web-version.py                      # green-interiors-edm.html -> web/index.html
+  python3 edm/build-web-version.py consulting/igbc-consulting-edm.html consulting/web/index.html "IGBC Interiors Consulting"
 """
-import re, pathlib
+import re, sys, pathlib
 
 root = pathlib.Path(__file__).parent
-src = (root / "green-interiors-edm.html").read_text()
+args = sys.argv[1:] or ["green-interiors-edm.html", "web/index.html", "IGBC Green Interiors"]
+src_path, out_path, page_title = args
+src = (root / src_path).read_text()
 RAW = "https://raw.githubusercontent.com/bbseverest-cloud/Green/claude/friendly-hypatia-tyb65z/"
 
 head = re.search(r"<head>(.*?)</head>", src, re.S).group(1)
@@ -13,7 +16,7 @@ body = re.search(r"<body[^>]*>(.*?)</body>", src, re.S).group(1)
 
 # keep only title, font link and styles from the head
 keep = "\n".join(re.findall(r"<title>.*?</title>|<link [^>]*>|<style>.*?</style>", head, re.S))
-keep = re.sub(r"<title>.*?</title>", "<title>IGBC Green Interiors</title>", keep)
+keep = re.sub(r"<title>.*?</title>", f"<title>{page_title}</title>", keep)
 
 # the page is the browser version, so drop the preheader and the "open in browser" row
 body = re.sub(r"<!-- Preheader.*?</div>\s*", "", body, flags=re.S)
@@ -23,7 +26,7 @@ body = body.replace(RAW + "edm/images/", "images/")
 # wider side gutter on phones
 body = body.replace('padding:16px 8px 32px;', 'padding:16px 16px 32px;')
 
-out = root / "web" / "index.html"
+out = root / out_path
 out.parent.mkdir(exist_ok=True)
 out.write_text(keep + "\n" + body.strip() + "\n")
 print("wrote", out)
