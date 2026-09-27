@@ -134,3 +134,25 @@ I work with your team from the design stage to handover, covering registration, 
 Swipe through, and if a project is on your drawing board, message me or email green@everestcomputer.com.
 
 #IGBC #GreenInteriors #SustainableDesign #InteriorDesign #Architecture #CommercialInteriors #GreenBuilding
+
+---
+
+## WhatsApp Status (5 images)
+
+Files: `whatsapp-status/status-1.jpg` … `status-5.jpg` (1080 × 1920). Post them in order as one batch: in WhatsApp, open **Updates → My status → camera icon**, pick all five from your gallery in order, add the captions below, and send. Each shows for about 5 seconds. Text stays clear of WhatsApp's name bar at the top and reply box at the bottom.
+
+| # | Image | Caption |
+|---|---|---|
+| 1 | Your next fit-out can be IGBC Green Interiors certified | Architects & interior designers 👇 |
+| 2 | Projects we certify | Retail, restaurants, offices, malls, hotels, banks, clinics and more |
+| 3 | How we work | Design stage → registration → GreenPro → certification |
+| 4 | What your clients gain | 30–40% lower energy cost, 20–30% less water |
+| 5 | Let's talk | Reply here or email green@everestcomputer.com 🌱 |
+
+Status 5 asks viewers to reply to the status; those replies arrive as normal chats with you.
+
+**To send the set as a direct message or to a group** (for example architects' or designers' groups), attach the five images and add:
+
+Hello! I help architects and interior designers get commercial interiors IGBC Green Interiors certified, from design stage to handover: registration, GreenPro product selection and certification. Retail, restaurants, offices, showrooms, hotels, bank branches, clinics and more.
+Have a project coming up? Reply here or email green@everestcomputer.com
+– Ameet Vikram Kothaari, IGBC AP
