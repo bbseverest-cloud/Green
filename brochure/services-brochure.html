@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Green Smart Spaces Brochure</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Two-sided A4 brochure (210 x 297 mm), white and green. Page = 794 x 1123 CSS px. */
+  :root {
+    --white: #ffffff;
+    --mist: #f1f8f3;      /* palest green wash */
+    --mint: #e1f1e6;      /* light green plate */
+    --leaf: #7cc38f;      /* accent */
+    --green: #2f8a57;     /* primary */
+    --forest: #1b4d36;    /* deep */
+    --ink: #1c2b24;
+    --muted: #536259;
+    --sketch: #8fc1a0;    /* pencil lines */
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #dfe5e0; }
+  body { font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); word-spacing: .04em; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .display { font-family: "Fraunces", Georgia, serif; word-spacing: normal; }
+  em { font-style: italic; font-weight: 500; color: var(--green); }
+
+  .page { width: 794px; height: 1123px; position: relative; overflow: hidden; background: var(--white); display: flex; flex-direction: column; break-after: page; page-break-after: always; }
+  @media screen { .page { margin: 20px auto; box-shadow: 0 8px 30px rgba(0,0,0,.12); } }
+  .page > * { position: relative; flex-shrink: 0; }
+  section.page:last-of-type { break-after: auto; page-break-after: auto; }
+
+  /* pencil sketches */
+  .sk { position: absolute; pointer-events: none; }
+  .sk g { fill: none; stroke: var(--sketch); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- page 1 ---------- */
+  .top { display: flex; align-items: center; gap: 16px; padding: 16px 44px 12px; }
+  .top img { height: 50px; display: block; }
+  .top .tag { margin-left: auto; font-size: 10.5px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--green); }
+
+  .hero { background: var(--mist); padding: 34px 44px 30px; overflow: hidden; }
+  .hero .sk { right: -10px; top: 0; width: 400px; height: 100%; }
+  .eyebrow { font-size: 10.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--green); }
+  .hero h1 { font-size: 46px; line-height: 1.02; font-weight: 600; letter-spacing: -.02em; margin-top: 12px; max-width: 390px; }
+  .hero p { font-size: 13.5px; line-height: 1.6; color: var(--muted); margin-top: 14px; max-width: 400px; }
+
+  .four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 0 44px; margin-top: -1px; transform: translateY(-18px); }
+  .four .v { background: var(--white); border: 1.5px solid var(--mint); border-radius: 14px; padding: 12px 12px 12px; box-shadow: 0 6px 16px rgba(27,77,54,.07); }
+  .four .n { font-size: 10px; font-weight: 800; color: var(--green); letter-spacing: .1em; }
+  .four .t { font-size: 14px; font-weight: 800; margin-top: 4px; }
+  .four .d { font-size: 10.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  .sec { padding: 0 44px; }
+  .sec-head { display: flex; align-items: baseline; gap: 12px; }
+  .sec-head .num { font-size: 13px; font-weight: 800; color: var(--white); background: var(--green); border-radius: 20px; padding: 3px 10px; letter-spacing: .08em; }
+  .sec-head h2 { font-size: 30px; font-weight: 600; letter-spacing: -.01em; }
+  .sec-head .sub { font-size: 13px; font-style: italic; color: var(--green); font-family: "Fraunces", Georgia, serif; }
+  .sec-intro { font-size: 12.5px; line-height: 1.6; color: var(--muted); margin-top: 8px; max-width: 560px; }
+
+  .consult { margin-top: 2px; position: relative; }
+  .plan { position: relative; display: block; width: 100%; height: 100px; margin-top: 14px; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .tile { background: var(--mist); border-radius: 14px; padding: 14px 14px 13px; }
+  .tile .ic { width: 32px; height: 32px; border-radius: 10px; background: var(--white); display: grid; place-items: center; }
+  .tile .ic svg { width: 19px; height: 19px; }
+  .tile h3 { font-size: 13.5px; font-weight: 800; margin-top: 9px; line-height: 1.25; }
+  .tile p { font-size: 10.8px; line-height: 1.5; color: var(--muted); margin-top: 4px; }
+  .tile.hl { background: var(--mint); }
+
+  .p1foot { margin-top: auto; display: flex; align-items: center; gap: 18px; padding: 14px 44px; border-top: 1.5px solid var(--mint); font-size: 11.5px; color: var(--muted); }
+  .p1foot b { color: var(--forest); }
+  .p1foot .next { margin-left: auto; font-weight: 800; color: var(--green); }
+
+  /* ---------- page 2 ---------- */
+  .band { position: relative; margin: 0 44px; border-radius: 20px; padding: 16px 26px 14px; overflow: hidden; }
+  .band + .band { margin-top: 10px; }
+  .band .sk { right: 6px; top: 0; height: 100%; width: 270px; }
+  .band .txt { position: relative; max-width: 430px; }
+  .band h2 { font-size: 26px; font-weight: 600; letter-spacing: -.01em; margin-top: 6px; }
+  .band .sub { font-size: 13px; font-style: italic; color: var(--green); font-family: "Fraunces", Georgia, serif; margin-top: 2px; }
+  .band p { font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 8px; }
+  .band ul { list-style: none; margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .band li { font-size: 10px; font-weight: 700; color: var(--forest); background: rgba(255,255,255,.85); border: 1px solid var(--mint); border-radius: 20px; padding: 4px 10px; }
+  .band .num { font-size: 11px; font-weight: 800; color: var(--white); background: var(--green); border-radius: 20px; padding: 3px 10px; letter-spacing: .08em; }
+  .b1 { background: var(--mist); }
+  .b2 { background: var(--white); border: 1.5px solid var(--mint); }
+  .b3 { background: var(--mist); }
+
+  .members { margin: 12px 44px 12px; }
+  .members .lbl { font-size: 10.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--green); text-align: center; }
+  .logos { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 12px; padding: 14px 18px; border: 1.5px solid var(--mint); border-radius: 16px; }
+  .logos img { display: block; height: 58px; width: auto; }
+  .logos img.wide { height: 26px; }
+  .logos img.ap { height: 50px; }
+
+  .contact { margin-top: auto; background: var(--forest); color: var(--white); padding: 20px 44px 22px; position: relative; overflow: hidden; }
+  .contact::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--leaf), #bfe5c9, var(--green)); }
+  .contact .who { font-size: 12.5px; font-weight: 700; color: #bfe8c9; letter-spacing: .04em; margin-top: 6px; }
+  .contact h3 { font-size: 24px; font-weight: 600; line-height: 1.2; }
+  .contact h3 em { color: #bfe8c9; }
+  .crow { display: flex; gap: 26px; margin-top: 14px; align-items: center; flex-wrap: wrap; }
+  .crow a, .crow span { display: flex; align-items: center; gap: 9px; color: var(--white); text-decoration: none; font-size: 15px; font-weight: 800; }
+  .crow svg { width: 22px; height: 22px; flex: none; }
+  .contact .sk { right: -20px; top: 0; width: 220px; height: 100%; opacity: .35; }
+  .contact .sk g { stroke: #9fd3b0; }
+</style>
+</head>
+<body>
+
+<!-- ======================= PAGE 1 ======================= -->
+<section class="page">
+  <div class="top">
+    <img src="../assets/igbc-ap-logo.jpg" alt="IGBC Accredited Professional">
+    <span class="tag">Green · Smart · Sustainable spaces</span>
+  </div>
+
+  <div class="hero">
+    <!-- interior sketch: ceiling line, pendant lamps, window, sofa, plant -->
+    <svg class="sk" viewBox="0 0 460 330" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><g filter="url(#pencil)">
+      <path d="M20 40 H460 M20 40 L0 0" opacity=".6"/>
+      <path d="M150 40 V100 M150 100 C128 102 118 116 116 128 H184 C182 116 172 102 150 100 Z"/>
+      <path d="M205 40 V78 M205 78 C190 80 184 90 183 98 H227 C226 90 220 80 205 78 Z"/>
+      <path d="M132 136 L126 150 M168 136 L174 150 M150 138 V154" opacity=".5"/>
+      <path d="M300 70 H430 V230 H300 Z M365 70 V230 M300 150 H430"/>
+      <path d="M292 62 C300 120 286 180 296 236 M438 62 C430 120 444 180 434 236" opacity=".7"/>
+      <path d="M150 300 V252 C150 244 156 238 164 238 H336 C344 238 350 244 350 252 V300"/>
+      <path d="M136 300 V266 C136 258 142 254 150 254 C158 254 164 260 164 268 V300 M336 300 V268 C336 260 342 254 350 254 C358 254 364 258 364 266 V300"/>
+      <path d="M164 276 H336 M250 276 V300"/>
+      <path d="M176 272 C174 256 182 250 196 250 C208 250 214 258 212 272 M288 272 C286 256 294 250 308 250 C320 250 326 258 324 272"/>
+      <path d="M392 300 L386 262 H430 L424 300 Z M408 262 C406 230 410 200 408 170 M408 246 C390 242 378 230 376 214 C392 218 404 230 408 246 M408 226 C424 220 434 206 436 190 C420 196 410 208 408 226 M408 206 C394 198 388 184 388 170 C400 176 408 190 408 206"/>
+      <path d="M0 300 H460" opacity=".6"/>
+    </g></svg>
+    <div class="eyebrow">Consulting · Integration · Facility Maintenance · Training</div>
+    <h1 class="display">Spaces that are <em>green, smart</em> and built to last</h1>
+    <p>We help architects, interior designers, developers and business owners create spaces that use less energy, feel better to be in and run smoothly for years. From the first design conversation to everyday operation, we bring green thinking and smart technology together under one roof.</p>
+  </div>
+
+  <div class="four">
+    <div class="v"><div class="n">01</div><div class="t">Consulting</div><div class="d">Expert guidance from the first sketch</div></div>
+    <div class="v"><div class="n">02</div><div class="t">Integration</div><div class="d">Many systems, one seamless experience</div></div>
+    <div class="v"><div class="n">03</div><div class="t">Facility Maintenance</div><div class="d">Performance that lasts beyond handover</div></div>
+    <div class="v"><div class="n">04</div><div class="t">Training</div><div class="d">Confidence to get the most from technology</div></div>
+  </div>
+
+  <div class="sec consult">
+    <div class="sec-head"><span class="num">01</span><h2 class="display">Consulting</h2><span class="sub">Expert guidance from the first sketch</span></div>
+    <p class="sec-intro">The best outcomes are planned in, not added on. Our consultants join your project early and work alongside your design team, so every decision serves performance, comfort and budget.</p>
+    <div class="tiles">
+      <div class="tile hl"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 12c0-5 3.5-8 9-8 0 5.5-3.5 8-9 8zM12 15c0-4-3-7-8-7 0 4.5 3 7 8 7z"/></svg></div><h3>IGBC Green Certification</h3><p>End-to-end support for IGBC ratings, including Green Interiors: registration, GreenPro product selection, documentation and certification.</p></div>
+      <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></div><h3>Lighting Design</h3><p>Human-centric, energy-efficient lighting that flatters the space and cuts running costs.</p></div>
+      <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="12" height="8" rx="2"/><path d="M15 10l5-3v8l-5-3M7 15v4"/></svg></div><h3>ELV Systems</h3><p>CCTV, access control, fire alarm, public address and structured cabling, planned as one coordinated whole.</p></div>
+      <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 15a3 3 0 0 1 4 0M8.5 13a5 5 0 0 1 7 0"/></svg></div><h3>Home Automation</h3><p>Intuitive control of lighting, climate, shading and security for comfortable, efficient homes.</p></div>
+      <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M10 8l4 2-4 2z"/></svg></div><h3>Audio-Visual (AV)</h3><p>Boardrooms, auditoriums, retail and hospitality spaces with sound and vision that simply work.</p></div>
+      <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="6" rx="1.5"/><rect x="4" y="13" width="16" height="6" rx="1.5"/><path d="M8 6h.01M8 16h.01M12 9v4"/></svg></div><h3>Digital Infrastructure</h3><p>Reliable networks, Wi-Fi and server spaces designed as the backbone of a modern building.</p></div>
+    </div>
+    <!-- consulting sketch: reflected ceiling plan with light points, speakers, camera, Wi-Fi and a network rack -->
+    <svg class="sk plan" viewBox="0 0 706 132" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g filter="url(#pencil)">
+      <path d="M6 8 H700 V124 H6 Z" opacity=".8"/>
+      <path d="M240 8 V56 M240 84 V124 M470 8 V124 M6 70 H200 M280 70 H470" opacity=".7"/>
+      <path d="M200 70 a40 40 0 0 1 40 -40" stroke-dasharray="3 4"/>
+      <circle cx="60" cy="36" r="8"/><circle cx="130" cy="36" r="8"/><circle cx="60" cy="100" r="8"/><circle cx="130" cy="100" r="8"/>
+      <path d="M54 30 L66 42 M66 30 L54 42 M124 30 L136 42 M136 30 L124 42 M54 94 L66 106 M66 94 L54 106 M124 94 L136 106 M136 94 L124 106" opacity=".6"/>
+      <circle cx="310" cy="36" r="10"/><circle cx="310" cy="36" r="4"/><circle cx="410" cy="36" r="10"/><circle cx="410" cy="36" r="4"/>
+      <path d="M330 100 h26 l7 -8 v22 l-7 -8 h-26 z M330 106 l-10 10"/>
+      <path d="M420 104 a4 4 0 1 1 0.1 0 M408 92 a18 18 0 0 1 25 0 M400 84 a30 30 0 0 1 41 0"/>
+      <rect x="520" y="26" width="60" height="84" rx="4"/><path d="M530 40 h40 M530 54 h40 M530 68 h40 M530 82 h40 M536 40 v.1 M536 54 v.1"/>
+      <path d="M620 30 h50 v34 h-50 z M645 64 v10 M632 74 h26"/><path d="M630 96 h40 M630 108 h28" opacity=".6"/>
+      <path d="M580 50 C600 50 604 46 620 46 M470 70 C500 70 505 60 520 60" stroke-dasharray="4 5"/>
+    </g></svg>
+  </div>
+
+  <div class="p1foot">
+    <span><b>green@everestcomputer.com</b></span>
+    <span>WhatsApp <b>+91-8093066161</b></span>
+    <span class="next">Integration, Maintenance &amp; Training overleaf →</span>
+  </div>
+</section>
+
+<!-- ======================= PAGE 2 ======================= -->
+<section class="page">
+  <div class="top">
+    <img src="../assets/igbc-ap-logo.jpg" alt="IGBC Accredited Professional">
+    <span class="tag">Green · Smart · Sustainable spaces</span>
+  </div>
+
+  <div class="band b1">
+    <!-- integration sketch: hub linked to camera, speaker, screen, bulb, thermostat, rack -->
+    <svg class="sk" viewBox="0 0 330 200" preserveAspectRatio="xMaxYMid meet" aria-hidden="true"><g filter="url(#pencil)">
+      <rect x="150" y="80" width="46" height="40" rx="6"/><path d="M158 92 H188 M158 100 H188 M158 108 H176"/>
+      <path d="M150 90 C110 80 100 50 80 44 M196 90 C236 80 246 46 266 40 M150 110 C110 120 100 150 80 158 M196 110 C236 122 246 152 268 160 M173 80 V34 M173 120 V168" stroke-dasharray="4 5"/>
+      <path d="M58 34 h26 l7 -8 v24 l-7 -8 h-26 z"/>
+      <rect x="252" y="20" width="36" height="30" rx="4"/><path d="M262 58 h16 M270 50 v8"/>
+      <circle cx="80" cy="166" r="12"/><path d="M80 178 v6 M74 184 h12"/>
+      <circle cx="270" cy="166" r="14"/><path d="M270 156 v10 l6 4"/>
+      <path d="M160 18 h26 v16 h-26 z M166 26 h.1 M180 22 a4 4 0 1 1 0.1 0"/>
+      <path d="M156 172 h34 v22 h-34 z M162 180 h22 M162 186 h22"/>
+    </g></svg>
+    <div class="txt">
+      <span class="num">02</span>
+      <h2 class="display">Integration</h2>
+      <div class="sub">Many systems, one seamless experience</div>
+      <p>Great technology feels invisible. We install, configure and commission lighting controls, automation, AV, security and network systems so they work together, not in silos. One team, one point of accountability, and a space that behaves exactly as designed.</p>
+      <ul><li>Lighting controls</li><li>Automation</li><li>AV</li><li>Security</li><li>Networks</li><li>Commissioning</li></ul>
+    </div>
+  </div>
+
+  <div class="band b2">
+    <!-- maintenance sketch: building with gear, wrench and checklist -->
+    <svg class="sk" viewBox="0 0 330 200" preserveAspectRatio="xMaxYMid meet" aria-hidden="true"><g filter="url(#pencil)">
+      <path d="M40 190 V70 L100 40 L160 70 V190 Z M40 190 H300"/>
+      <path d="M62 90 h20 v20 h-20 z M118 90 h20 v20 h-20 z M62 130 h20 v20 h-20 z M118 130 h20 v20 h-20 z M90 190 v-30 h20 v30"/>
+      <circle cx="230" cy="80" r="26"/><circle cx="230" cy="80" r="10"/>
+      <path d="M230 46 v8 M230 106 v8 M196 80 h8 M256 80 h8 M206 56 l6 6 M248 98 l6 6 M206 104 l6 -6 M248 62 l6 -6"/>
+      <path d="M200 170 l52 -52 M246 112 a12 12 0 1 1 16 16 l-8 -2 -6 -6 z M196 174 l10 -10" />
+      <path d="M280 130 h36 v56 h-36 z M288 144 l4 4 8 -8 M288 160 l4 4 8 -8 M288 176 h16"/>
+    </g></svg>
+    <div class="txt">
+      <span class="num">03</span>
+      <h2 class="display">Facility Maintenance</h2>
+      <div class="sub">Performance that lasts beyond handover</div>
+      <p>A building's green and smart features only deliver if they keep working. Our preventive maintenance and responsive support keep your systems efficient, safe and up to date, protecting your investment and the comfort of everyone who uses the space.</p>
+      <ul><li>Preventive maintenance</li><li>Responsive support</li><li>System health checks</li><li>Upgrades</li></ul>
+    </div>
+  </div>
+
+  <div class="band b3">
+    <!-- training sketch: presentation screen with chart and an audience -->
+    <svg class="sk" viewBox="0 0 330 200" preserveAspectRatio="xMaxYMid meet" aria-hidden="true"><g filter="url(#pencil)">
+      <rect x="110" y="18" width="170" height="100" rx="6"/><path d="M195 118 v16 M170 134 h50"/>
+      <path d="M130 100 V80 M150 100 V64 M170 100 V72 M190 100 V50 M210 100 V60"/>
+      <path d="M230 90 C240 70 252 76 262 52 M256 52 h6 v6"/>
+      <circle cx="80" cy="60" r="12"/><path d="M60 110 C60 90 68 78 80 78 C92 78 100 90 100 110 M96 88 L124 70"/>
+      <circle cx="140" cy="160" r="10"/><path d="M122 196 C122 180 130 172 140 172 C150 172 158 180 158 196"/>
+      <circle cx="196" cy="160" r="10"/><path d="M178 196 C178 180 186 172 196 172 C206 172 214 180 214 196"/>
+      <circle cx="252" cy="160" r="10"/><path d="M234 196 C234 180 242 172 252 172 C262 172 270 180 270 196"/>
+    </g></svg>
+    <div class="txt">
+      <span class="num">04</span>
+      <h2 class="display">Training</h2>
+      <div class="sub">Confidence to get the most from your technology</div>
+      <p>Technology is only as good as the people using it. We run practical, hands-on training on technology implementation for facility teams, staff, homeowners and design professionals, so every system is used to its full potential, day after day.</p>
+      <ul><li>Facility teams</li><li>Staff &amp; end users</li><li>Homeowners</li><li>Design professionals</li></ul>
+    </div>
+  </div>
+
+  <div class="members">
+    <div class="lbl">Memberships &amp; accreditations</div>
+    <div class="logos">
+      <img class="ap" src="../assets/igbc-ap-logo.jpg" alt="IGBC Accredited Professional">
+      <img src="assets/igbc-member.jpg" alt="Indian Green Building Council member">
+      <img class="wide" src="assets/cedia-member.jpg" alt="CEDIA member">
+      <img src="assets/cedia-ce-provider.png" alt="CEDIA Smart Home CE Provider">
+      <img src="assets/cii-member.png" alt="Confederation of Indian Industry member" style="height:52px">
+    </div>
+  </div>
+
+  <div class="contact">
+    <svg class="sk" viewBox="0 0 220 150" preserveAspectRatio="xMaxYMid meet" aria-hidden="true"><g filter="url(#pencil)">
+      <path d="M110 146 L102 110 H150 L142 146 Z M126 110 C124 80 128 50 126 20 M126 96 C106 92 94 80 92 62 C110 66 122 78 126 96 M126 76 C144 70 154 56 156 38 C138 44 128 58 126 76 M126 56 C112 48 106 34 106 20 C118 26 126 40 126 56"/>
+    </g></svg>
+    <h3 class="display">Let&rsquo;s build spaces that are good for <em>people and the planet</em></h3>
+    <div class="who">Ameet Vikram Kothaari, IGBC AP</div>
+    <div class="crow">
+      <a href="mailto:green@everestcomputer.com?subject=Enquiry%20from%20brochure"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe8c9" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>green@everestcomputer.com</a>
+      <a href="https://wa.me/918093066161"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe8c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-1 .8a4 4 0 0 1-2.1-2.1l.8-1-1-2z"/></svg>WhatsApp +91-8093066161</a>
+    </div>
+  </div>
+</section>
+
+<!-- shared pencil filter -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="pencil" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="5"/>
+    <feDisplacementMap in="SourceGraphic" scale="1.8"/>
+  </filter>
+</svg>
+</body>
+</html>

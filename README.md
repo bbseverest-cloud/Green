@@ -42,3 +42,11 @@ Folder `edm/consulting/`, aimed at architects and interior designers of commerci
 - `web/index.html` – "view in browser" page, built with
   `python3 edm/build-web-version.py consulting/igbc-consulting-edm.html consulting/web/index.html "IGBC Interiors Consulting"`
 - Web version: https://claude.ai/artifact/QadLS3HWBgV8iRoFW3unXz (set sharing to "anyone with the link" before sending)
+
+# Services Brochure
+
+Folder `brochure/`: two-sided A4 brochure in white and green covering the four verticals (Consulting, Integration, Facility Maintenance, Training), with pencil sketches behind each service, memberships (IGBC AP, IGBC Member, CEDIA Member, CEDIA Smart Home CE Provider, CII Member) and contact details.
+
+- `services-brochure.pdf` – print-ready A4, 2 pages; email and WhatsApp are clickable
+- `services-brochure-page-1.png`, `services-brochure-page-2.png` – high-resolution pages for sharing
+- `services-brochure.html` – editable source; logos in `brochure/assets/` (IGBC AP logo reused from `assets/`)
