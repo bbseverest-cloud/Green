@@ -105,3 +105,32 @@ Designing a retail store, restaurant, office, showroom, bank branch or clinic? I
 Full details, including the project types we certify and the four-step process: https://claude.ai/artifact/QadLS3HWBgV8iRoFW3unXz
 
 (LinkedIn tends to show posts with outside links to fewer people, so the link goes in a comment rather than the post.)
+
+---
+
+## LinkedIn carousel (document post)
+
+Upload `igbc-consulting-carousel.pdf` with **Add a document** (the "…" or "+" menu in the post box). LinkedIn shows each page as a swipeable slide. Individual slides are also in `carousel/slide-1.png` … `slide-7.png` if you need them elsewhere.
+
+**Document title** (LinkedIn asks for one; it shows on the carousel)
+IGBC Green Interiors certification: design stage to handover
+
+**Slides**
+1. Cover: Your next fit-out can be IGBC Green Interiors certified
+2. Why it matters: 90% indoors, 30–40% energy, 20–30% water, health
+3. About the rating: tenant-occupied, owner-occupied, ideally suited not limited
+4. Projects we certify: 8 project types
+5. How we work: design stage, registration, GreenPro selection, certification & handover
+6. For your practice: make Green Interiors your USP
+7. Let's talk: contact details
+
+**Post text**
+Architects and interior designers: 7 slides on getting your commercial fit-outs IGBC Green Interiors certified 👉
+
+Retail stores, showrooms, restaurants, offices, IT spaces, malls, hotels, bank branches, clinics: if you're designing one, it can be certified.
+
+I work with your team from the design stage to handover, covering registration, GreenPro product selection and certification, so you can keep designing.
+
+Swipe through, and if a project is on your drawing board, message me or email green@everestcomputer.com.
+
+#IGBC #GreenInteriors #SustainableDesign #InteriorDesign #Architecture #CommercialInteriors #GreenBuilding
