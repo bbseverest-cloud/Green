@@ -25,8 +25,8 @@
   .land .scene { padding: 90px 140px; }
   .port .scene { padding: 170px 90px; }
 
-  .logo { position: absolute; top: 56px; left: 70px; height: 78px; z-index: 5; opacity: 0; }
-  .port .logo { top: 70px; left: 70px; height: 84px; }
+  .logo { position: absolute; top: 50px; left: 70px; height: 96px; z-index: 5; opacity: 0; }
+  .port .logo { top: 70px; left: 70px; height: 104px; }
 
   .sk { fill: none; stroke: #7fb893; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
   .sk path, .sk circle, .sk rect { vector-effect: non-scaling-stroke; }
@@ -101,12 +101,14 @@
   .land .s8 .plant { right: 110px; bottom: 60px; width: 360px; height: 520px; }
   .port .s8 .plant { right: 70px; bottom: 120px; width: 300px; height: 430px; }
   .s8 .sk { stroke: #9fd3b0; }
+  .s8 .endlogo { display: block; height: 170px; margin-bottom: 44px; }
+  .port .s8 .endlogo { height: 150px; }
   .s8 .bar { position: absolute; left: 0; right: 0; top: 0; height: 12px; background: linear-gradient(90deg, var(--leaf), #bfe5c9, var(--green)); }
 </style>
 </head>
 <body>
 <div id="stage">
-  <img class="logo" data-a="0.4 0.8" src="../assets/igbc-ap-logo.jpg" alt="IGBC AP">
+  <img class="logo" data-a="0.4 0.8" src="../logo/div/div-logo-horizontal-two-tone.svg" alt="Div (दिव्)">
 
   <!-- ============ 1 · OPENING (0 – 6.5) ============ -->
   <section class="scene s1" data-s="0 6.5">
@@ -260,6 +262,7 @@
       <path data-d="43.9 0.7" d="M111 104 C132 92 142 70 140 40 C120 52 112 76 111 104"/>
     </svg>
     <div class="txt">
+      <img class="endlogo" data-a="41.7 0.8" src="../logo/div/div-logo-horizontal-on-dark-two-tone.svg" alt="Div (दिव्)">
       <h2 class="display" data-a="41.8 0.8">Let&rsquo;s build spaces that are good for <em>people and the planet</em></h2>
       <div class="who" data-a="42.6 0.6">Ameet Vikram Kothaari, IGBC AP</div>
       <div class="contacts">

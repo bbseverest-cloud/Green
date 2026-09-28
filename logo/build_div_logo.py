@@ -26,6 +26,9 @@ SCHEMES = {
     "black":             ("#141414", "#141414", "#141414", None),
     "reversed-two-tone": ("#ffffff", "#f2b938", "#bfe8c9", "#1b4d36"),
     "reversed-white":    ("#ffffff", "#ffffff", "#ffffff", "#1b4d36"),
+    # transparent versions for placing straight onto dark photos, video or coloured bands
+    "on-dark-two-tone":  ("#ffffff", "#f2b938", "#bfe8c9", None),
+    "on-dark-white":     ("#ffffff", "#ffffff", "#ffffff", None),
 }
 
 
@@ -70,6 +73,9 @@ SHADES = {
     "reversed-two-tone": dict(rim="#ffffff", well="#1b4d36", lip="#d3ecdc", top="#f4fbf6", bot="#c9e6d3",
                               hi="#ffffff", bead="#ffffff", base="#d3ecdc"),
 }
+
+
+SHADES["on-dark-two-tone"] = SHADES["reversed-two-tone"]
 
 
 def mark(ink, light, shade=None, uid="d"):

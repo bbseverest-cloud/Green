@@ -75,12 +75,14 @@ Folder `logo/`: the Everest mark, a leaf holding a home (the roof doubles as the
 
 # Div (दिव्) Logo
 
-Folder `logo/div/`: brand logo for **Div (दिव्)**, the Sanskrit root meaning *to shine, to illumine, to radiate*. The mark is a diya: the flame shines, the lamp illumines the space around it, and the rays radiate outward. The flat rim of the lamp echoes the shirorekha of दिव्. Lettering in Tiro Devanagari Sanskrit, shaped with HarfBuzz and converted to outlines.
+Folder `logo/div/`: brand logo for **Div (दिव्)**, the Sanskrit root meaning *to shine, to illumine, to radiate*. The mark is a diya: the flame shines, the lamp illumines the space around it, and the rays radiate outward. Moulded rims at the top and foot of the lamp give it a three-dimensional feel. The flat rim of the lamp echoes the shirorekha of दिव्. Lettering in Tiro Devanagari Sanskrit, shaped with HarfBuzz and converted to outlines.
 
 - Two-tone (deep green + saffron gold): `div-logo-horizontal-two-tone`, `div-logo-stacked-two-tone`, `div-icon-two-tone`
 - Single colour: `-green`, `-gold`, `-black`
-- Dark backgrounds: `-reversed-two-tone`, `-reversed-white`
+- Dark backgrounds: `-reversed-two-tone`, `-reversed-white` (on a green tile), `-on-dark-two-tone`, `-on-dark-white` (transparent, for photos, video and coloured bands)
 - `div-avatar` – profile picture for WhatsApp / LinkedIn
 - Every version is provided as `.svg` (print, signage, designers) and transparent `.png` (Word, email, social)
 - `div-logo-sheet.png` – overview with meaning, options and colours
 - Rebuild: `python3 logo/build_div_logo.py <tiro-devanagari.woff2> <tiro-latin.woff2>`
+
+The Div logo is applied across all communication: the Green Interiors poster, both EDMs and their web versions (`edm/images/div-logo.png`, `div-icon.png` for email), the LinkedIn image, carousel and WhatsApp statuses, the brochure and the video.
