@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Div Logo Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 1600px; background: #f7f5ef; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: #1c2b24; padding: 70px; }
+  .head { display: flex; align-items: baseline; gap: 24px; }
+  h1 { font-family: "Tiro Devanagari Sanskrit", serif; font-size: 84px; font-weight: 400; color: #1b4d36; line-height: 1; }
+  .pron { font-family: "Fraunces", Georgia, serif; font-size: 34px; font-style: italic; color: #b9780f; }
+  .intro { font-size: 20px; color: #536259; margin-top: 16px; max-width: 980px; line-height: 1.55; }
+  .meaning { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .m { background: #fff; border-radius: 24px; padding: 28px; display: flex; gap: 22px; align-items: center; }
+  .m img { width: 90px; flex: none; }
+  .m b { display: block; font-family: "Fraunces", Georgia, serif; font-size: 28px; font-weight: 600; }
+  .m p { font-size: 16px; color: #536259; margin-top: 6px; line-height: 1.5; }
+  .lbl { font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #8a948d; margin: 44px 0 14px; }
+  .grid2 { display: grid; grid-template-columns: 1.35fr 1fr; gap: 26px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+  .panel { background: #fff; border-radius: 26px; padding: 44px; display: grid; place-items: center; }
+  .panel.dark { background: #1b4d36; }
+  .panel.cream { background: #fbf5e6; }
+  .tag { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #8a948d; margin-top: 16px; text-align: center; }
+  .dark .tag { color: #9fd3b0; }
+  .sizes { display: flex; align-items: end; gap: 34px; }
+  .colors { display: flex; gap: 18px; }
+  .c { flex: 1; border-radius: 20px; height: 110px; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; font-size: 15px; font-weight: 700; }
+</style></head><body>
+  <div class="head"><h1>दिव्</h1><span class="pron">Div: to shine, to illumine, to radiate</span></div>
+  <p class="intro">A diya carries all three meanings of the Sanskrit root. Its flame <b>shines</b>, the lamp exists to <b>illumine</b> the space around it, and its light <b>radiates</b> outward. The flat rim of the lamp echoes the shirorekha, the headline stroke that joins the letters of दिव्.</p>
+  <div class="meaning">
+    <div class="m"><img src="div-icon-two-tone.svg"><div><b>To shine</b><p>The flame: the energy and brilliance we bring to every project.</p></div></div>
+    <div class="m"><img src="div-icon-two-tone.svg"><div><b>To illumine</b><p>The diya: we hold the light so our clients&rsquo; spaces glow.</p></div></div>
+    <div class="m"><img src="div-icon-two-tone.svg"><div><b>To radiate</b><p>The rays: care and value that reach well beyond handover.</p></div></div>
+  </div>
+
+  <div class="lbl">Two-tone (primary)</div>
+  <div class="grid2">
+    <div class="panel"><img src="div-logo-horizontal-two-tone.svg" style="width:640px"></div>
+    <div class="panel"><img src="div-logo-stacked-two-tone.svg" style="width:300px"></div>
+  </div>
+
+  <div class="lbl">Single colour</div>
+  <div class="grid3">
+    <div class="panel"><img src="div-logo-horizontal-green.svg" style="width:100%"><div class="tag">Deep green</div></div>
+    <div class="panel"><img src="div-logo-horizontal-gold.svg" style="width:100%"><div class="tag">Saffron gold</div></div>
+    <div class="panel"><img src="div-logo-horizontal-black.svg" style="width:100%"><div class="tag">Black (stamps, fax, engraving)</div></div>
+  </div>
+
+  <div class="lbl">On dark backgrounds, and small sizes</div>
+  <div class="grid3">
+    <div class="panel dark"><img src="div-logo-horizontal-reversed-two-tone.svg" style="width:100%"><div class="tag">Reversed two-tone</div></div>
+    <div class="panel dark"><img src="div-logo-horizontal-reversed-white.svg" style="width:100%"><div class="tag">Reversed single colour</div></div>
+    <div class="panel cream"><div class="sizes"><img src="div-avatar.svg" style="width:140px;border-radius:30px"><img src="div-icon-two-tone.svg" style="width:64px"><img src="div-icon-green.svg" style="width:32px"><img src="div-icon-black.svg" style="width:18px"></div><div class="tag">Profile picture &amp; icon</div></div>
+  </div>
+
+  <div class="lbl">Colours</div>
+  <div class="colors">
+    <div class="c" style="background:#1b4d36;color:#fff">Deep green #1B4D36</div>
+    <div class="c" style="background:#e3a21a;color:#1b4d36">Saffron gold #E3A21A</div>
+    <div class="c" style="background:#b9780f;color:#fff">Deep gold (single colour) #B9780F</div>
+    <div class="c" style="background:#fbf5e6;color:#1b4d36">Diya cream #FBF5E6</div>
+    <div class="c" style="background:#fff;color:#1b4d36;border:2px solid #eee">White #FFFFFF</div>
+  </div>
+</body></html>

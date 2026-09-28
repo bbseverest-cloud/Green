@@ -61,7 +61,7 @@ Folder `video/`: 48-second animated business video (white and green, sketches th
 - `services-video.html` – editable source (open with `?o=land&play` or `?o=port&play` to preview in a browser)
 - `render-video.js` – re-renders the MP4s after edits (see the usage note at the top of the file)
 
-# Logo
+# Logo (earlier concept, superseded by Div below)
 
 Folder `logo/`: the Everest mark, a leaf holding a home (the roof doubles as the Everest peak) with a smart node inside, a circuit-trace vein, and a smile-shaped cradle beneath for delightful, committed service.
 
@@ -72,3 +72,15 @@ Folder `logo/`: the Everest mark, a leaf holding a home (the roof doubles as the
 - `everest-icon.svg/.png`, `everest-avatar.svg/.png` – symbol alone, and a profile picture for WhatsApp/LinkedIn
 - `everest-logo-sheet.png` – overview with meaning and colours
 - SVGs have the lettering converted to outlines; rebuild with `python3 logo/build_logo.py <fraunces.woff2> <plus-jakarta-sans.woff2>`
+
+# Div (दिव्) Logo
+
+Folder `logo/div/`: brand logo for **Div (दिव्)**, the Sanskrit root meaning *to shine, to illumine, to radiate*. The mark is a diya: the flame shines, the lamp illumines the space around it, and the rays radiate outward. The flat rim of the lamp echoes the shirorekha of दिव्. Lettering in Tiro Devanagari Sanskrit, shaped with HarfBuzz and converted to outlines.
+
+- Two-tone (deep green + saffron gold): `div-logo-horizontal-two-tone`, `div-logo-stacked-two-tone`, `div-icon-two-tone`
+- Single colour: `-green`, `-gold`, `-black`
+- Dark backgrounds: `-reversed-two-tone`, `-reversed-white`
+- `div-avatar` – profile picture for WhatsApp / LinkedIn
+- Every version is provided as `.svg` (print, signage, designers) and transparent `.png` (Word, email, social)
+- `div-logo-sheet.png` – overview with meaning, options and colours
+- Rebuild: `python3 logo/build_div_logo.py <tiro-devanagari.woff2> <tiro-latin.woff2>`
