@@ -50,3 +50,13 @@ Folder `brochure/`: two-sided A4 brochure in white and green covering the four v
 - `services-brochure.pdf` – print-ready A4, 2 pages; email and WhatsApp are clickable
 - `services-brochure-page-1.png`, `services-brochure-page-2.png` – high-resolution pages for sharing
 - `services-brochure.html` – editable source; logos in `brochure/assets/` (IGBC AP logo reused from `assets/`)
+
+# Services Video
+
+Folder `video/`: 48-second animated business video (white and green, sketches that draw themselves) covering the four verticals, memberships and contact details, with a soft generated background chord.
+
+- `services-video-16x9.mp4` – 1920 × 1080 for website, YouTube, LinkedIn desktop and email links
+- `services-video-9x16.mp4` – 1080 × 1920 for WhatsApp Status, Instagram/Facebook Reels, YouTube Shorts and LinkedIn mobile
+- `services-video-thumbnail.jpg` – cover image
+- `services-video.html` – editable source (open with `?o=land&play` or `?o=port&play` to preview in a browser)
+- `render-video.js` – re-renders the MP4s after edits (see the usage note at the top of the file)

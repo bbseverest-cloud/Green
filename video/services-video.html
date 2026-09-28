@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Green Smart Spaces Video</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Frame-accurate business video. The page is a stage; window.render(t) draws the frame at time t (seconds).
+     Open with ?o=land (1920x1080) or ?o=port (1080x1920). Open with ?play to preview in real time. */
+  :root {
+    --white: #ffffff; --mist: #f1f8f3; --mint: #e1f1e6; --leaf: #7cc38f;
+    --green: #2f8a57; --forest: #1b4d36; --ink: #1c2b24; --muted: #536259; --sketch: #8fc1a0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #000; overflow: hidden; }
+  body { font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); word-spacing: .04em; }
+  .display { font-family: "Fraunces", Georgia, serif; word-spacing: normal; }
+  em { font-style: italic; font-weight: 500; color: var(--green); }
+
+  #stage { position: relative; overflow: hidden; background: linear-gradient(160deg, #ffffff 0%, #f1f8f3 55%, #e6f3ea 100%); }
+  .land #stage { width: 1920px; height: 1080px; }
+  .port #stage { width: 1080px; height: 1920px; }
+
+  .scene { position: absolute; inset: 0; opacity: 0; display: flex; flex-direction: column; justify-content: center; }
+  .land .scene { padding: 90px 140px; }
+  .port .scene { padding: 170px 90px; }
+
+  .logo { position: absolute; top: 56px; left: 70px; height: 78px; z-index: 5; opacity: 0; }
+  .port .logo { top: 70px; left: 70px; height: 84px; }
+
+  .sk { fill: none; stroke: #7fb893; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .sk path, .sk circle, .sk rect { vector-effect: non-scaling-stroke; }
+
+  .eyebrow { font-size: 26px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--green); }
+  h1 { font-size: 118px; line-height: 1.0; font-weight: 600; letter-spacing: -.025em; }
+  h2 { font-size: 96px; line-height: 1.02; font-weight: 600; letter-spacing: -.02em; }
+  .sub { font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 40px; color: var(--green); }
+  .lead { font-size: 34px; line-height: 1.45; color: var(--muted); }
+  .num { display: inline-block; font-size: 26px; font-weight: 800; color: #fff; background: var(--green); border-radius: 30px; padding: 6px 18px; letter-spacing: .08em; }
+
+  /* scene 1 */
+  .s1 .room { position: absolute; }
+  .land .s1 .room { right: 40px; top: 80px; width: 900px; height: 920px; }
+  .port .s1 .room { left: 60px; right: 60px; bottom: 110px; height: 800px; }
+  .land .s1 .txt { max-width: 900px; }
+  .port .s1 { justify-content: flex-start; padding-top: 300px; }
+  .s1 .txt > * + * { margin-top: 26px; }
+
+  /* scene 2 */
+  .cards { display: grid; gap: 26px; margin-top: 50px; }
+  .land .cards { grid-template-columns: repeat(4, 1fr); }
+  .port .cards { grid-template-columns: 1fr 1fr; }
+  .card { background: #fff; border: 2px solid var(--mint); border-radius: 30px; padding: 36px 32px; box-shadow: 0 12px 30px rgba(27,77,54,.08); }
+  .card .n { font-size: 24px; font-weight: 800; color: var(--green); }
+  .card .t { font-size: 40px; font-weight: 800; margin-top: 10px; line-height: 1.12; }
+  .card .d { font-size: 25px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
+  .card .ic { width: 70px; height: 70px; border-radius: 20px; background: var(--mist); display: grid; place-items: center; margin-bottom: 18px; }
+  .card .ic svg { width: 40px; height: 40px; }
+
+  /* service scenes */
+  .svc { display: grid; gap: 70px; align-items: center; }
+  .land .svc { grid-template-columns: 1.05fr .95fr; }
+  .port .svc { grid-template-columns: 1fr; gap: 60px; }
+  .svc .txt > * + * { margin-top: 22px; }
+  .svc svg.art { width: 100%; height: auto; }
+  .port .svc svg.art { max-height: 620px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 14px; }
+  .tag { font-size: 26px; font-weight: 700; color: var(--forest); background: #fff; border: 2px solid var(--mint); border-radius: 40px; padding: 10px 22px; }
+
+  /* consulting */
+  .chips { display: grid; gap: 20px; margin-top: 40px; }
+  .land .chips { grid-template-columns: repeat(3, 1fr); }
+  .port .chips { grid-template-columns: 1fr 1fr; }
+  .chip { background: #fff; border-radius: 26px; padding: 26px 26px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 26px rgba(27,77,54,.07); }
+  .chip .ic { width: 64px; height: 64px; border-radius: 18px; background: var(--mist); display: grid; place-items: center; flex: none; }
+  .chip .ic svg { width: 36px; height: 36px; }
+  .chip span { font-size: 31px; font-weight: 800; line-height: 1.15; }
+  .chip.hl { background: var(--mint); }
+  .s3 .plan { position: absolute; opacity: .9; }
+  .land .s3 .plan { right: 140px; top: 70px; width: 560px; height: 250px; }
+  .port .s3 .plan { left: 90px; right: 90px; bottom: 140px; height: 300px; }
+
+  /* memberships */
+  .logos { display: grid; gap: 40px; align-items: center; justify-items: center; margin-top: 60px; }
+  .land .logos { grid-template-columns: repeat(5, 1fr); }
+  .port .logos { grid-template-columns: 1fr 1fr; }
+  .logos .lg { background: #fff; border-radius: 30px; padding: 30px; width: 100%; height: 220px; display: grid; place-items: center; box-shadow: 0 10px 26px rgba(27,77,54,.07); }
+  .logos img { max-width: 100%; max-height: 160px; }
+  .port .logos .lg:last-child { grid-column: 1 / -1; width: 60%; }
+
+  /* CTA */
+  .s8 { background: var(--forest); color: #fff; }
+  .s8 h2 { color: #fff; }
+  .s8 em { color: #bfe8c9; }
+  .s8 .who { font-size: 32px; font-weight: 700; color: #bfe8c9; letter-spacing: .04em; margin-top: 30px; }
+  .contacts { display: flex; gap: 60px; margin-top: 56px; flex-wrap: wrap; }
+  .port .contacts { flex-direction: column; gap: 34px; }
+  .contacts div { display: flex; align-items: center; gap: 22px; font-size: 46px; font-weight: 800; }
+  .contacts svg { width: 56px; height: 56px; flex: none; }
+  .s8 .plant { position: absolute; }
+  .land .s8 .plant { right: 110px; bottom: 60px; width: 360px; height: 520px; }
+  .port .s8 .plant { right: 70px; bottom: 120px; width: 300px; height: 430px; }
+  .s8 .sk { stroke: #9fd3b0; }
+  .s8 .bar { position: absolute; left: 0; right: 0; top: 0; height: 12px; background: linear-gradient(90deg, var(--leaf), #bfe5c9, var(--green)); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <img class="logo" data-a="0.4 0.8" src="../assets/igbc-ap-logo.jpg" alt="IGBC AP">
+
+  <!-- ============ 1 · OPENING (0 – 6.5) ============ -->
+  <section class="scene s1" data-s="0 6.5">
+    <svg class="sk room" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <path data-d="0.2 1.2" d="M0 60 H460"/>
+      <path data-d="0.8 0.9" d="M150 60 V130 M150 130 C126 132 116 148 114 162 H186 C184 148 174 132 150 130 Z"/>
+      <path data-d="1.0 0.9" d="M210 60 V104 M210 104 C194 106 188 118 187 127 H233 C232 118 226 106 210 104 Z"/>
+      <path data-d="1.6 0.6" d="M132 172 L124 190 M168 172 L176 190 M150 176 V196"/>
+      <path data-d="1.0 1.4" d="M290 100 H440 V290 H290 Z M365 100 V290 M290 195 H440"/>
+      <path data-d="1.5 1.0" d="M282 90 C292 160 276 230 286 298 M448 90 C438 160 454 230 444 298"/>
+      <path data-d="1.6 1.4" d="M110 420 V360 C110 350 118 342 128 342 H322 C332 342 340 350 340 360 V420"/>
+      <path data-d="2.0 1.0" d="M94 420 V378 C94 368 102 362 112 362 C122 362 128 370 128 380 V420 M322 420 V380 C322 370 330 362 340 362 C350 362 356 368 356 378 V420"/>
+      <path data-d="2.3 0.8" d="M128 390 H322 M225 390 V420 M144 386 C142 368 152 360 168 360 C182 360 190 370 188 386 M262 386 C260 368 270 360 286 360 C300 360 308 370 306 386"/>
+      <path data-d="2.2 1.3" d="M390 420 L382 372 H438 L430 420 Z M410 372 C408 330 412 290 410 250 M410 350 C388 344 374 330 372 310 C392 316 406 330 410 350 M410 322 C430 314 442 298 444 278 C424 286 412 302 410 322 M410 296 C392 286 386 268 386 250 C402 258 410 276 410 296"/>
+      <path data-d="0.4 1.6" d="M0 420 H460"/>
+    </svg>
+    <div class="txt">
+      <div class="eyebrow" data-a="1.3 0.7">Green · Smart · Sustainable</div>
+      <h1 class="display" data-a="1.8 0.9">Spaces that are <em>green, smart</em> and built to last</h1>
+      <p class="lead" data-a="3.0 0.8">Consulting · Integration · Facility Maintenance · Training</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 · FOUR WAYS (6.5 – 11) ============ -->
+  <section class="scene s2" data-s="6.5 11">
+    <div class="eyebrow" data-a="6.8 0.6">Under one roof</div>
+    <h2 class="display" data-a="7.0 0.7">Four ways we <em>help</em></h2>
+    <div class="cards">
+      <div class="card" data-a="7.6 0.6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 12c0-5 3.5-8 9-8 0 5.5-3.5 8-9 8zM12 15c0-4-3-7-8-7 0 4.5 3 7 8 7z"/></svg></div><div class="n">01</div><div class="t">Consulting</div><div class="d">Expert guidance from the first sketch</div></div>
+      <div class="card" data-a="8.0 0.6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6M3 12h6M15 12h6"/></svg></div><div class="n">02</div><div class="t">Integration</div><div class="d">Many systems, one seamless experience</div></div>
+      <div class="card" data-a="8.4 0.6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></div><div class="n">03</div><div class="t">Facility Maintenance</div><div class="d">Performance beyond handover</div></div>
+      <div class="card" data-a="8.8 0.6"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></svg></div><div class="n">04</div><div class="t">Training</div><div class="d">Confidence with every system</div></div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · CONSULTING (11 – 19) ============ -->
+  <section class="scene s3" data-s="11 19">
+    <svg class="sk plan" viewBox="0 0 560 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <path data-d="11.3 1.2" d="M8 8 H552 V242 H8 Z"/>
+      <path data-d="11.8 0.8" d="M190 8 V100 M190 150 V242 M370 8 V242 M8 125 H160 M220 125 H370"/>
+      <circle data-d="12.2 0.5" cx="60" cy="60" r="14"/><circle data-d="12.3 0.5" cx="130" cy="60" r="14"/><circle data-d="12.4 0.5" cx="60" cy="190" r="14"/><circle data-d="12.5 0.5" cx="130" cy="190" r="14"/>
+      <path data-d="12.6 0.6" d="M290 200 a6 6 0 1 1 0.1 0 M272 184 a26 26 0 0 1 36 0 M260 172 a42 42 0 0 1 60 0"/>
+      <path data-d="12.8 0.7" d="M240 50 h40 l10 -12 v34 l-10 -12 h-40 z"/>
+      <path data-d="13.0 0.9" d="M410 40 h90 v150 h-90 z M424 70 h62 M424 100 h62 M424 130 h62 M424 160 h62"/>
+    </svg>
+    <div class="txt">
+      <span class="num" data-a="11.3 0.5">01</span>
+      <h2 class="display" data-a="11.5 0.7" style="margin-top:18px">Consulting</h2>
+      <div class="sub" data-a="11.9 0.6" style="margin-top:8px">Expert guidance from the first sketch</div>
+    </div>
+    <div class="chips">
+      <div class="chip hl" data-a="12.8 0.5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 12c0-5 3.5-8 9-8 0 5.5-3.5 8-9 8zM12 15c0-4-3-7-8-7 0 4.5 3 7 8 7z"/></svg></div><span>IGBC Green Certification</span></div>
+      <div class="chip" data-a="13.3 0.5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></div><span>Lighting Design</span></div>
+      <div class="chip" data-a="13.8 0.5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="12" height="8" rx="2"/><path d="M15 10l5-3v8l-5-3M7 15v4"/></svg></div><span>ELV Systems</span></div>
+      <div class="chip" data-a="14.3 0.5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 15a3 3 0 0 1 4 0M8.5 13a5 5 0 0 1 7 0"/></svg></div><span>Home Automation</span></div>
+      <div class="chip" data-a="14.8 0.5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M10 8l4 2-4 2z"/></svg></div><span>Audio-Visual</span></div>
+      <div class="chip" data-a="15.3 0.5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8a57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="6" rx="1.5"/><rect x="4" y="13" width="16" height="6" rx="1.5"/><path d="M8 6h.01M8 16h.01M12 9v4"/></svg></div><span>Digital Infrastructure</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · INTEGRATION (19 – 25) ============ -->
+  <section class="scene s4" data-s="19 25">
+    <div class="svc">
+      <div class="txt">
+        <span class="num" data-a="19.3 0.5">02</span>
+        <h2 class="display" data-a="19.5 0.7">Integration</h2>
+        <div class="sub" data-a="19.9 0.6">Many systems, one seamless experience</div>
+        <p class="lead" data-a="20.5 0.7">We install, configure and commission lighting, automation, AV, security and networks so they work together, not in silos.</p>
+        <div class="tags" data-a="21.4 0.6"><span class="tag">One team</span><span class="tag">One point of accountability</span></div>
+      </div>
+      <svg class="sk art" viewBox="0 0 330 210" aria-hidden="true">
+        <rect data-d="19.6 0.8" x="142" y="84" width="46" height="42" rx="6"/><path data-d="20.2 0.5" d="M150 96 H180 M150 105 H180 M150 114 H168"/>
+        <path data-d="20.4 1.2" stroke-dasharray="4 6" d="M142 94 C102 84 92 54 72 48 M188 94 C228 84 238 50 258 44 M142 116 C102 126 92 156 72 164 M188 116 C228 128 238 158 260 166 M165 84 V38 M165 126 V172"/>
+        <path data-d="21.0 0.6" d="M40 38 h26 l7 -8 v24 l-7 -8 h-26 z"/>
+        <path data-d="21.2 0.6" d="M246 22 h38 v30 h-38 z M256 60 h18 M265 52 v8"/>
+        <path data-d="21.4 0.6" d="M72 172 a12 12 0 1 1 0.1 0 M72 186 v6 M66 192 h12"/>
+        <path data-d="21.6 0.6" d="M262 174 a14 14 0 1 1 0.1 0 M262 164 v10 l6 4"/>
+        <path data-d="21.8 0.6" d="M150 20 h30 v18 h-30 z"/>
+        <path data-d="22.0 0.6" d="M148 176 h34 v24 h-34 z M154 185 h22 M154 192 h22"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ 5 · MAINTENANCE (25 – 31) ============ -->
+  <section class="scene s5" data-s="25 31">
+    <div class="svc">
+      <div class="txt">
+        <span class="num" data-a="25.3 0.5">03</span>
+        <h2 class="display" data-a="25.5 0.7">Facility Maintenance</h2>
+        <div class="sub" data-a="25.9 0.6">Performance that lasts beyond handover</div>
+        <p class="lead" data-a="26.5 0.7">Preventive maintenance and responsive support keep your green and smart systems efficient, safe and up to date.</p>
+        <div class="tags" data-a="27.4 0.6"><span class="tag">Preventive care</span><span class="tag">Responsive support</span></div>
+      </div>
+      <svg class="sk art" viewBox="0 0 330 210" aria-hidden="true">
+        <path data-d="25.6 1.0" d="M30 200 V80 L90 48 L150 80 V200 Z M30 200 H310"/>
+        <path data-d="26.3 0.8" d="M52 100 h20 v20 h-20 z M108 100 h20 v20 h-20 z M52 140 h20 v20 h-20 z M108 140 h20 v20 h-20 z M80 200 v-30 h20 v30"/>
+        <g class="gear" data-rot="228 86 40">
+          <circle data-d="26.8 0.7" cx="228" cy="86" r="28"/><circle data-d="27.0 0.5" cx="228" cy="86" r="10"/>
+          <path data-d="27.2 0.6" d="M228 50 v10 M228 112 v10 M192 86 h10 M254 86 h10 M203 61 l7 7 M246 104 l7 7 M203 111 l7 -7 M246 68 l7 -7"/>
+        </g>
+        <path data-d="27.6 0.7" d="M196 182 l54 -54 M244 122 a12 12 0 1 1 16 16 l-8 -2 -6 -6 z"/>
+        <path data-d="28.0 0.8" d="M276 132 h38 v60 h-38 z M284 148 l5 5 9 -9 M284 166 l5 5 9 -9 M284 184 h18"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ 6 · TRAINING (31 – 37) ============ -->
+  <section class="scene s6" data-s="31 37">
+    <div class="svc">
+      <div class="txt">
+        <span class="num" data-a="31.3 0.5">04</span>
+        <h2 class="display" data-a="31.5 0.7">Training</h2>
+        <div class="sub" data-a="31.9 0.6">Confidence to get the most from technology</div>
+        <p class="lead" data-a="32.5 0.7">Hands-on training on technology implementation for facility teams, staff, homeowners and design professionals.</p>
+        <div class="tags" data-a="33.4 0.6"><span class="tag">Practical</span><span class="tag">Hands-on</span><span class="tag">For every user</span></div>
+      </div>
+      <svg class="sk art" viewBox="0 0 330 210" aria-hidden="true">
+        <rect data-d="31.6 1.0" x="110" y="16" width="176" height="104" rx="6"/><path data-d="32.2 0.5" d="M198 120 v18 M172 138 h52"/>
+        <path data-d="32.6 0.4" d="M132 102 V84"/><path data-d="32.8 0.4" d="M154 102 V68"/><path data-d="33.0 0.4" d="M176 102 V76"/><path data-d="33.2 0.4" d="M198 102 V52"/><path data-d="33.4 0.4" d="M220 102 V62"/>
+        <path data-d="33.6 0.6" d="M238 92 C248 72 260 78 270 52 M264 52 h7 v7"/>
+        <path data-d="31.8 0.9" d="M78 62 a13 13 0 1 1 0.1 0 M56 118 C56 96 66 84 78 84 C90 84 100 96 100 118 M96 92 L124 74"/>
+        <path data-d="34.0 0.6" d="M140 166 a11 11 0 1 1 0.1 0 M120 206 C120 188 128 180 140 180 C152 180 160 188 160 206"/>
+        <path data-d="34.2 0.6" d="M198 166 a11 11 0 1 1 0.1 0 M178 206 C178 188 186 180 198 180 C210 180 218 188 218 206"/>
+        <path data-d="34.4 0.6" d="M256 166 a11 11 0 1 1 0.1 0 M236 206 C236 188 244 180 256 180 C268 180 276 188 276 206"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ 7 · MEMBERSHIPS (37 – 41.5) ============ -->
+  <section class="scene s7" data-s="37 41.5">
+    <div class="eyebrow" data-a="37.3 0.6">Memberships &amp; accreditations</div>
+    <h2 class="display" data-a="37.5 0.7">Recognised by the <em>industry</em></h2>
+    <div class="logos">
+      <div class="lg" data-a="38.1 0.5"><img src="../assets/igbc-ap-logo.jpg" alt="IGBC AP"></div>
+      <div class="lg" data-a="38.4 0.5"><img src="../brochure/assets/igbc-member.jpg" alt="IGBC Member"></div>
+      <div class="lg" data-a="38.7 0.5"><img src="../brochure/assets/cedia-member.jpg" alt="CEDIA Member"></div>
+      <div class="lg" data-a="39.0 0.5"><img src="../brochure/assets/cedia-ce-provider.png" alt="CEDIA Smart Home CE Provider"></div>
+      <div class="lg" data-a="39.3 0.5"><img src="../brochure/assets/cii-member.png" alt="CII Member"></div>
+    </div>
+  </section>
+
+  <!-- ============ 8 · CALL TO ACTION (41.5 – 48) ============ -->
+  <section class="scene s8" data-s="41.5 48">
+    <div class="bar"></div>
+    <svg class="sk plant" viewBox="0 0 220 320" aria-hidden="true">
+      <path data-d="42.0 0.8" d="M60 316 L48 236 H172 L160 316 Z"/>
+      <path data-d="42.5 1.0" d="M110 236 C106 180 114 120 110 40"/>
+      <path data-d="43.0 0.7" d="M110 212 C78 204 56 182 50 150 C80 156 104 178 110 212"/>
+      <path data-d="43.3 0.7" d="M111 176 C142 166 162 142 166 110 C136 118 116 142 111 176"/>
+      <path data-d="43.6 0.7" d="M110 138 C84 124 74 100 76 72 C98 84 110 108 110 138"/>
+      <path data-d="43.9 0.7" d="M111 104 C132 92 142 70 140 40 C120 52 112 76 111 104"/>
+    </svg>
+    <div class="txt">
+      <h2 class="display" data-a="41.8 0.8">Let&rsquo;s build spaces that are good for <em>people and the planet</em></h2>
+      <div class="who" data-a="42.6 0.6">Ameet Vikram Kothaari, IGBC AP</div>
+      <div class="contacts">
+        <div data-a="43.2 0.6"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe8c9" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>green@everestcomputer.com</div>
+        <div data-a="43.7 0.6"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe8c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-1 .8a4 4 0 0 1-2.1-2.1l.8-1-1-2z"/></svg>+91-8093066161</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  document.body.className = params.get('o') === 'port' ? 'port' : 'land';
+  const DURATION = 48;
+  const ease = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.pow(1 - x, 3);
+
+  // measure every drawable path once so it can be revealed with stroke-dashoffset
+  document.querySelectorAll('[data-d]').forEach(el => {
+    let len = 1000;
+    try { len = el.getTotalLength(); } catch (e) {}
+    el._len = len;
+    const [s, d] = el.dataset.d.split(' ').map(Number);
+    el._s = s; el._d = d;
+    el._dash = el.getAttribute('stroke-dasharray');
+  });
+
+  window.render = function (t) {
+    // scenes cross-fade: 0.5 s in, 0.5 s out (last scene holds)
+    document.querySelectorAll('[data-s]').forEach(sc => {
+      const [a, b] = sc.dataset.s.split(' ').map(Number);
+      const fin = ease((t - a) / 0.5);
+      const fout = b >= DURATION ? 1 : 1 - ease((t - (b - 0.5)) / 0.5);
+      const o = Math.max(0, Math.min(fin, fout));
+      sc.style.opacity = o;
+      sc.style.transform = `scale(${1.02 - 0.02 * fin})`;
+      sc.style.visibility = o > 0 ? 'visible' : 'hidden';
+    });
+    // elements rise and fade in
+    document.querySelectorAll('[data-a]').forEach(el => {
+      const [s, d] = el.dataset.a.split(' ').map(Number);
+      const p = ease((t - s) / d);
+      el.style.opacity = p;
+      el.style.transform = `translateY(${(1 - p) * 30}px)`;
+    });
+    // logo fades out for the dark closing scene
+    const logo = document.querySelector('.logo');
+    logo.style.opacity = Math.min(ease((t - 0.4) / 0.8), 1 - ease((t - 41.0) / 0.5));
+    // sketches draw themselves
+    document.querySelectorAll('[data-d]').forEach(el => {
+      const p = ease((t - el._s) / el._d);
+      if (el._dash) {
+        // dashed lines: reveal by clipping with opacity so the dash pattern survives
+        el.style.opacity = p;
+      } else {
+        el.style.strokeDasharray = el._len;
+        el.style.strokeDashoffset = el._len * (1 - p);
+      }
+    });
+    // maintenance gear turns slowly
+    document.querySelectorAll('[data-rot]').forEach(g => {
+      const [cx, cy, speed] = g.dataset.rot.split(' ').map(Number);
+      g.setAttribute('transform', `rotate(${(t - 25) * speed} ${cx} ${cy})`);
+    });
+  };
+  window.DURATION = DURATION;
+  render(0);
+
+  if (params.has('play')) {
+    const t0 = performance.now();
+    const loop = () => { const t = ((performance.now() - t0) / 1000) % DURATION; render(t); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+</script>
+</body>
+</html>
