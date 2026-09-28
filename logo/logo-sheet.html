@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Everest Logo Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 1600px; background: #f4f7f4; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: #1c2b24; padding: 70px; }
+  h1 { font-family: "Fraunces", Georgia, serif; font-size: 56px; font-weight: 600; }
+  h1 em { color: #2f8a57; font-style: italic; font-weight: 500; }
+  .intro { font-size: 20px; color: #536259; margin-top: 12px; max-width: 900px; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; margin-top: 44px; }
+  .panel { background: #fff; border-radius: 28px; padding: 50px; display: grid; place-items: center; min-height: 300px; position: relative; }
+  .panel .lbl { position: absolute; left: 26px; top: 20px; font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #8a9a91; }
+  .panel.dark { background: #1b4d36; } .panel.dark .lbl { color: #9fd3b0; }
+  .panel.mint { background: #e1f1e6; }
+  .row3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; margin-top: 30px; }
+  .meaning { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 30px; }
+  .m { background: #fff; border-radius: 22px; padding: 26px; }
+  .m b { display: block; font-size: 20px; margin-top: 8px; } .m p { font-size: 15.5px; color: #536259; margin-top: 6px; line-height: 1.5; }
+  .m .sw { width: 26px; height: 26px; border-radius: 50%; }
+  .colors { display: flex; gap: 18px; margin-top: 30px; }
+  .c { flex: 1; border-radius: 20px; height: 120px; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; font-size: 15px; font-weight: 700; }
+  .sizes { display: flex; align-items: end; gap: 26px; }
+</style></head><body>
+  <h1>Everest: <em>green, smart, cared for</em></h1>
+  <p class="intro">A leaf holding a home. The roof doubles as Everest&rsquo;s peak, a connected node sits inside, the vein runs on as a circuit trace, and the curve beneath is a smile and a caring hand: delightful, committed service.</p>
+  <div class="grid">
+    <div class="panel"><span class="lbl">Primary</span><img src="everest-logo-horizontal.svg" style="width:640px"></div>
+    <div class="panel"><span class="lbl">Stacked</span><img src="everest-logo-stacked.svg" style="width:340px"></div>
+  </div>
+  <div class="row3">
+    <div class="panel dark"><span class="lbl">Reversed</span><img src="everest-logo-horizontal-reversed.svg" style="width:400px"></div>
+    <div class="panel"><span class="lbl">One colour</span><img src="everest-logo-horizontal-mono.svg" style="width:400px"></div>
+    <div class="panel mint"><span class="lbl">Icon &amp; small sizes</span><div class="sizes"><img src="everest-avatar.svg" style="width:150px;border-radius:32px"><img src="everest-icon.svg" style="width:64px"><img src="everest-icon.svg" style="width:32px"><img src="everest-icon.svg" style="width:16px"></div></div>
+  </div>
+  <div class="meaning">
+    <div class="m"><div class="sw" style="background:#2f8a57"></div><b>Leaf</b><p>Green consulting and IGBC certification</p></div>
+    <div class="m"><div class="sw" style="background:#1b4d36"></div><b>Roof &amp; peak</b><p>The interiors you shape, and the Everest name</p></div>
+    <div class="m"><div class="sw" style="background:#7cc38f"></div><b>Smart node &amp; circuit vein</b><p>ELV, AV, automation and digital infrastructure</p></div>
+    <div class="m"><div class="sw" style="background:#e1f1e6;border:2px solid #7cc38f"></div><b>Smile &amp; cradle</b><p>Delight for clients and care long after handover</p></div>
+  </div>
+  <div class="colors">
+    <div class="c" style="background:#1b4d36;color:#fff">Forest #1B4D36</div>
+    <div class="c" style="background:#2f8a57;color:#fff">Green #2F8A57</div>
+    <div class="c" style="background:#7cc38f;color:#1b4d36">Leaf #7CC38F</div>
+    <div class="c" style="background:#e1f1e6;color:#1b4d36">Mint #E1F1E6</div>
+    <div class="c" style="background:#fff;color:#1b4d36;border:2px solid #e1f1e6">White #FFFFFF</div>
+  </div>
+</body></html>

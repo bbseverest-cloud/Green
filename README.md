@@ -60,3 +60,15 @@ Folder `video/`: 48-second animated business video (white and green, sketches th
 - `services-video-thumbnail.jpg` – cover image
 - `services-video.html` – editable source (open with `?o=land&play` or `?o=port&play` to preview in a browser)
 - `render-video.js` – re-renders the MP4s after edits (see the usage note at the top of the file)
+
+# Logo
+
+Folder `logo/`: the Everest mark, a leaf holding a home (the roof doubles as the Everest peak) with a smart node inside, a circuit-trace vein, and a smile-shaped cradle beneath for delightful, committed service.
+
+- `everest-logo-horizontal.svg/.png` – primary logo
+- `everest-logo-stacked.svg/.png` – centred version for square spaces
+- `everest-logo-horizontal-reversed.svg/.png` – for dark green backgrounds
+- `everest-logo-horizontal-mono.svg/.png` – one colour, for stamps and single-ink print
+- `everest-icon.svg/.png`, `everest-avatar.svg/.png` – symbol alone, and a profile picture for WhatsApp/LinkedIn
+- `everest-logo-sheet.png` – overview with meaning and colours
+- SVGs have the lettering converted to outlines; rebuild with `python3 logo/build_logo.py <fraunces.woff2> <plus-jakarta-sans.woff2>`
