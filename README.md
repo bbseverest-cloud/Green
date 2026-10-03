@@ -86,3 +86,11 @@ Folder `logo/div/`: brand logo for **Div (दिव्)**, the Sanskrit root mea
 - Rebuild: `python3 logo/build_div_logo.py <tiro-devanagari.woff2> <tiro-latin.woff2>`
 
 The Div logo is applied across all communication: the Green Interiors poster, both EDMs and their web versions (`edm/images/div-logo.png`, `div-icon.png` for email), the LinkedIn image, carousel and WhatsApp statuses, the brochure and the video.
+
+# Solar DC Electrical & Lighting Concept
+
+Folder `dc/`: concept poster on white showing rooftop solar → MPPT charge controller → battery + BMS → DC distribution board → mechanical switch / touch panel → driverless LED light, BLDC fan, DC socket and power control, each element in its own colour with red/black DC wiring. Includes a DC vs AC comparison (safety, conversions, wires and wire sizing, panel, circuit, fittings, flicker, fans, power cuts), benefits (energy savings, longer fitting life, flicker-free light, dimming for wellness), decarbonisation, IGBC credit contribution and enquiry details.
+
+- `dc-solar-concept.png` – high-resolution image (2400 px wide)
+- `dc-solar-concept.pdf` – single-page PDF (links clickable)
+- `dc-solar-concept.html` – editable source

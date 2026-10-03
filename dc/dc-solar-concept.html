@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Solar DC Living Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Concept poster, 1600 px wide on white. Each system element has its own colour. */
+  :root {
+    --ink: #1c2b24; --muted: #56645f; --line: #e6ebe7; --forest: #1b4d36; --gold: #e3a21a;
+    --solar: #f39c12;    /* 1 rooftop solar */
+    --mppt: #e4572e;     /* 2 charge controller */
+    --battery: #2e9e4f;  /* 3 battery + BMS */
+    --db: #1565c0;       /* 4 DC distribution board */
+    --switch: #607d8b;   /* 5 mechanical switch */
+    --touch: #8a4fd8;    /* 6 touch panel */
+    --light: #e6b800;    /* 7 driverless LED light */
+    --fan: #0fa3b1;      /* 8 BLDC fan */
+    --socket: #e0447b;   /* 9 DC socket */
+    --power: #5c6bc0;    /* 10 power control */
+    --pos: #d93025;      /* DC + */
+    --neg: #2b2b2b;      /* DC - */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #ffffff; }
+  body { width: 1600px; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); word-spacing: .04em; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .display { font-family: "Fraunces", Georgia, serif; word-spacing: normal; }
+  em { font-style: italic; font-weight: 500; }
+  .wrap { padding: 0 60px; }
+
+  /* header */
+  header { display: flex; align-items: center; gap: 40px; padding: 46px 60px 30px; border-bottom: 2px solid var(--line); }
+  header .divlogo { height: 92px; display: block; }
+  header .ttl { flex: 1; }
+  .eyebrow { font-size: 17px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--solar); }
+  h1 { font-size: 62px; line-height: 1.04; font-weight: 600; letter-spacing: -.02em; margin-top: 8px; }
+  h1 em { color: var(--battery); }
+  header .lead { font-size: 21px; line-height: 1.5; color: var(--muted); margin-top: 12px; max-width: 980px; }
+  .volt { flex: none; text-align: center; border: 3px solid var(--db); border-radius: 26px; padding: 18px 26px; }
+  .volt b { display: block; font-size: 52px; line-height: 1; color: var(--db); font-family: "Fraunces", Georgia, serif; }
+  .volt span { font-size: 15px; font-weight: 700; color: var(--muted); letter-spacing: .06em; }
+
+  .sec-title { display: flex; align-items: baseline; gap: 16px; margin: 46px 0 22px; }
+  .sec-title h2 { font-size: 38px; font-weight: 600; letter-spacing: -.01em; }
+  .sec-title .note { font-size: 18px; color: var(--muted); }
+  .sec-title .rule { flex: 1; height: 2px; background: var(--line); align-self: center; }
+
+  /* ---------- system diagram ---------- */
+  .diagram { position: relative; width: 1480px; height: 820px; }
+  .diagram svg.wires { position: absolute; inset: 0; width: 1480px; height: 820px; }
+  .card { position: absolute; background: #fff; border: 2.5px solid var(--c); border-radius: 22px; padding: 16px 18px 16px; box-shadow: 0 8px 22px rgba(0,0,0,.05); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .card .badge { position: absolute; top: -16px; left: 18px; width: 34px; height: 34px; border-radius: 50%; background: var(--c); color: #fff; font-weight: 800; font-size: 17px; display: grid; place-items: center; }
+  .card svg.ic { width: 150px; height: 112px; }
+  .card h3 { font-size: 21px; font-weight: 800; color: var(--c); margin-top: 6px; line-height: 1.2; }
+  .card p { font-size: 14.5px; line-height: 1.45; color: var(--muted); margin-top: 6px; }
+  .r1 { top: 20px; width: 300px; height: 262px; }
+  .r2 { top: 360px; width: 300px; height: 170px; flex-direction: row; gap: 14px; text-align: left; align-items: center; }
+  .r2 svg.ic { width: 100px; height: 100px; flex: none; }
+  .r2 h3 { margin-top: 0; }
+  .r3 { top: 610px; width: 300px; height: 200px; }
+  .r3 svg.ic { width: 130px; height: 96px; }
+  .ctrlbox { position: absolute; left: 385px; top: 330px; width: 710px; height: 222px; border: 2.5px dashed #c9d3cd; border-radius: 28px; }
+  .ctrlbox span { position: absolute; top: -14px; left: 34px; background: #fff; padding: 0 14px; font-size: 14px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .chip { position: absolute; background: #fff; border: 2px solid var(--db); color: var(--db); border-radius: 30px; padding: 4px 14px; font-size: 14px; font-weight: 800; letter-spacing: .04em; white-space: nowrap; }
+  .chip.warn { border-color: var(--mppt); color: var(--mppt); }
+  .legend { position: absolute; right: 0; top: 330px; width: 330px; display: grid; gap: 12px; }
+  .legend .row { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--muted); font-weight: 600; }
+  .legend svg { width: 56px; height: 14px; flex: none; }
+  .legend .big { font-size: 18px; color: var(--ink); font-weight: 800; line-height: 1.35; }
+
+  /* ---------- comparison ---------- */
+  table.cmp { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 17px; }
+  .cmp th { text-align: left; font-size: 15px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 16px 22px; }
+  .cmp th.dc { background: var(--battery); color: #fff; border-radius: 18px 0 0 0; }
+  .cmp th.ac { background: #eceff1; color: #5f6b66; border-radius: 0 18px 0 0; }
+  .cmp th.asp { background: transparent; color: var(--muted); }
+  .cmp td { padding: 15px 22px; vertical-align: top; line-height: 1.45; border-bottom: 1.5px solid var(--line); }
+  .cmp td.asp { width: 230px; font-weight: 800; color: var(--ink); }
+  .cmp td.asp i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; vertical-align: 1px; }
+  .cmp td.dc { background: #f2faf4; color: #20402f; }
+  .cmp td.ac { background: #fafafa; color: #5f6b66; }
+  .cmp td.dc b { color: var(--battery); }
+  .cmp tr:last-child td.dc { border-radius: 0 0 0 18px; }
+  .cmp tr:last-child td.ac { border-radius: 0 0 18px 0; }
+  .tick { display: inline-block; width: 22px; color: var(--battery); font-weight: 800; }
+  .cross { display: inline-block; width: 22px; color: #b0b8b3; font-weight: 800; }
+
+  /* ---------- benefits ---------- */
+  .ben { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .b { border-radius: 26px; padding: 28px 26px; border: 2.5px solid var(--c); background: #fff; }
+  .b .ic { width: 64px; height: 64px; border-radius: 18px; background: var(--c); display: grid; place-items: center; }
+  .b .ic svg { width: 38px; height: 38px; }
+  .b .big { font-family: "Fraunces", Georgia, serif; font-size: 40px; font-weight: 600; color: var(--c); margin-top: 16px; line-height: 1.05; }
+  .b h3 { font-size: 21px; font-weight: 800; margin-top: 8px; }
+  .b p { font-size: 15.5px; line-height: 1.55; color: var(--muted); margin-top: 8px; }
+
+  /* ---------- decarbonisation + IGBC ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .panel { border-radius: 28px; padding: 32px 34px; border: 2.5px solid var(--c); }
+  .panel h2 { font-size: 34px; font-weight: 600; color: var(--ink); }
+  .panel h2 em { color: var(--c); }
+  .panel p { font-size: 17px; line-height: 1.55; color: var(--muted); margin-top: 12px; }
+  .panel ul { list-style: none; margin-top: 16px; display: grid; gap: 11px; }
+  .panel li { font-size: 16.5px; line-height: 1.45; padding-left: 30px; position: relative; color: var(--ink); }
+  .panel li::before { content: ""; position: absolute; left: 4px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--c); }
+  .panel li b { color: var(--c); }
+  .co2 { display: flex; align-items: baseline; gap: 14px; margin-top: 18px; }
+  .co2 b { font-family: "Fraunces", Georgia, serif; font-size: 56px; color: var(--c); line-height: 1; }
+  .co2 span { font-size: 16px; color: var(--muted); line-height: 1.4; }
+  .ratings { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .ratings span { font-size: 14px; font-weight: 700; border: 2px solid var(--c); color: var(--c); border-radius: 30px; padding: 5px 13px; }
+
+  /* ---------- enquiry ---------- */
+  .enq { margin-top: 44px; background: var(--forest); color: #fff; padding: 34px 60px 38px; display: flex; align-items: center; gap: 40px; }
+  .enq .t { flex: 1; }
+  .enq h2 { font-size: 36px; font-weight: 600; line-height: 1.15; }
+  .enq h2 em { color: #f2c75c; }
+  .enq .who { font-size: 22px; font-weight: 800; margin-top: 14px; }
+  .enq .who span { font-size: 15px; letter-spacing: .1em; color: #bfe8c9; margin-left: 8px; }
+  .enq .rowc { display: flex; gap: 36px; margin-top: 10px; font-size: 22px; font-weight: 700; }
+  .enq .rowc a { color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .enq .rowc svg { width: 26px; height: 26px; }
+  .enq img { height: 120px; display: block; }
+  .fine { font-size: 13px; color: #8a948d; padding: 14px 60px 26px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="divlogo" src="../logo/div/div-logo-horizontal-two-tone.svg" alt="Div (दिव्)">
+  <div class="ttl">
+    <div class="eyebrow">Concept · Solar DC electrical &amp; lighting</div>
+    <h1 class="display">From your roof to your switch, <em>pure DC</em></h1>
+    <p class="lead">Rooftop solar charges a battery and feeds safe, low-voltage DC straight to driverless lights, BLDC fans, sockets and controls. No inverter, no conversion losses, no flicker.</p>
+  </div>
+  <div class="volt"><b>48 V</b><span>DC · EXTRA-LOW VOLTAGE</span></div>
+</header>
+
+<div class="wrap">
+  <div class="sec-title"><h2 class="display">How it works</h2><span class="note">Solar → storage → distribution → control → use</span><span class="rule"></span></div>
+
+  <div class="diagram">
+    <!-- DC wiring: red (+) and black (−) pairs -->
+    <svg class="wires" viewBox="0 0 1480 820" aria-hidden="true">
+      <defs>
+        <marker id="arw" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2b2b2b"/></marker>
+      </defs>
+      <g fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- row 1: solar → MPPT → battery → DB -->
+        <path d="M350 146 H408" stroke="var(--pos)"/><path d="M350 156 H408" stroke="var(--neg)" marker-end="url(#arw)"/>
+        <path d="M710 146 H768" stroke="var(--pos)"/><path d="M710 156 H768" stroke="var(--neg)" marker-end="url(#arw)"/>
+        <path d="M1070 146 H1128" stroke="var(--pos)"/><path d="M1070 156 H1128" stroke="var(--neg)" marker-end="url(#arw)"/>
+        <!-- DB → control zone -->
+        <path d="M1275 282 V306 H1060 V328" stroke="var(--pos)"/><path d="M1285 282 V316 H1050 V328" stroke="var(--neg)" marker-end="url(#arw)"/>
+        <!-- control zone → loads -->
+        <path d="M745 552 V574 H205 V608 M560 574 V608 M920 574 V608 M1285 574 V608 M745 574 H1285" stroke="var(--pos)"/>
+        <path d="M735 552 V584 H195 V608 M550 584 V608 M910 584 V608 M1275 584 V608 M735 584 H1275" stroke="var(--neg)"/>
+      </g>
+    </svg>
+    <span class="chip" style="left:1110px;top:292px">48 V DC feeders</span>
+
+    <!-- 1 Solar -->
+    <div class="card r1" style="--c:var(--solar);left:50px">
+      <span class="badge">1</span>
+      <svg class="ic" viewBox="0 0 150 112"><circle cx="24" cy="22" r="11" fill="var(--solar)"/><g stroke="var(--solar)" stroke-width="3" stroke-linecap="round"><path d="M24 4v-3M24 43v-3M6 22h-3M45 22h-3M11 9l-2-2M39 37l-2-2M11 35l-2 2M39 7l-2 2"/></g>
+        <path d="M30 70 L92 34 L146 70" fill="none" stroke="#9aa7a0" stroke-width="4" stroke-linejoin="round"/><path d="M40 70 V108 H136 V70" fill="none" stroke="#9aa7a0" stroke-width="4"/>
+        <g transform="translate(58 33) skewY(-30)"><rect x="0" y="12" width="70" height="30" rx="2" fill="#fde7c2" stroke="var(--solar)" stroke-width="3"/><path d="M17.5 12v30M35 12v30M52.5 12v30M0 27h70" stroke="var(--solar)" stroke-width="2"/></g>
+        <rect x="80" y="84" width="16" height="24" fill="#9aa7a0" opacity=".4"/></svg>
+      <h3>Rooftop Solar PV</h3>
+      <p>Panels on the roof generate clean DC electricity from sunlight.</p>
+    </div>
+    <!-- 2 MPPT -->
+    <div class="card r1" style="--c:var(--mppt);left:410px">
+      <span class="badge">2</span>
+      <svg class="ic" viewBox="0 0 150 112"><rect x="34" y="10" width="82" height="94" rx="12" fill="#fde3db" stroke="var(--mppt)" stroke-width="3.5"/><rect x="46" y="22" width="58" height="30" rx="4" fill="#fff" stroke="var(--mppt)" stroke-width="2.5"/>
+        <path d="M52 44 l10 -12 8 8 10 -14 12 10" fill="none" stroke="var(--mppt)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="56" cy="68" r="5" fill="var(--battery)"/><circle cx="75" cy="68" r="5" fill="var(--solar)"/><circle cx="94" cy="68" r="5" fill="var(--mppt)"/>
+        <g stroke="var(--mppt)" stroke-width="3" stroke-linecap="round"><path d="M50 90h50"/><path d="M50 82h50" opacity=".5"/></g></svg>
+      <h3>MPPT Charge Controller</h3>
+      <p>Harvests maximum power from the panels and charges the battery safely.</p>
+    </div>
+    <!-- 3 Battery -->
+    <div class="card r1" style="--c:var(--battery);left:770px">
+      <span class="badge">3</span>
+      <svg class="ic" viewBox="0 0 150 112"><rect x="28" y="22" width="94" height="80" rx="10" fill="#dcf2e2" stroke="var(--battery)" stroke-width="3.5"/><rect x="44" y="12" width="16" height="10" rx="2" fill="var(--pos)"/><rect x="90" y="12" width="16" height="10" rx="2" fill="var(--neg)"/>
+        <rect x="42" y="66" width="66" height="24" rx="4" fill="var(--battery)"/><rect x="42" y="50" width="66" height="12" rx="4" fill="var(--battery)" opacity=".55"/><rect x="42" y="34" width="66" height="12" rx="4" fill="var(--battery)" opacity=".25"/>
+        <text x="75" y="83" font-family="Plus Jakarta Sans, Arial" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">BMS</text></svg>
+      <h3>Battery Storage + BMS</h3>
+      <p>Stores solar energy for night and power cuts. The BMS guards every cell.</p>
+    </div>
+    <!-- 4 DC DB -->
+    <div class="card r1" style="--c:var(--db);left:1130px">
+      <span class="badge">4</span>
+      <svg class="ic" viewBox="0 0 150 112"><rect x="24" y="8" width="102" height="98" rx="10" fill="#dce8f8" stroke="var(--db)" stroke-width="3.5"/><rect x="36" y="24" width="78" height="28" rx="4" fill="#fff" stroke="var(--db)" stroke-width="2.5"/>
+        <g fill="var(--db)"><rect x="42" y="30" width="10" height="16" rx="2"/><rect x="58" y="30" width="10" height="16" rx="2"/><rect x="74" y="30" width="10" height="16" rx="2"/><rect x="90" y="30" width="10" height="16" rx="2"/></g>
+        <rect x="36" y="62" width="78" height="28" rx="4" fill="#fff" stroke="var(--db)" stroke-width="2.5"/>
+        <g fill="var(--db)" opacity=".6"><rect x="42" y="68" width="10" height="16" rx="2"/><rect x="58" y="68" width="10" height="16" rx="2"/><rect x="74" y="68" width="10" height="16" rx="2"/></g></svg>
+      <h3>DC Distribution Board</h3>
+      <p>Compact board with DC-rated breakers feeding each circuit. No inverter needed.</p>
+    </div>
+
+    <!-- control zone -->
+    <div class="ctrlbox"><span>Control: mechanical switch or touch panel</span></div>
+    <!-- 5 Mechanical switch -->
+    <div class="card r2" style="--c:var(--switch);left:410px">
+      <span class="badge">5</span>
+      <svg class="ic" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" rx="12" fill="#eceff1" stroke="var(--switch)" stroke-width="3.5"/><rect x="24" y="26" width="22" height="48" rx="5" fill="#fff" stroke="var(--switch)" stroke-width="2.5"/><rect x="54" y="26" width="22" height="48" rx="5" fill="#fff" stroke="var(--switch)" stroke-width="2.5"/>
+        <rect x="27" y="29" width="16" height="20" rx="3" fill="var(--switch)"/><rect x="57" y="51" width="16" height="20" rx="3" fill="var(--switch)"/></svg>
+      <div><h3>Mechanical Switch</h3><p>Standard DC-rated switches for simple on/off.</p></div>
+    </div>
+    <!-- 6 Touch panel -->
+    <div class="card r2" style="--c:var(--touch);left:770px">
+      <span class="badge">6</span>
+      <svg class="ic" viewBox="0 0 100 100"><rect x="8" y="12" width="84" height="76" rx="14" fill="#efe6fb" stroke="var(--touch)" stroke-width="3.5"/>
+        <circle cx="28" cy="34" r="8" fill="none" stroke="var(--touch)" stroke-width="2.5"/><circle cx="50" cy="34" r="8" fill="var(--touch)"/><circle cx="72" cy="34" r="8" fill="none" stroke="var(--touch)" stroke-width="2.5"/>
+        <rect x="20" y="58" width="60" height="8" rx="4" fill="#fff" stroke="var(--touch)" stroke-width="2"/><rect x="20" y="58" width="38" height="8" rx="4" fill="var(--touch)"/><circle cx="58" cy="62" r="7" fill="#fff" stroke="var(--touch)" stroke-width="2.5"/></svg>
+      <div><h3>Touch Panel</h3><p>Dimming, fan speed, scenes and timers at a touch.</p></div>
+    </div>
+
+    <!-- 7 Light -->
+    <div class="card r3" style="--c:var(--light);left:50px">
+      <span class="badge">7</span>
+      <svg class="ic" viewBox="0 0 130 96"><path d="M10 10 H120" stroke="#9aa7a0" stroke-width="4" stroke-linecap="round"/><path d="M40 12 H90 L82 34 H48 Z" fill="#fff6cc" stroke="var(--light)" stroke-width="3.5" stroke-linejoin="round"/>
+        <g stroke="var(--light)" stroke-width="3.5" stroke-linecap="round"><path d="M65 44 V58"/><path d="M50 42 L40 56"/><path d="M80 42 L90 56"/><path d="M38 36 L24 44"/><path d="M92 36 L106 44"/></g>
+        <path d="M30 76 H100" stroke="var(--light)" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+        <text x="65" y="94" font-family="Plus Jakarta Sans, Arial" font-size="11" font-weight="800" fill="var(--light)" text-anchor="middle">NO DRIVER</text></svg>
+      <h3>Driverless LED Light</h3>
+      <p>Flicker-free, dimmable, nothing extra to fail.</p>
+    </div>
+    <!-- 8 Fan -->
+    <div class="card r3" style="--c:var(--fan);left:410px">
+      <span class="badge">8</span>
+      <svg class="ic" viewBox="0 0 130 96"><path d="M65 4 V30" stroke="#9aa7a0" stroke-width="4" stroke-linecap="round"/>
+        <g fill="#d6f3f6" stroke="var(--fan)" stroke-width="3" stroke-linejoin="round"><path d="M65 48 C50 40 22 38 10 46 C20 54 50 54 65 48 Z"/><path d="M65 48 C80 40 108 38 120 46 C110 54 80 54 65 48 Z"/><path d="M65 48 C60 62 58 80 64 92 C72 80 70 62 65 48 Z"/></g>
+        <circle cx="65" cy="46" r="11" fill="var(--fan)"/><text x="65" y="50" font-family="Plus Jakarta Sans, Arial" font-size="8" font-weight="800" fill="#fff" text-anchor="middle">BLDC</text></svg>
+      <h3>BLDC Fan</h3>
+      <p>Runs natively on DC. Quiet, with smooth speed control.</p>
+    </div>
+    <!-- 9 Socket -->
+    <div class="card r3" style="--c:var(--socket);left:770px">
+      <span class="badge">9</span>
+      <svg class="ic" viewBox="0 0 130 96"><rect x="25" y="8" width="80" height="80" rx="12" fill="#fde4ee" stroke="var(--socket)" stroke-width="3.5"/>
+        <rect x="44" y="24" width="42" height="12" rx="6" fill="#fff" stroke="var(--socket)" stroke-width="2.5"/><rect x="52" y="28" width="26" height="4" rx="2" fill="var(--socket)"/>
+        <circle cx="54" cy="62" r="7" fill="#fff" stroke="var(--socket)" stroke-width="2.5"/><circle cx="76" cy="62" r="7" fill="#fff" stroke="var(--socket)" stroke-width="2.5"/>
+        <text x="54" y="66" font-family="Arial" font-size="10" font-weight="800" fill="var(--socket)" text-anchor="middle">+</text><text x="76" y="66" font-family="Arial" font-size="12" font-weight="800" fill="var(--socket)" text-anchor="middle">−</text></svg>
+      <h3>DC Socket</h3>
+      <p>USB-C and DC outlets for laptops, phones and routers.</p>
+    </div>
+    <!-- 10 Power control -->
+    <div class="card r3" style="--c:var(--power);left:1130px">
+      <span class="badge">10</span>
+      <svg class="ic" viewBox="0 0 130 96"><rect x="20" y="8" width="90" height="80" rx="12" fill="#e5e8f8" stroke="var(--power)" stroke-width="3.5"/>
+        <path d="M38 62 A27 27 0 0 1 92 62" fill="none" stroke="var(--power)" stroke-width="4" stroke-linecap="round"/><path d="M65 62 L80 44" stroke="var(--power)" stroke-width="4" stroke-linecap="round"/><circle cx="65" cy="62" r="5" fill="var(--power)"/>
+        <rect x="44" y="72" width="42" height="8" rx="4" fill="var(--power)" opacity=".5"/></svg>
+      <h3>Power Control</h3>
+      <p>Load scheduling, energy monitoring and priority control.</p>
+    </div>
+
+    <!-- legend, right of the control zone -->
+    <div class="legend">
+      <div class="row"><svg viewBox="0 0 56 14"><path d="M2 4 H54" stroke="#d93025" stroke-width="4" stroke-linecap="round"/><path d="M2 11 H54" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round"/></svg>DC wiring: positive (+) and negative (−)</div>
+      <div class="row big">One DC path from sunlight to every light, fan and socket. No DC→AC→DC conversion anywhere.</div>
+    </div>
+  </div>
+
+  <!-- ---------- comparison ---------- -->
+  <div class="sec-title"><h2 class="display">DC vs conventional AC</h2><span class="note">for lighting, fans and small power</span><span class="rule"></span></div>
+  <table class="cmp">
+    <tr><th class="asp">Aspect</th><th class="dc">Solar DC system (48 V)</th><th class="ac">Conventional AC (230 V)</th></tr>
+    <tr><td class="asp"><i style="background:var(--battery)"></i>Safety</td><td class="dc"><span class="tick">✓</span><b>Extra-low voltage</b> (48 V DC). Far lower shock risk; safer for homes, schools, clinics and children.</td><td class="ac"><span class="cross">✕</span>230 V AC is hazardous to touch; relies on earthing and RCCB protection.</td></tr>
+    <tr><td class="asp"><i style="background:var(--mppt)"></i>Conversions</td><td class="dc"><span class="tick">✓</span>Sunlight to load <b>stays DC</b>. No inverter, no AC-to-DC driver.</td><td class="ac"><span class="cross">✕</span>DC from panels → AC via inverter → back to DC inside every LED driver, fan and charger.</td></tr>
+    <tr><td class="asp"><i style="background:var(--db)"></i>Wires</td><td class="dc"><span class="tick">✓</span><b>Two conductors</b> (+ and −). Extra-low-voltage circuits typically need no earth wire; short, zoned runs.</td><td class="ac"><span class="cross">✕</span>Phase, neutral and earth on every circuit; long home runs from one board.</td></tr>
+    <tr><td class="asp"><i style="background:var(--switch)"></i>Wire sizing</td><td class="dc"><span class="tick">!</span>More current at 48 V: <b>size cables for voltage drop</b> on long runs, or use local DC hubs. Ideal for lighting, fans and small power.</td><td class="ac"><span class="cross">✓</span>Lower current, so thinner cables over long distances and for heavy loads.</td></tr>
+    <tr><td class="asp"><i style="background:var(--db)"></i>Panel</td><td class="dc"><span class="tick">✓</span><b>Compact DC distribution board</b> with DC-rated MCBs or fuses.</td><td class="ac"><span class="cross">✕</span>Inverter, changeover switch, AC board with MCBs and RCCB.</td></tr>
+    <tr><td class="asp"><i style="background:var(--touch)"></i>Circuit</td><td class="dc"><span class="tick">✓</span>Simple: PV → charge controller → battery → DC board → load.</td><td class="ac"><span class="cross">✕</span>More stages, more components and more points of failure.</td></tr>
+    <tr><td class="asp"><i style="background:var(--light)"></i>Light fittings</td><td class="dc"><span class="tick">✓</span><b>Driverless LEDs</b>: the driver, a common failure point, is gone.</td><td class="ac"><span class="cross">✕</span>An AC-DC driver inside every fitting, often the first part to fail.</td></tr>
+    <tr><td class="asp"><i style="background:var(--light)"></i>Light quality</td><td class="dc"><span class="tick">✓</span><b>Flicker-free</b> steady light, including when dimmed.</td><td class="ac"><span class="cross">✕</span>Driver ripple can cause 100 Hz flicker that tires the eyes.</td></tr>
+    <tr><td class="asp"><i style="background:var(--fan)"></i>Fans</td><td class="dc"><span class="tick">✓</span><b>BLDC fans</b> run directly on DC, using about half the power of conventional fans.</td><td class="ac"><span class="cross">✕</span>Induction fans draw around 70–80 W; BLDC models need an internal converter.</td></tr>
+    <tr><td class="asp"><i style="background:var(--power)"></i>Power cuts</td><td class="dc"><span class="tick">✓</span><b>Battery-backed</b>: lights, fans and sockets keep running.</td><td class="ac"><span class="cross">✕</span>Grid-dependent; backup needs a separate inverter.</td></tr>
+  </table>
+
+  <!-- ---------- benefits ---------- -->
+  <div class="sec-title"><h2 class="display">Benefits you can feel</h2><span class="rule"></span></div>
+  <div class="ben">
+    <div class="b" style="--c:var(--battery)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+      <div class="big">10–15%</div><h3>Energy savings</h3><p>Typical saving from removing inverter and driver conversion losses, with roughly half the power on fans using BLDC.</p></div>
+    <div class="b" style="--c:var(--light)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></div>
+      <div class="big">Longer life</div><h3>Light fittings that last</h3><p>No driver electronics to fail, so fittings last longer and need fewer replacements.</p></div>
+    <div class="b" style="--c:var(--fan)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="big">Flicker-free</div><h3>Kind to the eyes</h3><p>Steady DC light reduces eye strain, headaches and fatigue for people who work or study for long hours.</p></div>
+    <div class="b" style="--c:var(--touch)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/></svg></div>
+      <div class="big">Dimming</div><h3>Light for wellness</h3><p>Smooth dimming for task, relaxation and circadian-friendly lighting, so spaces support how people feel.</p></div>
+  </div>
+
+  <!-- ---------- decarbonisation + IGBC ---------- -->
+  <div class="sec-title"><h2 class="display">Bigger picture</h2><span class="rule"></span></div>
+  <div class="two">
+    <div class="panel" style="--c:var(--battery)">
+      <h2 class="display">Decarbonise and <em>go grid-independent</em></h2>
+      <p>Self-generated solar power, stored and used on site, cuts reliance on a coal-heavy grid.</p>
+      <div class="co2"><b>≈0.7 kg</b><span>CO₂ avoided for every kWh of solar<br>used instead of grid power in India</span></div>
+      <ul>
+        <li><b>Lower carbon footprint</b> for every project, year after year</li>
+        <li><b>Resilience:</b> essential lights, fans and sockets stay on during outages</li>
+        <li><b>Lower peak demand</b> and electricity bills</li>
+      </ul>
+    </div>
+    <div class="panel" style="--c:var(--db)">
+      <h2 class="display">Higher <em>IGBC ratings</em></h2>
+      <p>Solar DC systems can contribute towards credits across IGBC rating systems:</p>
+      <ul>
+        <li><b>Energy efficiency:</b> on-site renewable energy, efficient lighting and BLDC fans</li>
+        <li><b>Indoor environment &amp; wellness:</b> flicker-free light, visual comfort and lighting controls</li>
+        <li><b>Innovation:</b> DC distribution as an innovative design strategy</li>
+      </ul>
+      <div class="ratings"><span>Green Interiors</span><span>Green Homes</span><span>New Buildings</span><span>Existing Buildings</span><span>Factories</span><span>Schools</span><span>Healthcare</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="enq">
+  <div class="t">
+    <h2 class="display">Plan a solar DC system for your project. <em>Let&rsquo;s talk.</em></h2>
+    <div class="who">Ameet Vikram Kothaari<span>IGBC AP</span></div>
+    <div class="rowc">
+      <a href="mailto:green@everestcomputer.com?subject=Enquiry%3A%20Solar%20DC%20electrical%20and%20lighting"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe8c9" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>green@everestcomputer.com</a>
+      <a href="https://wa.me/918093066161"><svg viewBox="0 0 24 24" fill="none" stroke="#bfe8c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-1 .8a4 4 0 0 1-2.1-2.1l.8-1-1-2z"/></svg>WhatsApp +91-8093066161</a>
+    </div>
+  </div>
+  <img src="../logo/div/div-logo-stacked-on-dark-two-tone.svg" alt="Div (दिव्)">
+</section>
+<p class="fine">Concept illustration. Savings figures are indicative and depend on system design, loads, cable lengths and site conditions. CO₂ figure based on the Central Electricity Authority's grid emission factor for India (about 0.7 tCO₂/MWh). IGBC credit eligibility is assessed per project under the applicable rating system.</p>
+</body>
+</html>
