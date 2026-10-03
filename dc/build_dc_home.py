@@ -117,36 +117,42 @@ def build_iso():
     X0, X1, Y0, Y1, H = 1.0, 12.0, 2.0, 9.5, 6.6
     F1 = 3.3                                   # first-floor level
     box(X0 - .15, X1 + .15, Y0 - .15, Y1 + .15, 0, .45, "#b9895f", "#8c4a2b", "#733b22")      # plinth
+    # first-floor balcony on the north side (back part, mostly hidden behind the house)
+    box(8.0, 12.0, Y1, Y1 + 1.25, F1 - .06, F1 + .22, "#e8cfa8", "#b7835a", "#9c6b45")
+    box(8.0, 8.15, Y1, Y1 + 1.1, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")
+    box(8.0, 12.0, Y1 + 1.1, Y1 + 1.25, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")
     box(X0, X1, Y0, Y1, .45, H, "#efd2a6", "#d99a5b", "#b97a45")                              # walls
     # south windows with chajja (sunshade) and lit glass
-    for wx, zb in ((2.0, 0), (5.4, 0), (8.8, 0), (2.0, F1), (8.8, F1)):
+    for wx, zb in ((2.0, 0), (5.4, 0), (8.8, 0), (2.0, F1), (5.4, F1), (8.8, F1)):
         south_rect(wx - .1, wx + 1.5, Y0, zb + 1.05, zb + 2.45, "#6b4226")
         south_rect(wx, wx + 1.4, Y0, zb + 1.15, zb + 2.35, "#f4d58e")
         line((wx + .7, Y0, zb + 1.15), (wx + .7, Y0, zb + 2.35), "#6b4226", 2)
-        if (wx, zb) != (5.4, 0):                # the balcony above shades this window
-            box(wx - .3, wx + 1.7, Y0 - .55, Y0, zb + 2.62, zb + 2.75, "#e8c79e", "#b7835a", "#9c6b45")
+        box(wx - .3, wx + 1.7, Y0 - .55, Y0, zb + 2.62, zb + 2.75, "#e8c79e", "#b7835a", "#9c6b45")
     # floor band between the storeys
     south_rect(X0, X1, Y0, F1 - .02, F1 + .16, "#c07f48")
     east_rect(X1, Y0, Y1, F1 - .02, F1 + .16, "#a06a3c")
     # first-floor east windows
-    for wy in (4.6, 7.3):
+    for wy in (4.6, 6.9):
         east_rect(X1, wy - .1, wy + 1.3, F1 + 1.05, F1 + 2.45, "#6b4226"); east_rect(X1, wy, wy + 1.2, F1 + 1.15, F1 + 2.35, "#f4d58e")
         box(X1, X1 + .5, wy - .3, wy + 1.5, F1 + 2.62, F1 + 2.75, "#e8c79e", "#b7835a", "#9c6b45")
-    # south balcony on the first floor: French door, slab, solid moulded parapet with jaali, plant, DC light
-    south_rect(5.6, 7.5, Y0, F1 + .22, F1 + 2.65, "#6b4226")
-    south_rect(5.7, 6.5, Y0, F1 + .3, F1 + 2.55, "#f4d58e"); south_rect(6.6, 7.4, Y0, F1 + .3, F1 + 2.55, "#f4d58e")
-    glow(7.95, Y0 - .02, F1 + 2.25, 16)
-    BY = Y0 - 1.25
-    box(5.0, 8.5, BY, Y0, F1 - .06, F1 + .22, "#e8cfa8", "#b7835a", "#9c6b45")                      # slab
-    box(5.0, 5.15, BY + .15, Y0, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")               # west side
-    a, b = P(5.7, BY + .6, F1 + 1.35)
+    # north balcony wraps the north-east corner: door from the upper bedroom on the east wall
+    east_rect(X1, 8.95, 9.45, F1 + .22, F1 + 2.55, "#6b4226"); east_rect(X1, 9.02, 9.38, F1 + .3, F1 + 2.47, "#f4d58e")
+    glow(X1 + .03, 8.72, F1 + 2.35, 16)
+    BX = X1 + 1.25
+    box(X1, BX, 8.8, Y1 + 1.25, F1 - .06, F1 + .22, "#e8cfa8", "#b7835a", "#9c6b45")                 # slab
+    box(X1, BX, Y1 + 1.1, Y1 + 1.25, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")           # north parapet
+    a, b = P(X1 + .6, Y1 + .5, F1 + 1.35)
     parts.append(f'<ellipse cx="{a:.1f}" cy="{b:.1f}" rx="17" ry="12" fill="#6f8a3e"/><ellipse cx="{a + 8:.1f}" cy="{b - 6:.1f}" rx="10" ry="8" fill="#7f9a48"/>')
-    box(8.35, 8.5, BY + .15, Y0, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")               # east side
-    box(5.0, 8.5, BY, BY + .15, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")                # front parapet
-    box(4.95, 8.55, BY - .05, BY + .2, F1 + 1.15, F1 + 1.25, "#f7e2c0", "#d8a274", "#bf8a5e")       # coping
-    for k in range(9):
-        xx = 5.25 + k * .36
-        south_rect(xx, xx + .18, BY, F1 + .5, F1 + .9, "#8c4a2b")
+    box(X1, BX, 8.8, 8.95, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")                     # south end
+    box(BX - .15, BX, 8.95, Y1 + 1.1, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")          # east parapet
+    box(BX - .2, BX + .05, 8.75, Y1 + 1.3, F1 + 1.15, F1 + 1.25, "#f7e2c0", "#d8a274", "#bf8a5e")    # coping
+    box(X1 - .05, BX + .05, 8.75, 8.97, F1 + 1.15, F1 + 1.25, "#f7e2c0", "#d8a274", "#bf8a5e")
+    for k in range(5):
+        yy = 9.15 + k * .4
+        east_rect(BX, yy, yy + .18, F1 + .5, F1 + .9, "#8c4a2b")
+    for k in range(3):
+        xx = X1 + .2 + k * .36
+        south_rect(xx, xx + .18, 8.8, F1 + .5, F1 + .9, "#8c4a2b")
     # east face: main entrance door, window, porch and steps
     east_rect(X1, 4.45, 5.95, .45, 2.75, "#6b4226")
     east_rect(X1, 4.6, 5.8, .45, 2.65, "#8a5530")
@@ -258,7 +264,7 @@ def build_iso():
     badge(X1, 5.2, 2.9, 3, 30, -40)             # entrance door
     badge(17, -4, 2.45, 4, 0, -40)              # boundary wall light
     badge(16.35, 3.7, 1.7, 5, 30, -40)          # sliding gate
-    badge(5.6, Y0 - 1.25, F1 + 1.0, 9, -46, -6)     # balcony
+    badge(X1 + 1.25, 10.0, F1 + 1.0, 9, 42, -16)    # north balcony
     badge(15.88, 6.65, .7, 6, 34, -14)          # gate motor
     badge(X1 + .05, 4.15, 2.4, 7, 34, 10)       # door light
     badge(4.68, 6.3, H + .7, 8, -40, -14)       # DC conduit
@@ -313,16 +319,16 @@ def section_svg():
     a(f'<rect x="{L}" y="{top}" width="{R - L}" height="{gy + G - 26 - top}" fill="#f6e3c6" stroke="#b97a45" stroke-width="10"/>')
     a(f'<rect x="{L - 10}" y="{top - 22}" width="{R - L + 20}" height="22" fill="#c18a54"/>')                          # roof slab
     a(f'<rect x="{L - 10}" y="{top - 70}" width="16" height="50" fill="#dc9e5f"/><rect x="{R - 6}" y="{top - 70}" width="16" height="50" fill="#dc9e5f"/>')
-    a(f'<rect x="{L - 150}" y="{gy - 26}" width="{R - L + 160}" height="22" fill="#c18a54"/>')                          # first-floor slab + balcony
-    # balcony railing, plant and a DC wall light, with a door from the upper bedroom
+    a(f'<rect x="{L - 10}" y="{gy - 26}" width="{R - L + 170}" height="22" fill="#c18a54"/>')                           # first-floor slab + north balcony
+    # north balcony: railing, plant, door from the north bedroom and a DC wall light
     for k in range(6):
-        a(f'<rect x="{L - 146 + k * 26}" y="{gy - 26 - 60}" width="6" height="60" fill="#8a5530"/>')
-    a(f'<rect x="{L - 150}" y="{gy - 26 - 66}" width="150" height="8" rx="3" fill="#6b4226"/>')
-    a(f'<rect x="{L - 120}" y="{gy - 26 - 32}" width="30" height="32" fill="#c46a3e"/><ellipse cx="{L - 105}" cy="{gy - 26 - 38}" rx="22" ry="16" fill="#6f8a3e"/>')
-    a(f'<rect x="{L - 5}" y="{gy - 26 - 150}" width="10" height="150" fill="#8a5530"/>')
-    a(f'<rect x="{L - 30}" y="{top + 100}" width="22" height="16" rx="4" fill="#fff1c4" stroke="#e6b800" stroke-width="2"/><circle cx="{L - 19}" cy="{top + 108}" r="34" fill="url(#g2)"/>')
-    a(f'<path d="M230 214 H{L - 22} V{top + 100}" fill="none" stroke="#d93025" stroke-width="2.5"/><path d="M230 224 H{L - 14} V{top + 100}" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>')
-    a(f'<text x="{L - 75}" y="{gy - 26 - 80}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">BALCONY</text>')
+        a(f'<rect x="{R + 14 + k * 26}" y="{gy - 26 - 60}" width="6" height="60" fill="#8a5530"/>')
+    a(f'<rect x="{R + 10}" y="{gy - 26 - 66}" width="150" height="8" rx="3" fill="#6b4226"/>')
+    a(f'<rect x="{R + 90}" y="{gy - 26 - 32}" width="30" height="32" fill="#c46a3e"/><ellipse cx="{R + 105}" cy="{gy - 26 - 38}" rx="22" ry="16" fill="#6f8a3e"/>')
+    a(f'<rect x="{R - 5}" y="{gy - 26 - 150}" width="10" height="150" fill="#8a5530"/>')
+    a(f'<rect x="{R + 8}" y="{top + 100}" width="22" height="16" rx="4" fill="#fff1c4" stroke="#e6b800" stroke-width="2"/><circle cx="{R + 19}" cy="{top + 108}" r="34" fill="url(#g2)"/>')
+    a(f'<path d="M1300 214 H{R + 14} V{top + 100}" fill="none" stroke="#d93025" stroke-width="2.5"/><path d="M1290 224 H{R + 22} V{top + 100}" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>')
+    a(f'<text x="{R + 85}" y="{gy - 26 - 80}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">NORTH BALCONY</text>')
 
     # ---------- roof: stair room, tank, south-facing panels ----------
     a(f'<rect x="1390" y="{top - 22 - 100}" width="{R - 1390}" height="100" fill="#efd2a6" stroke="#b97a45" stroke-width="6"/>')
@@ -384,7 +390,7 @@ def section_svg():
 
     # ================= FIRST FLOOR (global frame) =================
     partitions()
-    room_labels(["BEDROOM", "FAMILY ROOM", "BEDROOM", "STAIRCASE"])
+    room_labels(["BEDROOM", "FAMILY ROOM", "STAIRCASE", "BEDROOM"])
     # riser from the DC board below, then the first-floor ceiling bus
     a(f'<path d="M1300 {214 + G} V214 H230" fill="none" stroke="#d93025" stroke-width="3.5"/><path d="M1290 {224 + G} V224 H230" fill="none" stroke="#2b2b2b" stroke-width="3.5"/>')
     # bedroom with balcony door
@@ -392,12 +398,14 @@ def section_svg():
     # family room
     led(740); fan(880); touch(636, 330); socket(946, 372); desk_laptop(830)
     a(f'<path d="M959 {372 + 13} C930 {372 + 23} 930 {gy - 26 - 90} 940 {gy - 26 - 80}" fill="none" stroke="#e0447b" stroke-width="2.5"/>')
-    # second bedroom
-    led(1080); fan(1200); touch(1030, 330); socket(1250, 380); bed(1060, 170)
-    # staircase
-    steps = " ".join(f"L{1300 + i * 19} {gy - 26 - i * 23} L{1300 + (i + 1) * 19} {gy - 26 - i * 23}" for i in range(10))
-    a(f'<path d="M1300 {gy - 26} {steps} L{1300 + 10 * 19} {gy - 26} Z" fill="#d9a066" opacity=".75"/>')
-    a(f'<text x="1312" y="{top + 36}" {FONT} font-size="12" font-weight="700" fill="#b07a4c">DC riser from</text><text x="1312" y="{top + 52}" {FONT} font-size="12" font-weight="700" fill="#b07a4c">the board below</text>')
+    # staircase (centre-north) with the DC riser alongside
+    steps = " ".join(f"L{1020 + i * 24} {gy - 26 - i * 23} L{1020 + (i + 1) * 24} {gy - 26 - i * 23}" for i in range(10))
+    a(f'<path d="M1020 {gy - 26} {steps} L{1020 + 10 * 24} {gy - 26} Z" fill="#d9a066" opacity=".75"/>')
+    led(1080)
+    a(f'<text x="1278" y="{top + 72}" text-anchor="end" {FONT} font-size="12" font-weight="700" fill="#b07a4c">DC riser from</text><text x="1278" y="{top + 88}" text-anchor="end" {FONT} font-size="12" font-weight="700" fill="#b07a4c">the board below</text>')
+    # north bedroom opening onto the north balcony
+    a(f'<path d="M1300 214 H1480" stroke="#d93025" stroke-width="3.5"/><path d="M1300 224 H1480" stroke="#2b2b2b" stroke-width="3.5"/>')
+    led(1350); fan(1420); touch(1440, 330); socket(1444, 384); bed(1350, 110)
 
     # ================= GROUND FLOOR (local frame, shifted down one storey) =================
     a(f'<g transform="translate(0 {G})">')
@@ -443,8 +451,8 @@ def section_svg():
     a('</g>')
 
     # PV down-conductors from the roof through the stair core to the MPPT on the ground floor
-    a(f'<path d="M1216 {top - 112} H1486 V{214 + G - 20} H1395 V{214 + G}" fill="none" stroke="#d93025" stroke-width="4"/>'
-      f'<path d="M1216 {top - 102} H1476 V{214 + G - 10} H1405 V{214 + G}" fill="none" stroke="#2b2b2b" stroke-width="4"/>')
+    a(f'<path d="M1216 {top - 112} H1322 V{214 + G - 20} H1395 V{214 + G}" fill="none" stroke="#d93025" stroke-width="4"/>'
+      f'<path d="M1216 {top - 102} H1312 V{214 + G - 10} H1405 V{214 + G}" fill="none" stroke="#2b2b2b" stroke-width="4"/>')
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {Hh}" width="{W}" height="{Hh}">{"".join(g)}</svg>'
 
 
@@ -457,7 +465,7 @@ LEGEND = [
     (6, "DC gate motor", "Opens and closes the gate on battery power, even in a power cut."),
     (7, "Porch light", "Driverless DC LED at the main door."),
     (8, "DC cable route", "Red (+) and black (−) cables run from the panels to the DC utility room."),
-    (9, "First-floor balcony", "South-facing balcony off the upper bedroom, with its own DC wall light."),
+    (9, "North balcony", "First-floor balcony on the north side, wrapping the north-east corner. Soft, glare-free north light and its own DC wall light."),
 ]
 
 INSIDE = [
