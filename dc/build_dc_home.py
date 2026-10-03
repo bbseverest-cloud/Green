@@ -114,15 +114,39 @@ def build_iso():
     pillar(-3, 12); pillar(17, 12)
 
     # ---------- house ----------
-    X0, X1, Y0, Y1, H = 1.0, 12.0, 2.0, 9.5, 3.3
+    X0, X1, Y0, Y1, H = 1.0, 12.0, 2.0, 9.5, 6.6
+    F1 = 3.3                                   # first-floor level
     box(X0 - .15, X1 + .15, Y0 - .15, Y1 + .15, 0, .45, "#b9895f", "#8c4a2b", "#733b22")      # plinth
     box(X0, X1, Y0, Y1, .45, H, "#efd2a6", "#d99a5b", "#b97a45")                              # walls
     # south windows with chajja (sunshade) and lit glass
-    for wx in (2.0, 5.4, 8.8):
-        south_rect(wx - .1, wx + 1.5, Y0, 1.05, 2.45, "#6b4226")
-        south_rect(wx, wx + 1.4, Y0, 1.15, 2.35, "#f4d58e")
-        line((wx + .7, Y0, 1.15), (wx + .7, Y0, 2.35), "#6b4226", 2)
-        box(wx - .3, wx + 1.7, Y0 - .55, Y0, 2.62, 2.75, "#e8c79e", "#b7835a", "#9c6b45")
+    for wx, zb in ((2.0, 0), (5.4, 0), (8.8, 0), (2.0, F1), (8.8, F1)):
+        south_rect(wx - .1, wx + 1.5, Y0, zb + 1.05, zb + 2.45, "#6b4226")
+        south_rect(wx, wx + 1.4, Y0, zb + 1.15, zb + 2.35, "#f4d58e")
+        line((wx + .7, Y0, zb + 1.15), (wx + .7, Y0, zb + 2.35), "#6b4226", 2)
+        if (wx, zb) != (5.4, 0):                # the balcony above shades this window
+            box(wx - .3, wx + 1.7, Y0 - .55, Y0, zb + 2.62, zb + 2.75, "#e8c79e", "#b7835a", "#9c6b45")
+    # floor band between the storeys
+    south_rect(X0, X1, Y0, F1 - .02, F1 + .16, "#c07f48")
+    east_rect(X1, Y0, Y1, F1 - .02, F1 + .16, "#a06a3c")
+    # first-floor east windows
+    for wy in (4.6, 7.3):
+        east_rect(X1, wy - .1, wy + 1.3, F1 + 1.05, F1 + 2.45, "#6b4226"); east_rect(X1, wy, wy + 1.2, F1 + 1.15, F1 + 2.35, "#f4d58e")
+        box(X1, X1 + .5, wy - .3, wy + 1.5, F1 + 2.62, F1 + 2.75, "#e8c79e", "#b7835a", "#9c6b45")
+    # south balcony on the first floor: French door, slab, solid moulded parapet with jaali, plant, DC light
+    south_rect(5.6, 7.5, Y0, F1 + .22, F1 + 2.65, "#6b4226")
+    south_rect(5.7, 6.5, Y0, F1 + .3, F1 + 2.55, "#f4d58e"); south_rect(6.6, 7.4, Y0, F1 + .3, F1 + 2.55, "#f4d58e")
+    glow(7.95, Y0 - .02, F1 + 2.25, 16)
+    BY = Y0 - 1.25
+    box(5.0, 8.5, BY, Y0, F1 - .06, F1 + .22, "#e8cfa8", "#b7835a", "#9c6b45")                      # slab
+    box(5.0, 5.15, BY + .15, Y0, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")               # west side
+    a, b = P(5.7, BY + .6, F1 + 1.35)
+    parts.append(f'<ellipse cx="{a:.1f}" cy="{b:.1f}" rx="17" ry="12" fill="#6f8a3e"/><ellipse cx="{a + 8:.1f}" cy="{b - 6:.1f}" rx="10" ry="8" fill="#7f9a48"/>')
+    box(8.35, 8.5, BY + .15, Y0, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")               # east side
+    box(5.0, 8.5, BY, BY + .15, F1 + .22, F1 + 1.15, "#f3d9b1", "#c46a3e", "#a85a35")                # front parapet
+    box(4.95, 8.55, BY - .05, BY + .2, F1 + 1.15, F1 + 1.25, "#f7e2c0", "#d8a274", "#bf8a5e")       # coping
+    for k in range(9):
+        xx = 5.25 + k * .36
+        south_rect(xx, xx + .18, BY, F1 + .5, F1 + .9, "#8c4a2b")
     # east face: main entrance door, window, porch and steps
     east_rect(X1, 4.45, 5.95, .45, 2.75, "#6b4226")
     east_rect(X1, 4.6, 5.8, .45, 2.65, "#8a5530")
@@ -234,6 +258,7 @@ def build_iso():
     badge(X1, 5.2, 2.9, 3, 30, -40)             # entrance door
     badge(17, -4, 2.45, 4, 0, -40)              # boundary wall light
     badge(16.35, 3.7, 1.7, 5, 30, -40)          # sliding gate
+    badge(5.6, Y0 - 1.25, F1 + 1.0, 9, -46, -6)     # balcony
     badge(15.88, 6.65, .7, 6, 34, -14)          # gate motor
     badge(X1 + .05, 4.15, 2.4, 7, 34, 10)       # door light
     badge(4.68, 6.3, H + .7, 8, -40, -14)       # DC conduit
@@ -256,7 +281,7 @@ def build_svg():
             '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe3c3"/><stop offset=".55" stop-color="#fdf3e4"/><stop offset="1" stop-color="#f6ead6"/></linearGradient>'
             '<marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a25a1c"/></marker></defs>')
     # sunlight arrow towards the panels
-    pa, pb = P(8.0, 2.3, 4.2)
+    pa, pb = P(8.0, 2.3, 7.5)
     arrow = (f'<path d="M{sun_x + 70:.1f} {sun_y + 40:.1f} Q{(sun_x + pa) / 2:.1f} {sun_y - 10:.1f} {pa - 30:.1f} {pb - 50:.1f}" fill="none" stroke="#a25a1c" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#ah)"/>'
              f'<text x="{sun_x + 100:.1f}" y="{sun_y - 34:.1f}" font-family="Plus Jakarta Sans,Arial" font-size="17" font-weight="800" fill="#a25a1c">Panels face south to catch the sun all day</text>')
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x0:.0f} {y0:.0f} {w:.0f} {h:.0f}" width="{w:.0f}" height="{h:.0f}">{defs}{sky}{"".join(parts)}{arrow}</svg>'
@@ -266,60 +291,50 @@ def build_svg():
 # Section view: everything inside runs on DC
 # ---------------------------------------------------------------------------------------------
 def section_svg():
-    W, Hh = 1840, 560
+    """Two-storey section, looking west (south on the left). The ground floor is drawn in local
+    coordinates and shifted down one storey; the first floor and roof use the global frame."""
+    W, Hh = 1840, 840
+    G = 276                                    # one storey, in px
+    gy = 470                                   # local ground line used by the ground-floor drawing
+    L, R, top = 200, 1500, 190                 # first-floor ceiling sits under the roof slab at `top`
     g = []
     a = g.append
-    gy = 470                                   # ground line
+    FONT = 'font-family="Plus Jakarta Sans,Arial"'
     a('<defs><radialGradient id="g2"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></radialGradient>'
       '<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7a3" stop-opacity=".75"/><stop offset="1" stop-color="#ffe7a3" stop-opacity="0"/></linearGradient></defs>')
     a(f'<rect width="{W}" height="{Hh}" fill="#fdf6ea"/>')
-    a(f'<rect y="{gy}" width="{W}" height="{Hh - gy}" fill="#e4cfa9"/>')
-    # sun on the south (left)
+    a(f'<rect y="{gy + G}" width="{W}" height="{Hh - gy - G}" fill="#e4cfa9"/>')
     a('<g transform="translate(70 70)"><circle r="30" fill="#f7b733"/>' + "".join(f'<line x1="{math.cos(t) * 38:.1f}" y1="{math.sin(t) * 38:.1f}" x2="{math.cos(t) * 52:.1f}" y2="{math.sin(t) * 52:.1f}" stroke="#f0a020" stroke-width="4" stroke-linecap="round"/>' for t in [i * math.pi / 6 for i in range(12)]) + '</g>')
-    a('<text x="70" y="150" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="15" font-weight="800" fill="#a25a1c">SOUTH</text>')
-    a(f'<text x="{W - 60}" y="150" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="15" font-weight="800" fill="#7a5233">NORTH</text>')
-    # house shell
-    L, R, top = 200, 1500, 190
-    a(f'<rect x="{L - 10}" y="{gy - 26}" width="{R - L + 20}" height="26" fill="#8c4a2b"/>')            # plinth
-    a(f'<rect x="{L}" y="{top}" width="{R - L}" height="{gy - 26 - top}" fill="#f6e3c6" stroke="#b97a45" stroke-width="10"/>')
-    a(f'<rect x="{L - 10}" y="{top - 22}" width="{R - L + 20}" height="22" fill="#c18a54"/>')              # roof slab
+    a(f'<text x="70" y="150" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#a25a1c">SOUTH</text>')
+    a(f'<text x="{W - 60}" y="150" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#7a5233">NORTH</text>')
+
+    # ---------- shell: two storeys, floor slab, roof, balcony ----------
+    a(f'<rect x="{L - 10}" y="{gy + G - 26}" width="{R - L + 20}" height="26" fill="#8c4a2b"/>')                       # plinth
+    a(f'<rect x="{L}" y="{top}" width="{R - L}" height="{gy + G - 26 - top}" fill="#f6e3c6" stroke="#b97a45" stroke-width="10"/>')
+    a(f'<rect x="{L - 10}" y="{top - 22}" width="{R - L + 20}" height="22" fill="#c18a54"/>')                          # roof slab
     a(f'<rect x="{L - 10}" y="{top - 70}" width="16" height="50" fill="#dc9e5f"/><rect x="{R - 6}" y="{top - 70}" width="16" height="50" fill="#dc9e5f"/>')
-    # partitions: living | bedroom | kitchen | utility under the stair room
-    walls = [620, 1000, 1290]
-    for x in walls:
-        a(f'<rect x="{x - 6}" y="{top}" width="12" height="{gy - 26 - top}" fill="#d9a066"/>')
-        a(f'<rect x="{x - 26}" y="{gy - 26 - 210}" width="40" height="210" fill="#f6e3c6"/>' if False else "")
-    rooms = [("LIVING ROOM", (L + 620) / 2), ("BEDROOM", (620 + 1000) / 2), ("KITCHEN", (1000 + 1290) / 2), ("DC UTILITY", (1290 + R) / 2)]
-    for name, cx in rooms:
-        a(f'<text x="{cx}" y="{gy - 8}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="14" font-weight="800" letter-spacing="2" fill="#f6e3c6">{name}</text>')
-    # stair room and water tank on the roof (north end)
+    a(f'<rect x="{L - 150}" y="{gy - 26}" width="{R - L + 160}" height="22" fill="#c18a54"/>')                          # first-floor slab + balcony
+    # balcony railing, plant and a DC wall light, with a door from the upper bedroom
+    for k in range(6):
+        a(f'<rect x="{L - 146 + k * 26}" y="{gy - 26 - 60}" width="6" height="60" fill="#8a5530"/>')
+    a(f'<rect x="{L - 150}" y="{gy - 26 - 66}" width="150" height="8" rx="3" fill="#6b4226"/>')
+    a(f'<rect x="{L - 120}" y="{gy - 26 - 32}" width="30" height="32" fill="#c46a3e"/><ellipse cx="{L - 105}" cy="{gy - 26 - 38}" rx="22" ry="16" fill="#6f8a3e"/>')
+    a(f'<rect x="{L - 5}" y="{gy - 26 - 150}" width="10" height="150" fill="#8a5530"/>')
+    a(f'<rect x="{L - 30}" y="{top + 100}" width="22" height="16" rx="4" fill="#fff1c4" stroke="#e6b800" stroke-width="2"/><circle cx="{L - 19}" cy="{top + 108}" r="34" fill="url(#g2)"/>')
+    a(f'<path d="M230 214 H{L - 22} V{top + 100}" fill="none" stroke="#d93025" stroke-width="2.5"/><path d="M230 224 H{L - 14} V{top + 100}" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>')
+    a(f'<text x="{L - 75}" y="{gy - 26 - 80}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">BALCONY</text>')
+
+    # ---------- roof: stair room, tank, south-facing panels ----------
     a(f'<rect x="1390" y="{top - 22 - 100}" width="{R - 1390}" height="100" fill="#efd2a6" stroke="#b97a45" stroke-width="6"/>')
     a(f'<rect x="1405" y="{top - 22 - 150}" width="80" height="48" rx="10" fill="#2f2f2f"/>')
-    a(f'<text x="1445" y="{top - 22 - 120}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="11" font-weight="700" fill="#cfcfcf">tank</text>')
-    # solar panels tilted to face south (left), on frames
-    for i, x in enumerate((260, 600, 940)):
+    a(f'<text x="1445" y="{top - 22 - 120}" text-anchor="middle" {FONT} font-size="11" font-weight="700" fill="#cfcfcf">tank</text>')
+    for x in (260, 600, 940):
         a(f'<line x1="{x + 20}" y1="{top - 22}" x2="{x + 20}" y2="{top - 52}" stroke="#5a6570" stroke-width="5"/>'
           f'<line x1="{x + 250}" y1="{top - 22}" x2="{x + 250}" y2="{top - 120}" stroke="#5a6570" stroke-width="5"/>'
           f'<polygon points="{x},{top - 46} {x + 270},{top - 126} {x + 276},{top - 112} {x + 6},{top - 32}" fill="#22426a" stroke="#8ea4bd" stroke-width="2"/>')
-    a(f'<text x="735" y="{top - 140}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="15" font-weight="800" fill="#22426a">SOLAR PANELS TILTED TO FACE SOUTH</text>')
+    a(f'<text x="735" y="{top - 140}" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#22426a">SOLAR PANELS TILTED TO FACE SOUTH</text>')
 
-    # ---- DC system in the utility room ----
-    ux = 1310
-    def dev(x, y, w, h, col, label, sub=""):
-        a(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="#fff" stroke="{col}" stroke-width="3"/>'
-          f'<text x="{x + w / 2}" y="{y + h / 2 + (0 if sub else 5)}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="13" font-weight="800" fill="{col}">{label}</text>'
-          + (f'<text x="{x + w / 2}" y="{y + h / 2 + 16}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="11" font-weight="600" fill="#7a6a5a">{sub}</text>' if sub else ""))
-    dev(ux, 214, 170, 52, "#e4572e", "MPPT", "charge controller")
-    dev(ux, 282, 170, 70, "#2e9e4f", "BATTERY", "with BMS")
-    dev(ux, 368, 170, 58, "#1565c0", "DC BOARD", "48 V distribution")
-    # PV down-conductors from the roof into the MPPT
-    a(f'<path d="M1216 {top - 112} H1350 V{top + 6} H1395 V214" fill="none" stroke="#d93025" stroke-width="4"/>'
-      f'<path d="M1216 {top - 102} H1340 V{top + 16} H1405 V214" fill="none" stroke="#2b2b2b" stroke-width="4"/>')
-    a('<path d="M1395 266 V282 M1395 352 V368" stroke="#d93025" stroke-width="4"/><path d="M1405 266 V282 M1405 352 V368" stroke="#2b2b2b" stroke-width="4"/>')
-    # DC bus along the ceiling from the board to every room
-    a(f'<path d="M{ux} 396 H1300 V214 H230" fill="none" stroke="#d93025" stroke-width="3.5"/>'
-      f'<path d="M{ux} 406 H1290 V224 H230" fill="none" stroke="#2b2b2b" stroke-width="3.5"/>')
-
+    # ---------- shared drawing helpers (local coordinates: ceiling bus at 214/224, floor at gy - 26) ----------
     def drop(x, y2):
         a(f'<path d="M{x} 214 V{y2}" stroke="#d93025" stroke-width="2.5"/><path d="M{x + 7} 224 V{y2}" stroke="#2b2b2b" stroke-width="2.5"/>')
 
@@ -336,41 +351,100 @@ def section_svg():
     def panel(x, y, col, w=26, h=36):
         a(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="4" fill="#fff" stroke="{col}" stroke-width="2.5"/>')
 
-    # living room: LED, BLDC fan, TV, touch panel, mechanical switch, socket with phone
+    def touch(x, y):
+        drop(x + 14, y); panel(x, y, "#8a4fd8")
+        a(f'<circle cx="{x + 13}" cy="{y + 12}" r="5" fill="#8a4fd8"/><rect x="{x + 5}" y="{y + 24}" width="16" height="4" rx="2" fill="#8a4fd8"/>')
+
+    def switch(x, y):
+        drop(x + 14, y); panel(x, y, "#607d8b")
+        a(f'<rect x="{x + 6}" y="{y + 6}" width="6" height="12" rx="1" fill="#607d8b"/><rect x="{x + 14}" y="{y + 20}" width="6" height="12" rx="1" fill="#607d8b"/>')
+
+    def socket(x, y):
+        drop(x + 14, y); panel(x, y, "#e0447b", 26, 26)
+        a(f'<rect x="{x + 6}" y="{y + 8}" width="14" height="4" rx="2" fill="#e0447b"/><circle cx="{x + 9}" cy="{y + 18}" r="2" fill="#e0447b"/><circle cx="{x + 17}" cy="{y + 18}" r="2" fill="#e0447b"/>')
+
+    def bed(x, w=180):
+        fl = gy - 26
+        a(f'<rect x="{x}" y="{fl - 40}" width="{w}" height="40" rx="6" fill="#d9b48a"/><rect x="{x}" y="{fl - 52}" width="36" height="16" rx="5" fill="#f1e3cf"/>'
+          f'<rect x="{x - 8}" y="{fl - 78}" width="10" height="78" rx="3" fill="#a86a45"/>')
+
+    def desk_laptop(x):
+        fl = gy - 26
+        a(f'<rect x="{x}" y="{fl - 74}" width="150" height="10" fill="#a86a45"/><rect x="{x + 10}" y="{fl - 64}" width="8" height="64" fill="#a86a45"/><rect x="{x + 132}" y="{fl - 64}" width="8" height="64" fill="#a86a45"/>'
+          f'<rect x="{x + 50}" y="{fl - 108}" width="56" height="34" rx="3" fill="#3f6f9a" stroke="#2b2b2b" stroke-width="3"/><rect x="{x + 42}" y="{fl - 76}" width="72" height="4" fill="#2b2b2b"/>')
+
+    def room_labels(names):
+        xs = [(L + 620) / 2, (620 + 1000) / 2, (1000 + 1290) / 2, (1290 + R) / 2]
+        for name, cx in zip(names, xs):
+            a(f'<text x="{cx}" y="{gy - 8}" text-anchor="middle" {FONT} font-size="14" font-weight="800" letter-spacing="2" fill="#f6e3c6">{name}</text>')
+
+    def partitions():
+        for x in (620, 1000, 1290):
+            a(f'<rect x="{x - 6}" y="{top}" width="12" height="{gy - 26 - top}" fill="#d9a066"/>')
+
+    # ================= FIRST FLOOR (global frame) =================
+    partitions()
+    room_labels(["BEDROOM", "FAMILY ROOM", "BEDROOM", "STAIRCASE"])
+    # riser from the DC board below, then the first-floor ceiling bus
+    a(f'<path d="M1300 {214 + G} V214 H230" fill="none" stroke="#d93025" stroke-width="3.5"/><path d="M1290 {224 + G} V224 H230" fill="none" stroke="#2b2b2b" stroke-width="3.5"/>')
+    # bedroom with balcony door
+    led(330); fan(470); switch(546, 330); socket(580, 380); bed(380)
+    # family room
+    led(740); fan(880); touch(636, 330); socket(946, 372); desk_laptop(830)
+    a(f'<path d="M959 {372 + 13} C930 {372 + 23} 930 {gy - 26 - 90} 940 {gy - 26 - 80}" fill="none" stroke="#e0447b" stroke-width="2.5"/>')
+    # second bedroom
+    led(1080); fan(1200); touch(1030, 330); socket(1250, 380); bed(1060, 170)
+    # staircase
+    steps = " ".join(f"L{1300 + i * 19} {gy - 26 - i * 23} L{1300 + (i + 1) * 19} {gy - 26 - i * 23}" for i in range(10))
+    a(f'<path d="M1300 {gy - 26} {steps} L{1300 + 10 * 19} {gy - 26} Z" fill="#d9a066" opacity=".75"/>')
+    a(f'<text x="1312" y="{top + 36}" {FONT} font-size="12" font-weight="700" fill="#b07a4c">DC riser from</text><text x="1312" y="{top + 52}" {FONT} font-size="12" font-weight="700" fill="#b07a4c">the board below</text>')
+
+    # ================= GROUND FLOOR (local frame, shifted down one storey) =================
+    a(f'<g transform="translate(0 {G})">')
+    partitions()
+    room_labels(["LIVING ROOM", "BEDROOM", "KITCHEN", "DC UTILITY"])
+    ux = 1310
+
+    def dev(x, y, w, h, col, label, sub=""):
+        a(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="#fff" stroke="{col}" stroke-width="3"/>'
+          f'<text x="{x + w / 2}" y="{y + h / 2 + (0 if sub else 5)}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="{col}">{label}</text>'
+          + (f'<text x="{x + w / 2}" y="{y + h / 2 + 16}" text-anchor="middle" {FONT} font-size="11" font-weight="600" fill="#7a6a5a">{sub}</text>' if sub else ""))
+    dev(ux, 214, 170, 52, "#e4572e", "MPPT", "charge controller")
+    dev(ux, 282, 170, 70, "#2e9e4f", "BATTERY", "with BMS")
+    dev(ux, 368, 170, 58, "#1565c0", "DC BOARD", "48 V distribution")
+    a('<path d="M1395 266 V282 M1395 352 V368" stroke="#d93025" stroke-width="4"/><path d="M1405 266 V282 M1405 352 V368" stroke="#2b2b2b" stroke-width="4"/>')
+    a(f'<path d="M{ux} 396 H1300 V214 H230" fill="none" stroke="#d93025" stroke-width="3.5"/>'
+      f'<path d="M{ux} 406 H1290 V224 H230" fill="none" stroke="#2b2b2b" stroke-width="3.5"/>')
+    # living room
     led(330); fan(470)
     drop(260, 300)
     a(f'<rect x="230" y="300" width="130" height="78" rx="6" fill="#2b2b2b"/><rect x="236" y="306" width="118" height="66" rx="3" fill="#3f6f9a"/>'
       f'<rect x="250" y="{gy - 26 - 50}" width="110" height="50" fill="#a86a45"/>')
-    drop(560, 330)
-    panel(546, 330, "#8a4fd8"); a('<circle cx="559" cy="342" r="5" fill="#8a4fd8"/><rect x="551" y="354" width="16" height="4" rx="2" fill="#8a4fd8"/>')
-    drop(594, 380)
-    panel(580, 380, "#e0447b", 26, 26); a('<rect x="586" y="388" width="14" height="4" rx="2" fill="#e0447b"/><circle cx="589" cy="398" r="2" fill="#e0447b"/><circle cx="597" cy="398" r="2" fill="#e0447b"/>')
+    touch(546, 330); socket(580, 380)
     a(f'<rect x="420" y="{gy - 26 - 60}" width="150" height="60" rx="14" fill="#c98e63"/><rect x="410" y="{gy - 26 - 34}" width="170" height="34" rx="10" fill="#b5743f"/>')
-    # bedroom: LED, fan, mechanical switch, socket charging a laptop on a desk
-    led(740); fan(880)
-    drop(650, 330)
-    panel(636, 330, "#607d8b"); a('<rect x="642" y="336" width="6" height="12" rx="1" fill="#607d8b"/><rect x="650" y="350" width="6" height="12" rx="1" fill="#607d8b"/>')
-    drop(960, 372)
-    panel(946, 372, "#e0447b", 26, 26)
-    a(f'<rect x="830" y="{gy - 26 - 74}" width="150" height="10" fill="#a86a45"/><rect x="840" y="{gy - 26 - 64}" width="8" height="64" fill="#a86a45"/><rect x="962" y="{gy - 26 - 64}" width="8" height="64" fill="#a86a45"/>'
-      f'<rect x="880" y="{gy - 26 - 108}" width="56" height="34" rx="3" fill="#3f6f9a" stroke="#2b2b2b" stroke-width="3"/><rect x="872" y="{gy - 26 - 76}" width="72" height="4" fill="#2b2b2b"/>'
-      f'<path d="M959 385 C930 395 930 {gy - 26 - 90} 940 {gy - 26 - 80}" fill="none" stroke="#e0447b" stroke-width="2.5"/>')
-    a(f'<rect x="660" y="{gy - 26 - 40}" width="130" height="40" rx="6" fill="#d9b48a"/><rect x="660" y="{gy - 26 - 52}" width="36" height="16" rx="5" fill="#f1e3cf"/>')
-    # kitchen: LED, DC fridge, exhaust fan
+    # bedroom
+    led(740); fan(880); switch(636, 330); socket(946, 372); desk_laptop(830); bed(670, 120)
+    a(f'<path d="M959 385 C930 395 930 {gy - 26 - 90} 940 {gy - 26 - 80}" fill="none" stroke="#e0447b" stroke-width="2.5"/>')
+    # kitchen
     led(1110)
     drop(1240, 300)
     a(f'<rect x="1196" y="300" width="74" height="{gy - 26 - 300}" rx="8" fill="#e8eef1" stroke="#5c6bc0" stroke-width="3"/><line x1="1196" y1="350" x2="1270" y2="350" stroke="#5c6bc0" stroke-width="2.5"/><rect x="1258" y="318" width="5" height="22" rx="2" fill="#5c6bc0"/><rect x="1258" y="362" width="5" height="30" rx="2" fill="#5c6bc0"/>')
     a(f'<rect x="1020" y="{gy - 26 - 60}" width="160" height="60" fill="#b5743f"/><rect x="1014" y="{gy - 26 - 66}" width="172" height="8" fill="#8c5a3a"/>')
     drop(1060, 268)
     a('<circle cx="1063" cy="284" r="16" fill="#fff" stroke="#0fa3b1" stroke-width="3"/><path d="M1063 272 V296 M1051 284 H1075" stroke="#0fa3b1" stroke-width="3"/>')
-    # outdoor DC loads: boundary light and gate motor, fed from the DC board
+    # outdoor DC loads: boundary light and gate motor
     a(f'<path d="M1480 396 H{R + 40} V{gy - 190} H{R + 92} M{R + 40} {gy - 190} V{gy - 30} H{R + 200}" fill="none" stroke="#d93025" stroke-width="3"/>'
       f'<path d="M1480 406 H{R + 50} V{gy - 182} H{R + 92} M{R + 50} {gy - 182} V{gy - 22} H{R + 200}" fill="none" stroke="#2b2b2b" stroke-width="3"/>')
     bx = R + 90
     a(f'<rect x="{bx}" y="{gy - 110}" width="170" height="110" fill="#b5643a"/><rect x="{bx - 6}" y="{gy - 118}" width="182" height="10" fill="#e1b892"/>')
     a(f'<rect x="{bx + 6}" y="{gy - 180}" width="28" height="62" fill="#b0603a"/><rect x="{bx + 2}" y="{gy - 200}" width="36" height="20" rx="4" fill="#fff1c4" stroke="#e6b800" stroke-width="2"/><circle cx="{bx + 20}" cy="{gy - 190}" r="38" fill="url(#g2)"/>')
-    a(f'<rect x="{bx + 110}" y="{gy - 48}" width="52" height="40" rx="6" fill="#4f6d7a"/><text x="{bx + 136}" y="{gy - 22}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="15" font-weight="800" fill="#fff">M</text>')
-    a(f'<text x="{bx + 85}" y="{gy + 30}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="13" font-weight="800" fill="#7a5233">BOUNDARY LIGHT &amp; GATE MOTOR</text>')
+    a(f'<rect x="{bx + 110}" y="{gy - 48}" width="52" height="40" rx="6" fill="#4f6d7a"/><text x="{bx + 136}" y="{gy - 22}" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#fff">M</text>')
+    a(f'<text x="{bx + 85}" y="{gy + 30}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">BOUNDARY LIGHT &amp; GATE MOTOR</text>')
+    a('</g>')
+
+    # PV down-conductors from the roof through the stair core to the MPPT on the ground floor
+    a(f'<path d="M1216 {top - 112} H1486 V{214 + G - 20} H1395 V{214 + G}" fill="none" stroke="#d93025" stroke-width="4"/>'
+      f'<path d="M1216 {top - 102} H1476 V{214 + G - 10} H1405 V{214 + G}" fill="none" stroke="#2b2b2b" stroke-width="4"/>')
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {Hh}" width="{W}" height="{Hh}">{"".join(g)}</svg>'
 
 
@@ -383,6 +457,7 @@ LEGEND = [
     (6, "DC gate motor", "Opens and closes the gate on battery power, even in a power cut."),
     (7, "Porch light", "Driverless DC LED at the main door."),
     (8, "DC cable route", "Red (+) and black (−) cables run from the panels to the DC utility room."),
+    (9, "First-floor balcony", "South-facing balcony off the upper bedroom, with its own DC wall light."),
 ]
 
 INSIDE = [
@@ -439,7 +514,7 @@ def page():
   <div>
     <div class="eyebrow">Solar DC home · pictorial concept</div>
     <h1 class="display">A home that runs on <em>its own sunshine</em></h1>
-    <p class="lead">Solar panels face south, the entrance faces east, and every light, fan, socket, the boundary lights and even the gate motor run on safe 48 V DC from the roof and battery.</p>
+    <p class="lead">A two-storey home: solar panels face south, the entrance faces east, and every light, fan, socket, the boundary lights and even the gate motor run on safe 48 V DC from the roof and battery.</p>
   </div>
 </header>
 <div class="top">
