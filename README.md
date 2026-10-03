@@ -94,3 +94,7 @@ Folder `dc/`: concept poster on white showing rooftop solar → MPPT charge cont
 - `dc-solar-concept.png` – high-resolution image (2400 px wide)
 - `dc-solar-concept.pdf` – single-page PDF (links clickable)
 - `dc-solar-concept.html` – editable source
+
+## Solar DC Home (pictorial)
+
+`dc/dc-home.png` / `.pdf`: isometric Indian town house in earthy shades, viewed from the south-east. Solar panels on the terrace face south, the entrance is on the east, the boundary wall has DC pillar lights, and the sliding gate runs on a DC motor. A section view below shows every room's DC appliances (driverless LED lights, BLDC fans, touch panels, switches, DC/USB-C sockets, DC fridge) wired from the MPPT, battery and 48 V DC board, plus the outdoor feed to the boundary lights and gate motor. Rebuild with `python3 dc/build_dc_home.py`.
