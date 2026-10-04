@@ -2,13 +2,14 @@
 
 🌱 A greener generation of architects begins today!
 
-IGBC Bhubaneswar Chapter is proud to launch the IGBC Students' Chapter at Piloo Mody College of Architecture (PMCA) on 6 October 2026.
+IGBC Bhubaneswar Chapter is proud to launch the IGBC Students' Chapter at Piloo Mody College of Architecture (PMCA), Cuttack, on 6 October 2026.
 
 The launch takes place in the august presence of:
 🔹 Ar. Manonjay Rath – Chairman, IGBC Bhubaneswar Chapter
 🔹 Ar. Dharitri Das – Principal, PMCA
-🔹 Ar. Shankar Giri – Professor, PMCA
+🔹 Ar. Maitreyee Mishra – Professor and Academic Head, PMCA
 🔹 Shri Sidhesh Kumar Mishra – Deputy Director, IGBC
+🔹 Ar. Shankar Giri – Associate Professor and Faculty Mentor, IGBC Students' Chapter
 🔹 Ameet Vikram Kothaari – IGBC AP and Convenor, IGBC Green Education
 
 What the chapter will do:
@@ -22,10 +23,11 @@ The Indian Green Building Council has appreciated PMCA for launching the chapter
 
 Congratulations to the PMCA leadership, faculty and students. We look forward to a year of learning, doing and leading green! 🌿
 
-#IGBC #IGBCStudentsChapter #GreenBuildings #SustainableArchitecture #CircularDesign #GreenEducation #ArchitectureStudents #PMCA #Bhubaneswar #Odisha #NetZero
+#IGBC #IGBCStudentsChapter #GreenBuildings #SustainableArchitecture #CircularDesign #GreenEducation #ArchitectureStudents #PMCA #Cuttack #Bhubaneswar #Odisha #NetZero
 
 ## Graphic
 
 - `students-chapter-launch.png` – 2160 × 2700 px (4:5) image to attach to the post
 - `students-chapter-launch.html` – editable source; re-render with Playwright at a 1080 × 1350 viewport and `deviceScaleFactor: 2`
+- `pmca-logo.jpg` – PMCA logo used in the graphic
 - `igbc-appreciation-certificate.png` – page 1 of the IGBC certificate (PMCA.pdf), used in the graphic

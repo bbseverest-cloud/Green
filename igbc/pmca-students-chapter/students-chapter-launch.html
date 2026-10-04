@@ -9,39 +9,41 @@
   .display { font-family: "Fraunces", Georgia, serif; }
   svg.bg { position: absolute; inset: 0; }
 
-  header { position: relative; display: flex; align-items: center; gap: 28px; padding: 46px 60px 0; }
-  .logo { flex: none; width: 150px; height: 238px; position: relative; overflow: hidden; }
-  .logo img { position: absolute; width: 375px; left: -112px; top: -15px; }
-  .head .eyebrow { font-size: 17px; font-weight: 800; letter-spacing: .18em; color: var(--gold); }
-  .head h1 { margin-top: 8px; font-size: 70px; line-height: 1.02; font-weight: 700; color: var(--green); }
-  .head h1 em { display: block; font-style: italic; font-weight: 500; color: var(--sky); font-size: 60px; }
-  .head p { margin-top: 14px; font-size: 26px; font-weight: 700; color: var(--ink); }
+  header { position: relative; display: flex; align-items: center; gap: 24px; padding: 56px 60px 0; }
+  .logo { flex: none; width: 107px; height: 170px; position: relative; overflow: hidden; }
+  .logo img { position: absolute; width: 268px; left: -80px; top: -11px; }
+  .head { flex: 1; }
+  .pmca { flex: none; width: 176px; height: 100px; position: relative; overflow: hidden; }
+  .pmca img { position: absolute; width: 201px; left: -11px; top: -12px; }
+  .head .eyebrow { font-size: 15px; font-weight: 800; letter-spacing: .18em; color: var(--gold); }
+  .head h1 { margin-top: 8px; font-size: 52px; white-space: nowrap; line-height: 1.02; font-weight: 700; color: var(--green); }
+  .head h1 em { display: block; font-style: italic; font-weight: 500; color: var(--sky); font-size: 40px; margin-top: 2px; }
+  .head p { margin-top: 10px; font-size: 20px; white-space: nowrap; font-weight: 700; color: var(--ink); }
   .head p span { color: var(--muted); font-weight: 600; }
 
-  .date { position: relative; margin: 30px 60px 0; display: flex; align-items: center; gap: 20px; background: var(--green); color: #fff; border-radius: 22px; padding: 18px 28px; }
+  .date { position: relative; margin: 42px 60px 0; display: flex; align-items: center; gap: 20px; background: var(--green); color: #fff; border-radius: 22px; padding: 18px 28px; }
   .date b { font-size: 46px; font-weight: 800; line-height: 1; }
   .date div { font-size: 18px; font-weight: 600; color: #cfe8d7; line-height: 1.35; }
   .date div strong { display: block; color: #fff; font-size: 22px; font-weight: 800; }
   .date .quote { margin-left: auto; font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 20px; color: #e8f5c8; text-align: right; max-width: 430px; line-height: 1.35; }
 
   section { position: relative; padding: 0 60px; }
-  h2 { margin-top: 30px; font-size: 16px; font-weight: 800; letter-spacing: .2em; color: var(--muted); text-align: center; }
+  h2 { margin-top: 40px; font-size: 16px; font-weight: 800; letter-spacing: .2em; color: var(--muted); text-align: center; }
   .people { margin-top: 16px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
   .p { grid-column: span 2; background: #fff; border: 1.5px solid #dcebc9; border-radius: 18px; padding: 16px 16px 15px; text-align: center; box-shadow: 0 8px 20px rgba(31, 92, 58, .07); }
-  .p:nth-child(4) { grid-column: 2 / span 2; } .p:nth-child(5) { grid-column: 4 / span 2; }
   .p b { display: block; font-size: 20px; font-weight: 800; color: var(--green); line-height: 1.25; }
   .p span { display: block; margin-top: 5px; font-size: 15.5px; font-weight: 600; color: var(--muted); line-height: 1.35; }
 
-  .what { margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .what { margin-top: 34px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .w { display: flex; gap: 12px; align-items: flex-start; }
   .w svg { flex: none; width: 46px; height: 46px; }
   .w p { font-size: 17px; line-height: 1.38; font-weight: 600; }
   .w p b { color: var(--green); font-weight: 800; }
 
-  .cert { margin-top: 34px; display: flex; gap: 34px; align-items: center; background: #fff; border: 1.5px solid #dcebc9; border-radius: 24px; padding: 22px 30px 22px 22px; box-shadow: 0 12px 28px rgba(31, 92, 58, .08); }
+  .cert { margin-top: 42px; display: flex; gap: 34px; align-items: center; background: #fff; border: 1.5px solid #dcebc9; border-radius: 24px; padding: 22px 30px 22px 22px; box-shadow: 0 12px 28px rgba(31, 92, 58, .08); }
   .cert img { flex: none; width: 430px; border-radius: 10px; border: 1px solid #e3eadb; box-shadow: 0 10px 22px rgba(0, 0, 0, .12); transform: rotate(-1.5deg); }
   .cert small { font-size: 15px; font-weight: 800; letter-spacing: .18em; color: var(--gold); }
-  .cert h4 { margin-top: 8px; font-size: 27px; line-height: 1.25; font-weight: 700; color: var(--green); }
+  .cert h4 { margin-top: 8px; font-size: 25px; line-height: 1.25; font-weight: 700; color: var(--green); }
   .cert p { margin-top: 10px; font-size: 17px; line-height: 1.45; font-weight: 600; color: var(--muted); }
   .cert p b { color: var(--ink); }
   footer { position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: var(--green); color: #fff; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
@@ -67,8 +69,9 @@
   <div class="head">
     <div class="eyebrow">IGBC BHUBANESWAR CHAPTER · LAUNCH</div>
     <h1 class="display">IGBC Students' Chapter<em>a greener generation begins</em></h1>
-    <p>Piloo Mody College of Architecture <span>(PMCA)</span></p>
+    <p>Piloo Mody College of Architecture <span>(PMCA), Cuttack</span></p>
   </div>
+  <div class="pmca"><img src="pmca-logo.jpg" alt="Piloo Mody College of Architecture, Cuttack"></div>
 </header>
 
 <div class="date">
@@ -81,8 +84,9 @@
   <div class="people">
     <div class="p"><b>Ar. Manonjay Rath</b><span>Chairman,<br>IGBC Bhubaneswar Chapter</span></div>
     <div class="p"><b>Ar. Dharitri Das</b><span>Principal,<br>PMCA</span></div>
-    <div class="p"><b>Ar. Shankar Giri</b><span>Professor,<br>PMCA</span></div>
-    <div class="p"><b>Shri Sidhesh Kumar Mishra</b><span>Deputy Director, IGBC</span></div>
+    <div class="p"><b>Ar. Maitreyee Mishra</b><span>Professor and Academic Head,<br>PMCA</span></div>
+    <div class="p"><b>Shri Sidhesh Kumar Mishra</b><span>Deputy Director,<br>IGBC</span></div>
+    <div class="p"><b>Ar. Shankar Giri</b><span>Associate Professor and Faculty Mentor, IGBC Students' Chapter</span></div>
     <div class="p"><b>Ameet Vikram Kothaari</b><span>IGBC AP · Convenor,<br>IGBC Green Education</span></div>
   </div>
 
