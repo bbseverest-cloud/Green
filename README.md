@@ -98,3 +98,13 @@ Folder `dc/`: concept poster on white showing rooftop solar → MPPT charge cont
 ## Solar DC Home (pictorial)
 
 `dc/dc-home.png` / `.pdf`: isometric two-storey Indian town house with a north-side first-floor balcony (wrapping the north-east corner) in earthy shades, viewed from the south-east. Solar panels on the terrace face south, the entrance is on the east, the boundary wall has DC pillar lights, and the sliding gate runs on a DC motor. A two-storey section view below shows every room's DC appliances on both floors (fed by a DC riser from the board) (driverless LED lights, BLDC fans, touch panels, switches, DC/USB-C sockets, DC fridge) wired from the MPPT, battery and 48 V DC board, plus the outdoor feed to the boundary lights and gate motor. Rebuild with `python3 dc/build_dc_home.py`.
+
+# INBAC Odisha Chapter – Membership Drive Meet Invite
+
+Folder `inbac/`, A4 portrait invite for the 5 October 2026 session at Lemon Tree Premium:
+
+- `inbac-odisha-invite.png` – 2480 × 3508 px image for WhatsApp, email and social media
+- `inbac-odisha-invite.pdf` – single-page PDF; the RSVP phone numbers are tap-to-call links
+- `inbac-odisha-invite.html` – editable source (uses `inbac-logo.webp` and Google Font Plus Jakarta Sans)
+
+To re-export, render the HTML with Playwright at a 1240 × 1754 viewport and `deviceScaleFactor: 2`.

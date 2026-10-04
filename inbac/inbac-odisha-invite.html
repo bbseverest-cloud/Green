@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>INBAC Odisha Chapter · Membership Drive Meet</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --blue: #0262ae; --navy: #023d70; --sky: #74bde9; --green: #00a651; --lime: #8dc63f; --orange: #f48220; --yellow: #fdb813; --ink: #1d2a3a; --muted: #5a6878; --line: #e3eaf2; }
+  @page { size: 1240px 1754px; margin: 0; }
+  body { width: 1240px; height: 1754px; overflow: hidden; background: #fff; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { color: inherit; text-decoration: none; }
+
+  /* header */
+  header { height: 132px; display: flex; align-items: center; justify-content: space-between; padding: 0 64px; }
+  header img { height: 104px; }
+  .chap { text-align: right; }
+  .chap .pill { display: inline-block; background: var(--green); color: #fff; font-weight: 800; font-size: 20px; letter-spacing: .14em; padding: 10px 22px; border-radius: 40px; }
+  .chap p { margin-top: 10px; font-size: 18px; font-weight: 700; color: var(--blue); letter-spacing: .04em; }
+
+  /* hero */
+  .hero { position: relative; height: 548px; margin: 0 40px; border-radius: 36px; overflow: hidden;
+          background: radial-gradient(120% 140% at 85% 10%, #0b78c9 0%, var(--blue) 45%, var(--navy) 100%); color: #fff; }
+  .hero svg.sketch { position: absolute; right: -10px; top: 0; height: 100%; }
+  .hero .txt { position: relative; padding: 44px 56px 0; width: 770px; }
+  .eyebrow { display: inline-flex; gap: 10px; align-items: center; font-size: 17px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--yellow); }
+  .eyebrow i { width: 34px; height: 3px; background: var(--yellow); border-radius: 2px; }
+  h1 { margin-top: 16px; font-size: 48px; line-height: 1.12; font-weight: 800; letter-spacing: -.01em; }
+  h1 span { color: var(--yellow); }
+  .hero .sub { margin-top: 18px; font-size: 19.5px; line-height: 1.5; color: #d8e9f8; font-weight: 500; }
+  .hero .sub b { color: #fff; }
+
+  /* event strip */
+  .event { position: relative; margin: -70px 84px 0; display: grid; grid-template-columns: 1fr 1fr 1.15fr; background: #fff; border-radius: 26px; box-shadow: 0 18px 40px rgba(2, 61, 112, .18); overflow: hidden; z-index: 2; }
+  .event div { padding: 20px 28px; display: flex; gap: 18px; align-items: center; }
+  .event div + div { border-left: 2px solid var(--line); }
+  .event svg { flex: none; width: 50px; height: 50px; }
+  .event small { display: block; font-size: 14px; font-weight: 800; letter-spacing: .14em; color: var(--muted); }
+  .event b { display: block; white-space: nowrap; font-size: 23px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-top: 3px; }
+  .event em { display: block; font-style: normal; font-size: 16px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+
+  /* columns */
+  .cols { display: grid; grid-template-columns: 1fr 1.12fr; gap: 40px; padding: 34px 64px 0; }
+  h2 { font-size: 28px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 12px; }
+  h2::before { content: ""; width: 12px; height: 30px; border-radius: 6px; background: var(--c, var(--green)); }
+  .why ul { list-style: none; margin-top: 16px; display: grid; gap: 11px; }
+  .why li { display: flex; gap: 14px; align-items: center; font-size: 17.5px; line-height: 1.36; font-weight: 600; }
+  .why li svg { flex: none; width: 44px; height: 44px; }
+  .talk { --c: var(--orange); }
+  .talk ol { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+  .talk li { display: flex; gap: 16px; }
+  .talk .n { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 18px; color: #fff; background: var(--blue); margin-top: 2px; }
+  .talk li:nth-child(2) .n { background: var(--green); } .talk li:nth-child(3) .n { background: var(--orange); }
+  .talk li:nth-child(4) .n { background: #0b8fd6; } .talk li:nth-child(5) .n { background: #6aa92d; }
+  .talk h3 { font-size: 18.5px; font-weight: 800; color: var(--ink); line-height: 1.3; }
+  .talk p { font-size: 15.5px; line-height: 1.4; color: var(--muted); margin-top: 3px; font-weight: 500; }
+  .speaker { margin-top: 7px; display: inline-block; background: #fff4e8; border: 1.5px solid #f9c48f; border-radius: 12px; padding: 6px 14px; font-size: 14.5px; font-weight: 600; color: #8a4510; }
+  .speaker b { color: #5e2e07; font-weight: 800; }
+
+  /* VITAL */
+  .vital { margin: 26px 64px 0; display: flex; align-items: center; gap: 26px; padding: 18px 28px; border-radius: 22px; background: linear-gradient(90deg, #fff7e6, #eef8e6); border: 2px solid #f7d27a; }
+  .vital .tag { flex: none; font-size: 44px; font-weight: 800; letter-spacing: .06em; color: var(--orange); line-height: 1; }
+  .vital .tag small { display: block; font-size: 12px; letter-spacing: .2em; color: var(--green); margin-top: 6px; }
+  .vital p { font-size: 17.5px; line-height: 1.45; font-weight: 600; color: var(--ink); }
+  .vital p b { color: var(--navy); }
+
+  /* call */
+  .call { text-align: center; padding: 22px 70px 0; }
+  .call p { font-size: 18px; color: var(--muted); font-weight: 600; }
+  .call h2 { display: block; margin-top: 6px; font-size: 36px; line-height: 1.2; }
+  .call h2::before { display: none; }
+  .call h2 span { color: var(--green); }
+
+  /* footer */
+  footer { position: absolute; left: 0; right: 0; bottom: 0; height: 232px; background: var(--navy); color: #fff; padding: 28px 64px 0; overflow: hidden; }
+  footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: linear-gradient(90deg, var(--blue) 0 25%, var(--sky) 25% 45%, var(--orange) 45% 65%, var(--yellow) 65% 80%, var(--green) 80%); }
+  .rs { display: flex; justify-content: space-between; align-items: baseline; }
+  .rs h4 { font-size: 24px; font-weight: 800; }
+  .rs p { font-size: 16.5px; color: #b9d4ec; font-weight: 500; }
+  .people { margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .people a { display: flex; gap: 12px; align-items: center; background: rgba(255, 255, 255, .08); border: 1.5px solid rgba(255, 255, 255, .18); border-radius: 16px; padding: 14px 16px; }
+  .people svg { flex: none; width: 36px; height: 36px; }
+  .people b { display: block; font-size: 16px; font-weight: 700; color: #cfe3f5; }
+  .people span { display: block; font-size: 21px; font-weight: 800; letter-spacing: .02em; margin-top: 2px; }
+  .sign { margin-top: 16px; display: flex; justify-content: space-between; font-size: 17px; font-weight: 600; color: #d8e9f8; }
+  .sign b { color: #fff; font-weight: 800; letter-spacing: .04em; }
+</style></head><body>
+
+<header>
+  <img src="inbac-logo.webp" alt="INBAC – Individual Associate of Building Connectivity">
+  <div class="chap"><span class="pill">ODISHA CHAPTER</span><p>Membership Drive Meet</p></div>
+</header>
+
+<section class="hero">
+  <!-- line sketch: a smart building and its connected systems -->
+  <svg class="sketch" viewBox="0 0 520 560" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g opacity=".22" stroke-width="2">
+      <path d="M180 560V150l110-50 110 50v410"/>
+      <path d="M290 100v460"/>
+      <path d="M180 150l110 40 110-40M290 190v370"/>
+      <path d="M206 210h56M206 250h56M206 290h56M206 330h56M206 370h56M206 410h56M206 450h56"/>
+      <path d="M318 210h56M318 250h56M318 290h56M318 330h56M318 370h56M318 410h56M318 450h56"/>
+      <path d="M265 560v-60h50v60"/>
+      <path d="M100 560V330h80M20 560V420h80V560M400 260h80v300"/>
+      <path d="M420 300h40M420 340h40M420 380h40M420 420h40M40 450h40M40 490h40M120 370h40M120 410h40"/>
+      <path d="M290 100V54M276 40a20 20 0 0 1 28 0M266 28a34 34 0 0 1 48 0M256 16a48 48 0 0 1 68 0"/>
+    </g>
+    <g opacity=".5" stroke-width="2" stroke-dasharray="3 7">
+      <path d="M290 54C200 70 140 120 120 200M290 54c90 20 140 70 150 150M120 200c-40 60-50 130-40 210M440 204c30 40 40 100 30 160"/>
+    </g>
+    <g stroke="none">
+      <circle cx="120" cy="200" r="9" fill="#fdb813"/><circle cx="440" cy="204" r="9" fill="#8dc63f"/>
+      <circle cx="80" cy="410" r="8" fill="#74bde9"/><circle cx="470" cy="364" r="8" fill="#f48220"/>
+      <circle cx="290" cy="54" r="7" fill="#fff"/>
+    </g>
+  </svg>
+  <div class="txt">
+    <div class="eyebrow"><i></i>You're invited · Exclusive interactive session</div>
+    <h1>Smart buildings are transforming how India <span>designs, operates and experiences</span> its spaces.</h1>
+    <p class="sub">INBAC is growing rapidly across the country to lead this change. The <b>INBAC Odisha Chapter</b> brings together professionals, engineers, system integrators, technology experts and industry leaders committed to <b>smarter, sustainable and future-ready buildings</b>.</p>
+  </div>
+</section>
+
+<div class="event">
+  <div>
+    <svg viewBox="0 0 48 48" fill="none" stroke="#0262ae" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="33" rx="6"/><path d="M6 19h36M16 5v8M32 5v8"/><rect x="14" y="25" width="8" height="7" rx="2" fill="#fdb813" stroke="none"/></svg>
+    <p><small>DATE</small><b>5 October 2026</b><em>Monday</em></p>
+  </div>
+  <div>
+    <svg viewBox="0 0 48 48" fill="none" stroke="#00a651" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M24 13v11l7 5"/></svg>
+    <p><small>TIME</small><b>6:00 – 7:00 PM</b><em>One focused hour</em></p>
+  </div>
+  <div>
+    <svg viewBox="0 0 48 48" fill="none" stroke="#f48220" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 43s14-12.5 14-24a14 14 0 0 0-28 0c0 11.5 14 24 14 24z"/><circle cx="24" cy="19" r="5"/></svg>
+    <p><small>VENUE</small><b>Lemon Tree Premium</b><em>Bhubaneswar</em></p>
+  </div>
+</div>
+
+<div class="cols">
+  <section class="why">
+    <h2>Why should you join?</h2>
+    <ul>
+      <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#e6f1fa"/><path d="M14 31l7-7 5 5 9-10M29 19h6v6" fill="none" stroke="#0262ae" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Understand where the smart-building industry is heading</li>
+      <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#e6f6ec"/><path d="M15 33l18-18M23 15h10v10M15 23v10h10" fill="none" stroke="#00a651" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore opportunities beyond conventional building automation</li>
+      <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#fff0e2"/><path d="M21 27a6 6 0 0 0 8.5 0l5-5a6 6 0 0 0-8.5-8.5l-1.5 1.5M27 21a6 6 0 0 0-8.5 0l-5 5a6 6 0 0 0 8.5 8.5l1.5-1.5" fill="none" stroke="#f48220" stroke-width="3" stroke-linecap="round"/></svg>Discover how open standards and interoperability create lasting value</li>
+      <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#fff6dc"/><path d="M24 11l3.5 3 4.5-.5 1 4.5 4 2.5-2 4 2 4-4 2.5-1 4.5-4.5-.5-3.5 3-3.5-3-4.5.5-1-4.5-4-2.5 2-4-2-4 4-2.5 1-4.5 4.5.5z" fill="none" stroke="#e0a000" stroke-width="2.5" stroke-linejoin="round"/><path d="M19 24l4 4 7-7" fill="none" stroke="#e0a000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Learn about VITAL — India's first real-time smart-building performance certification</li>
+      <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#e8f6fd"/><g fill="none" stroke="#0b8fd6" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="15" r="4"/><circle cx="14" cy="31" r="4"/><circle cx="34" cy="31" r="4"/><path d="M22 19l-6 8.5M26 19l6 8.5M18 31h12"/></g></svg>Connect with like-minded professionals in Odisha's growing smart-building ecosystem</li>
+      <li><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#eef7e2"/><path d="M13 21v6h5l11 7V14l-11 7zM33 19a7 7 0 0 1 0 10M36.5 15.5a12 12 0 0 1 0 17" fill="none" stroke="#6aa92d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Become an active voice in shaping the future of intelligent infrastructure</li>
+    </ul>
+  </section>
+
+  <section class="talk">
+    <h2>Let's talk about…</h2>
+    <ol>
+      <li><span class="n">1</span><div><h3>INBAC and its growing movement across India</h3><p>INBAC's vision, national initiatives and the opportunities opening up through its expanding chapters.</p>
+        <span class="speaker">Speaker: <b>Mrs. Sakhee Chandrayan</b>, President, INBAC Association</span></div></li>
+      <li><span class="n">2</span><div><h3>What makes a building truly smart?</h3><p>Beyond products and promises: measurable performance, integration, interoperability and real operational impact.</p></div></li>
+      <li><span class="n">3</span><div><h3>VITAL: from smart claims to validated performance</h3><p>How certification enables credible, connected and future-ready buildings.</p></div></li>
+      <li><span class="n">4</span><div><h3>Creating a stronger Odisha ecosystem</h3><p>An open conversation on collaboration, knowledge-sharing and how each of us can contribute.</p></div></li>
+      <li><span class="n">5</span><div><h3>Meaningful professional connections</h3><p>Meet engineers, integrators, consultants and technology professionals working towards a common future.</p></div></li>
+    </ol>
+  </section>
+</div>
+
+<div class="vital">
+  <div class="tag">VITAL<small>CERTIFICATION</small></div>
+  <p><b>Validated Infrastructure for Technically Advanced Lifespaces</b> — India's first real-time smart-building performance certification, moving buildings from smart claims to validated performance.</p>
+</div>
+
+<div class="call">
+  <p>This is more than a networking session — it is an opportunity to participate in a growing national movement.</p>
+  <h2>Don't just witness the transformation. <span>Be the changemaker.</span></h2>
+</div>
+
+<footer>
+  <div class="rs"><h4>RSVP &amp; further details</h4><p>Please confirm your participation by replying to the invitation email or calling a chapter representative.</p></div>
+  <div class="people">
+    <a href="tel:+917558501216"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#00a651"/><path d="M13 10h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 11 12a2 2 0 0 1 2-2z" fill="#fff"/></svg><p><b>INBAC</b><span>75585 01216</span></p></a>
+    <a href="tel:+918895222244"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#00a651"/><path d="M13 10h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 11 12a2 2 0 0 1 2-2z" fill="#fff"/></svg><p><b>Santosh Kumar Sahoo</b><span>88952 22244</span></p></a>
+    <a href="tel:+919437014034"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#00a651"/><path d="M13 10h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 11 12a2 2 0 0 1 2-2z" fill="#fff"/></svg><p><b>Subhendu Bhattacharya</b><span>94370 14034</span></p></a>
+    <a href="tel:+919437020289"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#00a651"/><path d="M13 10h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 11 12a2 2 0 0 1 2-2z" fill="#fff"/></svg><p><b>Ameet Kothaari</b><span>94370 20289</span></p></a>
+  </div>
+  <div class="sign"><span>Let's build a stronger, smarter and more connected Odisha together.</span><b>INBAC ASSOCIATION · ODISHA CHAPTER</b></div>
+</footer>
+</body></html>
