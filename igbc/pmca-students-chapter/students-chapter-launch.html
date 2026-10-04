@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>IGBC Students' Chapter · Piloo Mody College of Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --green: #1f5c3a; --leaf: #93bf2a; --sky: #00aedf; --ink: #1d2a22; --muted: #5a6a60; --gold: #d9921a; }
+  body { width: 1080px; height: 1350px; overflow: hidden; position: relative; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink);
+         background: linear-gradient(180deg, #ffffff 0%, #f5faec 60%, #eaf4dc 100%); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .display { font-family: "Fraunces", Georgia, serif; }
+  svg.bg { position: absolute; inset: 0; }
+
+  header { position: relative; display: flex; align-items: center; gap: 28px; padding: 46px 60px 0; }
+  .logo { flex: none; width: 150px; height: 238px; position: relative; overflow: hidden; }
+  .logo img { position: absolute; width: 375px; left: -112px; top: -15px; }
+  .head .eyebrow { font-size: 17px; font-weight: 800; letter-spacing: .18em; color: var(--gold); }
+  .head h1 { margin-top: 8px; font-size: 70px; line-height: 1.02; font-weight: 700; color: var(--green); }
+  .head h1 em { display: block; font-style: italic; font-weight: 500; color: var(--sky); font-size: 60px; }
+  .head p { margin-top: 14px; font-size: 26px; font-weight: 700; color: var(--ink); }
+  .head p span { color: var(--muted); font-weight: 600; }
+
+  .date { position: relative; margin: 30px 60px 0; display: flex; align-items: center; gap: 20px; background: var(--green); color: #fff; border-radius: 22px; padding: 18px 28px; }
+  .date b { font-size: 46px; font-weight: 800; line-height: 1; }
+  .date div { font-size: 18px; font-weight: 600; color: #cfe8d7; line-height: 1.35; }
+  .date div strong { display: block; color: #fff; font-size: 22px; font-weight: 800; }
+  .date .quote { margin-left: auto; font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 20px; color: #e8f5c8; text-align: right; max-width: 430px; line-height: 1.35; }
+
+  section { position: relative; padding: 0 60px; }
+  h2 { margin-top: 30px; font-size: 16px; font-weight: 800; letter-spacing: .2em; color: var(--muted); text-align: center; }
+  .people { margin-top: 16px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .p { grid-column: span 2; background: #fff; border: 1.5px solid #dcebc9; border-radius: 18px; padding: 16px 16px 15px; text-align: center; box-shadow: 0 8px 20px rgba(31, 92, 58, .07); }
+  .p:nth-child(4) { grid-column: 2 / span 2; } .p:nth-child(5) { grid-column: 4 / span 2; }
+  .p b { display: block; font-size: 20px; font-weight: 800; color: var(--green); line-height: 1.25; }
+  .p span { display: block; margin-top: 5px; font-size: 15.5px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+
+  .what { margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .w { display: flex; gap: 12px; align-items: flex-start; }
+  .w svg { flex: none; width: 46px; height: 46px; }
+  .w p { font-size: 17px; line-height: 1.38; font-weight: 600; }
+  .w p b { color: var(--green); font-weight: 800; }
+
+  .cert { margin-top: 34px; display: flex; gap: 34px; align-items: center; background: #fff; border: 1.5px solid #dcebc9; border-radius: 24px; padding: 22px 30px 22px 22px; box-shadow: 0 12px 28px rgba(31, 92, 58, .08); }
+  .cert img { flex: none; width: 430px; border-radius: 10px; border: 1px solid #e3eadb; box-shadow: 0 10px 22px rgba(0, 0, 0, .12); transform: rotate(-1.5deg); }
+  .cert small { font-size: 15px; font-weight: 800; letter-spacing: .18em; color: var(--gold); }
+  .cert h4 { margin-top: 8px; font-size: 27px; line-height: 1.25; font-weight: 700; color: var(--green); }
+  .cert p { margin-top: 10px; font-size: 17px; line-height: 1.45; font-weight: 600; color: var(--muted); }
+  .cert p b { color: var(--ink); }
+  footer { position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: var(--green); color: #fff; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+  footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7px; background: linear-gradient(90deg, var(--leaf) 0 50%, var(--sky) 50%); }
+  footer h3 { font-size: 27px; font-weight: 700; line-height: 1.3; }
+  footer h3 em { font-style: italic; color: #d6ec93; }
+  footer p { font-size: 18px; font-weight: 800; letter-spacing: .06em; color: #cfe8d7; text-align: right; line-height: 1.5; }
+</style></head><body>
+
+<svg class="bg" width="1080" height="1350" viewBox="0 0 1080 1350" aria-hidden="true">
+  <g fill="none" stroke="#93bf2a" stroke-width="2" opacity=".22">
+    <path d="M1120 120c-120-40-210 0-250 110 110 50 210 20 250-110zM1120 120c-90 30-170 70-250 110"/>
+    <path d="M-40 760c110-50 200-10 240 100-110 50-200 10-240-100zM-40 760c80 30 160 60 240 100"/>
+    <path d="M1100 900c-100-30-180 10-210 100 100 40 180 10 210-100zM1100 900c-80 30-140 60-210 100"/>
+  </g>
+  <g fill="none" stroke="#00aedf" stroke-width="1.6" opacity=".14">
+    <path d="M760 330h260M790 330V250l50-30 50 30v80M900 330V200l60-40 60 40v130M810 270h20M810 300h20M920 220h20M960 220h20M920 260h20M960 260h20M920 300h20M960 300h20"/>
+  </g>
+</svg>
+
+<header>
+  <div class="logo"><img src="../../assets/igbc-logo.jpg" alt="Indian Green Building Council"></div>
+  <div class="head">
+    <div class="eyebrow">IGBC BHUBANESWAR CHAPTER · LAUNCH</div>
+    <h1 class="display">IGBC Students' Chapter<em>a greener generation begins</em></h1>
+    <p>Piloo Mody College of Architecture <span>(PMCA)</span></p>
+  </div>
+</header>
+
+<div class="date">
+  <b>06</b><div><strong>October 2026</strong>Launch of the chapter</div>
+  <p class="quote">"to inspire, instill and imbibe 'Green' approach for a sustainable tomorrow"</p>
+</div>
+
+<section>
+  <h2>IN THE AUGUST PRESENCE OF</h2>
+  <div class="people">
+    <div class="p"><b>Ar. Manonjay Rath</b><span>Chairman,<br>IGBC Bhubaneswar Chapter</span></div>
+    <div class="p"><b>Ar. Dharitri Das</b><span>Principal,<br>PMCA</span></div>
+    <div class="p"><b>Ar. Shankar Giri</b><span>Professor,<br>PMCA</span></div>
+    <div class="p"><b>Shri Sidhesh Kumar Mishra</b><span>Deputy Director, IGBC</span></div>
+    <div class="p"><b>Ameet Vikram Kothaari</b><span>IGBC AP · Convenor,<br>IGBC Green Education</span></div>
+  </div>
+
+  <div class="what">
+    <div class="w"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="23" fill="#eaf4dc"/><path d="M11 19l12-6 12 6-12 6zM16 22v7c4 3 10 3 14 0v-7M35 19v8" fill="none" stroke="#1f5c3a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><b>Fourth-year students</b> form the chapter and lead it through the year</p></div>
+    <div class="w"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="23" fill="#e0f4fb"/><path d="M14 31c0-10 7-17 18-17 0 11-7 18-17 18M14 31c4-5 8-8 12-10" fill="none" stroke="#00aedf" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><b>Activities and knowledge sessions</b> on green practices, in sync with nature</p></div>
+    <div class="w"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="23" fill="#fbf0dc"/><path d="M30 16a10 10 0 1 0 2 9M30 10v6h-6" fill="none" stroke="#d9921a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><b>Sustainable and circular architecture</b> embedded at the education stage</p></div>
+  </div>
+  <div class="cert">
+    <img src="igbc-appreciation-certificate.png" alt="IGBC appreciation certificate for Piloo Mody College of Architecture">
+    <div><small>APPRECIATED BY IGBC</small>
+      <h4 class="display">Indian Green Building Council appreciates PMCA for launching the chapter</h4>
+      <p>Certificate signed by the Executive Director, CII-IGBC, and the Chairman and Vice Chairman, IGBC.<br><b>SC No. IGBC/SC/2026/24/429</b></p></div>
+  </div>
+</section>
+
+<footer>
+  <h3>Creating ready <em>green professionals</em><br>for the ACE industry</h3>
+  <p>INDIAN GREEN BUILDING COUNCIL<br>www.igbc.in</p>
+</footer>
+</body></html>
