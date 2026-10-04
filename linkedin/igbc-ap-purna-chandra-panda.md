@@ -19,3 +19,8 @@ Architects, interior designers, developers and building owners: if you are plann
 📧 green@everestcomputer.com | 📱 WhatsApp +91-8093066161
 
 #IGBC #IGBCAP #GreenBuildings #GreenInteriors #SustainableDesign #NetZero #Bhubaneswar #Odisha #TeamDiv #ProudMoment
+
+## Graphic
+
+- `igbc-ap-congrats.png` – 2160 × 2700 px (4:5) image to attach to the post
+- `igbc-ap-congrats.html` – editable source; re-render with Playwright at a 1080 × 1350 viewport and `deviceScaleFactor: 2`
