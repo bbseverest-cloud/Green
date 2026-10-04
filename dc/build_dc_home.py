@@ -1,14 +1,34 @@
-"""Build dc/dc-home.html: an isometric Indian town house running on solar DC, plus a section view.
+"""Build dc/dc-home.html (English), dc/dc-home-hi.html (Hindi) and dc/dc-home-or.html (Odia):
+an isometric Indian town house running on solar DC, plus a section view.
 
-  python3 dc/build_dc_home.py
+  python3 dc/build_dc_home.py            # all three languages
+  python3 dc/build_dc_home.py hi         # one language
 
 World axes (metres): x = east, y = north, z = up. The view looks from the south-east, so the
 south and east faces of everything are visible, south-facing solar panels show their glass, and
 the east entrance with its sliding gate faces the viewer.
 """
-import math, pathlib
+import math, pathlib, sys
 
-OUT = pathlib.Path(__file__).parent / "dc-home.html"
+from dc_home_text import TEXT
+
+HERE = pathlib.Path(__file__).parent
+LANG = "en"
+
+
+def t(key):
+    return TEXT[LANG][key]
+
+
+def ff():
+    """svg font stack: Latin first, then the script of the current language"""
+    return {"en": "Plus Jakarta Sans,Arial", "hi": "Plus Jakarta Sans,Noto Sans Devanagari,Arial",
+            "or": "Plus Jakarta Sans,Noto Sans Oriya,Arial"}[LANG]
+
+
+def ls(v):
+    """letter-spacing breaks Indic shaping, so only English gets it"""
+    return v if LANG == "en" else "0"
 S = 30.0                       # px per metre
 C30, S30 = math.cos(math.radians(30)), 0.5
 parts = []                     # iso scene svg fragments, in painter's order (far to near)
@@ -56,13 +76,13 @@ def badge(x, y, z, n, dx=0, dy=-34):
     parts.append(f'<line x1="{a:.1f}" y1="{b:.1f}" x2="{a + dx:.1f}" y2="{b + dy + 14:.1f}" stroke="#3b2a20" stroke-width="1.6"/>'
                  f'<circle cx="{a:.1f}" cy="{b:.1f}" r="3.5" fill="#3b2a20"/>'
                  f'<circle cx="{a + dx:.1f}" cy="{b + dy:.1f}" r="15" fill="#1b4d36" stroke="#fff" stroke-width="2.5"/>'
-                 f'<text x="{a + dx:.1f}" y="{b + dy + 5:.1f}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="14" font-weight="800" fill="#fff">{n}</text>')
+                 f'<text x="{a + dx:.1f}" y="{b + dy + 5:.1f}" text-anchor="middle" font-family="{ff()}" font-size="14" font-weight="800" fill="#fff">{n}</text>')
 
 
 def ground_text(x, y, text, size=15, fill="#7a5233", along="x"):
     a, b = P(x, y, 0)
     ang = 30 if along == "x" else -30
-    parts.append(f'<text transform="translate({a:.1f} {b:.1f}) rotate({ang}) skewX({-ang})" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="{size}" font-weight="800" letter-spacing="3" fill="{fill}">{text}</text>')
+    parts.append(f'<text transform="translate({a:.1f} {b:.1f}) rotate({ang}) skewX({-ang})" text-anchor="middle" font-family="{ff()}" font-size="{size}" font-weight="800" letter-spacing="{ls(3)}" fill="{fill}">{text}</text>')
 
 
 def pillar(x, y, h=1.9, lamp=True):
@@ -218,15 +238,15 @@ def build_iso():
     a, b = P(1.2, -7.4, .02)
     nx, ny = C30 * S * 1.6, -S30 * S * 1.6      # +y (north) on screen
     ex, ey = C30 * S * 1.6, S30 * S * 1.6       # +x (east) on screen
-    parts.append(f'<g font-family="Plus Jakarta Sans,Arial" font-weight="800" font-size="15">'
+    parts.append(f'<g font-family="{ff()}" font-weight="800" font-size="15">'
                  f'<ellipse cx="{a:.1f}" cy="{b:.1f}" rx="{S * 1.9:.1f}" ry="{S * 1.1:.1f}" fill="#f5ead6" stroke="#7a5233" stroke-width="1.5"/>'
                  f'<polygon points="{a + nx:.1f},{b + ny:.1f} {a + ny * .18:.1f},{b - nx * .18:.1f} {a - ny * .18:.1f},{b + nx * .18:.1f}" fill="#c0392b"/>'
                  f'<line x1="{a - nx:.1f}" y1="{b - ny:.1f}" x2="{a:.1f}" y2="{b:.1f}" stroke="#7a5233" stroke-width="2"/>'
                  f'<line x1="{a - ex:.1f}" y1="{b - ey:.1f}" x2="{a + ex:.1f}" y2="{b + ey:.1f}" stroke="#7a5233" stroke-width="2"/>'
-                 f'<text x="{a + nx + 12:.1f}" y="{b + ny - 4:.1f}" fill="#c0392b">N</text>'
-                 f'<text x="{a - nx - 14:.1f}" y="{b - ny + 14:.1f}" fill="#7a5233">S</text>'
-                 f'<text x="{a + ex + 8:.1f}" y="{b + ey + 12:.1f}" fill="#7a5233">E</text>'
-                 f'<text x="{a - ex - 18:.1f}" y="{b - ey + 2:.1f}" fill="#7a5233">W</text></g>')
+                 f'<text x="{a + nx + 12:.1f}" y="{b + ny - 4:.1f}" fill="#c0392b">{t("N")}</text>'
+                 f'<text x="{a - nx - 14:.1f}" y="{b - ny + 14:.1f}" fill="#7a5233">{t("S")}</text>'
+                 f'<text x="{a + ex + 8:.1f}" y="{b + ey + 12:.1f}" fill="#7a5233">{t("E")}</text>'
+                 f'<text x="{a - ex - 18:.1f}" y="{b - ey + 2:.1f}" fill="#7a5233">{t("W")}</text></g>')
 
     # ---------- sliding gate with motor (inside the east wall) ----------
     line((16.35, -2.6, .02), (16.35, 7.9, .02), "#5a4a3c", 3)                                   # rail
@@ -243,7 +263,7 @@ def build_iso():
         yy += .35
     box(15.6, 16.15, 6.25, 7.05, 0, .62, "#7d9aa6", "#4f6d7a", "#3f5965")                      # motor
     a, b = P(15.88, 6.65, .66)
-    parts.append(f'<text x="{a:.1f}" y="{b - 4:.1f}" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="11" font-weight="800" fill="#2e4550">M</text>')
+    parts.append(f'<text x="{a:.1f}" y="{b - 4:.1f}" text-anchor="middle" font-family="{ff()}" font-size="11" font-weight="800" fill="#2e4550">M</text>')
 
     tree(-1.2, -1.6, 4.4, 2.0)
     # ---------- near boundary walls (south, east) with gate opening ----------
@@ -255,8 +275,8 @@ def build_iso():
     pillar(-3, -4); pillar(6.5, -4); pillar(17, -4); pillar(17, 1.4); pillar(17, 8.2)
 
     # ---------- ground labels ----------
-    ground_text(8.5, -5.4, "SOUTH", 20, "#8b5a34", "x")
-    ground_text(18.6, 4.6, "EAST · ENTRANCE", 16, "#f3e7d3", "y")
+    ground_text(8.5, -5.4, t("south"), 20, "#8b5a34", "x")
+    ground_text(18.6, 4.6, t("east_entrance"), 16, "#f3e7d3", "y")
 
     # ---------- callout badges ----------
     badge(8.2, 4.6, H + 1.6, 1, 10, -46)        # solar panels
@@ -282,14 +302,14 @@ def build_svg():
     sky = (f'<rect x="{x0}" y="{y0}" width="{w}" height="{h}" fill="url(#sky)"/>'
            f'<g transform="translate({sun_x:.1f} {sun_y:.1f})"><circle r="44" fill="#f7b733"/><circle r="64" fill="#f7b733" opacity=".18"/>'
            + "".join(f'<line x1="{math.cos(a) * 54:.1f}" y1="{math.sin(a) * 54:.1f}" x2="{math.cos(a) * 74:.1f}" y2="{math.sin(a) * 74:.1f}" stroke="#f0a020" stroke-width="5" stroke-linecap="round"/>' for a in [i * math.pi / 6 for i in range(12)])
-           + '<text y="104" text-anchor="middle" font-family="Plus Jakarta Sans,Arial" font-size="17" font-weight="800" fill="#a25a1c">Sun in the southern sky</text></g>')
+           + f'<text y="104" text-anchor="middle" font-family="{ff()}" font-size="17" font-weight="800" fill="#a25a1c">{t("sun")}</text></g>')
     defs = ('<defs><radialGradient id="glow"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".95"/><stop offset=".45" stop-color="#ffd36b" stop-opacity=".45"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></radialGradient>'
             '<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe3c3"/><stop offset=".55" stop-color="#fdf3e4"/><stop offset="1" stop-color="#f6ead6"/></linearGradient>'
             '<marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a25a1c"/></marker></defs>')
     # sunlight arrow towards the panels
     pa, pb = P(8.0, 2.3, 7.5)
     arrow = (f'<path d="M{sun_x + 70:.1f} {sun_y + 40:.1f} Q{(sun_x + pa) / 2:.1f} {sun_y - 10:.1f} {pa - 30:.1f} {pb - 50:.1f}" fill="none" stroke="#a25a1c" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#ah)"/>'
-             f'<text x="{sun_x + 100:.1f}" y="{sun_y - 34:.1f}" font-family="Plus Jakarta Sans,Arial" font-size="17" font-weight="800" fill="#a25a1c">Panels face south to catch the sun all day</text>')
+             f'<text x="{sun_x + 100:.1f}" y="{sun_y - 34:.1f}" font-family="{ff()}" font-size="17" font-weight="800" fill="#a25a1c">{t("panels_face")}</text>')
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x0:.0f} {y0:.0f} {w:.0f} {h:.0f}" width="{w:.0f}" height="{h:.0f}">{defs}{sky}{"".join(parts)}{arrow}</svg>'
 
 
@@ -305,14 +325,14 @@ def section_svg():
     L, R, top = 200, 1500, 190                 # first-floor ceiling sits under the roof slab at `top`
     g = []
     a = g.append
-    FONT = 'font-family="Plus Jakarta Sans,Arial"'
+    FONT = f'font-family="{ff()}"'
     a('<defs><radialGradient id="g2"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></radialGradient>'
       '<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7a3" stop-opacity=".75"/><stop offset="1" stop-color="#ffe7a3" stop-opacity="0"/></linearGradient></defs>')
     a(f'<rect width="{W}" height="{Hh}" fill="#fdf6ea"/>')
     a(f'<rect y="{gy + G}" width="{W}" height="{Hh - gy - G}" fill="#e4cfa9"/>')
     a('<g transform="translate(70 70)"><circle r="30" fill="#f7b733"/>' + "".join(f'<line x1="{math.cos(t) * 38:.1f}" y1="{math.sin(t) * 38:.1f}" x2="{math.cos(t) * 52:.1f}" y2="{math.sin(t) * 52:.1f}" stroke="#f0a020" stroke-width="4" stroke-linecap="round"/>' for t in [i * math.pi / 6 for i in range(12)]) + '</g>')
-    a(f'<text x="70" y="150" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#a25a1c">SOUTH</text>')
-    a(f'<text x="{W - 60}" y="150" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#7a5233">NORTH</text>')
+    a(f'<text x="70" y="150" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#a25a1c">{t("south")}</text>')
+    a(f'<text x="{W - 60}" y="150" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#7a5233">{t("north")}</text>')
 
     # ---------- shell: two storeys, floor slab, roof, balcony ----------
     a(f'<rect x="{L - 10}" y="{gy + G - 26}" width="{R - L + 20}" height="26" fill="#8c4a2b"/>')                       # plinth
@@ -328,17 +348,17 @@ def section_svg():
     a(f'<rect x="{R - 5}" y="{gy - 26 - 150}" width="10" height="150" fill="#8a5530"/>')
     a(f'<rect x="{R + 8}" y="{top + 100}" width="22" height="16" rx="4" fill="#fff1c4" stroke="#e6b800" stroke-width="2"/><circle cx="{R + 19}" cy="{top + 108}" r="34" fill="url(#g2)"/>')
     a(f'<path d="M1300 214 H{R + 14} V{top + 100}" fill="none" stroke="#d93025" stroke-width="2.5"/><path d="M1290 224 H{R + 22} V{top + 100}" fill="none" stroke="#2b2b2b" stroke-width="2.5"/>')
-    a(f'<text x="{R + 85}" y="{gy - 26 - 80}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">NORTH BALCONY</text>')
+    a(f'<text x="{R + 85}" y="{gy - 26 - 80}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">{t("north_balcony")}</text>')
 
     # ---------- roof: stair room, tank, south-facing panels ----------
     a(f'<rect x="1390" y="{top - 22 - 100}" width="{R - 1390}" height="100" fill="#efd2a6" stroke="#b97a45" stroke-width="6"/>')
     a(f'<rect x="1405" y="{top - 22 - 150}" width="80" height="48" rx="10" fill="#2f2f2f"/>')
-    a(f'<text x="1445" y="{top - 22 - 120}" text-anchor="middle" {FONT} font-size="11" font-weight="700" fill="#cfcfcf">tank</text>')
+    a(f'<text x="1445" y="{top - 22 - 120}" text-anchor="middle" {FONT} font-size="11" font-weight="700" fill="#cfcfcf">{t("tank")}</text>')
     for x in (260, 600, 940):
         a(f'<line x1="{x + 20}" y1="{top - 22}" x2="{x + 20}" y2="{top - 52}" stroke="#5a6570" stroke-width="5"/>'
           f'<line x1="{x + 250}" y1="{top - 22}" x2="{x + 250}" y2="{top - 120}" stroke="#5a6570" stroke-width="5"/>'
           f'<polygon points="{x},{top - 46} {x + 270},{top - 126} {x + 276},{top - 112} {x + 6},{top - 32}" fill="#22426a" stroke="#8ea4bd" stroke-width="2"/>')
-    a(f'<text x="735" y="{top - 140}" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#22426a">SOLAR PANELS TILTED TO FACE SOUTH</text>')
+    a(f'<text x="735" y="{top - 140}" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#22426a">{t("panels_tilted")}</text>')
 
     # ---------- shared drawing helpers (local coordinates: ceiling bus at 214/224, floor at gy - 26) ----------
     def drop(x, y2):
@@ -382,7 +402,7 @@ def section_svg():
     def room_labels(names):
         xs = [(L + 620) / 2, (620 + 1000) / 2, (1000 + 1290) / 2, (1290 + R) / 2]
         for name, cx in zip(names, xs):
-            a(f'<text x="{cx}" y="{gy - 8}" text-anchor="middle" {FONT} font-size="14" font-weight="800" letter-spacing="2" fill="#f6e3c6">{name}</text>')
+            a(f'<text x="{cx}" y="{gy - 8}" text-anchor="middle" {FONT} font-size="14" font-weight="800" letter-spacing="{ls(2)}" fill="#f6e3c6">{name}</text>')
 
     def partitions():
         for x in (620, 1000, 1290):
@@ -390,7 +410,7 @@ def section_svg():
 
     # ================= FIRST FLOOR (global frame) =================
     partitions()
-    room_labels(["BEDROOM", "FAMILY ROOM", "STAIRCASE", "BEDROOM"])
+    room_labels([t("bedroom"), t("family_room"), t("staircase"), t("bedroom")])
     # riser from the DC board below, then the first-floor ceiling bus
     a(f'<path d="M1300 {214 + G} V214 H230" fill="none" stroke="#d93025" stroke-width="3.5"/><path d="M1290 {224 + G} V224 H230" fill="none" stroke="#2b2b2b" stroke-width="3.5"/>')
     # bedroom with balcony door
@@ -402,7 +422,7 @@ def section_svg():
     steps = " ".join(f"L{1020 + i * 24} {gy - 26 - i * 23} L{1020 + (i + 1) * 24} {gy - 26 - i * 23}" for i in range(10))
     a(f'<path d="M1020 {gy - 26} {steps} L{1020 + 10 * 24} {gy - 26} Z" fill="#d9a066" opacity=".75"/>')
     led(1080)
-    a(f'<text x="1278" y="{top + 72}" text-anchor="end" {FONT} font-size="12" font-weight="700" fill="#b07a4c">DC riser from</text><text x="1278" y="{top + 88}" text-anchor="end" {FONT} font-size="12" font-weight="700" fill="#b07a4c">the board below</text>')
+    a(f'<text x="1278" y="{top + 72}" text-anchor="end" {FONT} font-size="12" font-weight="700" fill="#b07a4c">{t("riser_1")}</text><text x="1278" y="{top + 88}" text-anchor="end" {FONT} font-size="12" font-weight="700" fill="#b07a4c">{t("riser_2")}</text>')
     # north bedroom opening onto the north balcony
     a(f'<path d="M1300 214 H1480" stroke="#d93025" stroke-width="3.5"/><path d="M1300 224 H1480" stroke="#2b2b2b" stroke-width="3.5"/>')
     led(1350); fan(1420); touch(1440, 330); socket(1444, 384); bed(1350, 110)
@@ -410,16 +430,16 @@ def section_svg():
     # ================= GROUND FLOOR (local frame, shifted down one storey) =================
     a(f'<g transform="translate(0 {G})">')
     partitions()
-    room_labels(["LIVING ROOM", "BEDROOM", "KITCHEN", "DC UTILITY"])
+    room_labels([t("living_room"), t("bedroom"), t("kitchen"), t("dc_utility")])
     ux = 1310
 
     def dev(x, y, w, h, col, label, sub=""):
         a(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="#fff" stroke="{col}" stroke-width="3"/>'
           f'<text x="{x + w / 2}" y="{y + h / 2 + (0 if sub else 5)}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="{col}">{label}</text>'
           + (f'<text x="{x + w / 2}" y="{y + h / 2 + 16}" text-anchor="middle" {FONT} font-size="11" font-weight="600" fill="#7a6a5a">{sub}</text>' if sub else ""))
-    dev(ux, 214, 170, 52, "#e4572e", "MPPT", "charge controller")
-    dev(ux, 282, 170, 70, "#2e9e4f", "BATTERY", "with BMS")
-    dev(ux, 368, 170, 58, "#1565c0", "DC BOARD", "48 V distribution")
+    dev(ux, 214, 170, 52, "#e4572e", "MPPT", t("charge_controller"))
+    dev(ux, 282, 170, 70, "#2e9e4f", t("battery"), t("with_bms"))
+    dev(ux, 368, 170, 58, "#1565c0", t("dc_board"), t("distribution"))
     a('<path d="M1395 266 V282 M1395 352 V368" stroke="#d93025" stroke-width="4"/><path d="M1405 266 V282 M1405 352 V368" stroke="#2b2b2b" stroke-width="4"/>')
     a(f'<path d="M{ux} 396 H1300 V214 H230" fill="none" stroke="#d93025" stroke-width="3.5"/>'
       f'<path d="M{ux} 406 H1290 V224 H230" fill="none" stroke="#2b2b2b" stroke-width="3.5"/>')
@@ -447,7 +467,7 @@ def section_svg():
     a(f'<rect x="{bx}" y="{gy - 110}" width="170" height="110" fill="#b5643a"/><rect x="{bx - 6}" y="{gy - 118}" width="182" height="10" fill="#e1b892"/>')
     a(f'<rect x="{bx + 6}" y="{gy - 180}" width="28" height="62" fill="#b0603a"/><rect x="{bx + 2}" y="{gy - 200}" width="36" height="20" rx="4" fill="#fff1c4" stroke="#e6b800" stroke-width="2"/><circle cx="{bx + 20}" cy="{gy - 190}" r="38" fill="url(#g2)"/>')
     a(f'<rect x="{bx + 110}" y="{gy - 48}" width="52" height="40" rx="6" fill="#4f6d7a"/><text x="{bx + 136}" y="{gy - 22}" text-anchor="middle" {FONT} font-size="15" font-weight="800" fill="#fff">M</text>')
-    a(f'<text x="{bx + 85}" y="{gy + 30}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">BOUNDARY LIGHT &amp; GATE MOTOR</text>')
+    a(f'<text x="{bx + 85}" y="{gy + 30}" text-anchor="middle" {FONT} font-size="13" font-weight="800" fill="#7a5233">{t("boundary_gate")}</text>')
     a('</g>')
 
     # PV down-conductors from the roof through the stair core to the MPPT on the ground floor
@@ -456,33 +476,29 @@ def section_svg():
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {Hh}" width="{W}" height="{Hh}">{"".join(g)}</svg>'
 
 
-LEGEND = [
-    (1, "Solar panels facing south", "Tilted rows on the terrace catch the sun from morning to evening."),
-    (2, "Stair room &amp; water tank", "The terrace stays usable; panels sit clear of the tank's shadow."),
-    (3, "Entrance on the east", "Morning light at the door; porch with DC light and steps."),
-    (4, "Boundary wall lights", "DC lamps on every pillar light the compound at night."),
-    (5, "Sliding gate", "Slides along the inside of the boundary wall on a rail."),
-    (6, "DC gate motor", "Opens and closes the gate on battery power, even in a power cut."),
-    (7, "Porch light", "Driverless DC LED at the main door."),
-    (8, "DC cable route", "Red (+) and black (−) cables run from the panels to the DC utility room."),
-    (9, "North balcony", "First-floor balcony on the north side, wrapping the north-east corner. Soft, glare-free north light and its own DC wall light."),
-]
 
-INSIDE = [
-    ("#f39c12", "Rooftop solar"), ("#e4572e", "MPPT charge controller"), ("#2e9e4f", "Battery + BMS"), ("#1565c0", "48 V DC board"),
-    ("#e6b800", "Driverless LED lights"), ("#0fa3b1", "BLDC fans &amp; exhaust"), ("#8a4fd8", "Touch panels"), ("#607d8b", "Mechanical switches"),
-    ("#e0447b", "DC &amp; USB-C sockets"), ("#5c6bc0", "DC fridge"), ("#4f6d7a", "Gate motor"), ("#b5643a", "Boundary lights"),
-]
+
+KEY_COLOURS = ["#f39c12", "#e4572e", "#2e9e4f", "#1565c0", "#e6b800", "#0fa3b1", "#8a4fd8", "#607d8b",
+               "#e0447b", "#5c6bc0", "#4f6d7a", "#b5643a"]
 
 
 def page():
     iso = build_svg()
     sec = section_svg()
-    legend = "".join(f'<li><span class="n">{n}</span><div><b>{t}</b><p>{d}</p></div></li>' for n, t, d in LEGEND)
-    keys = "".join(f'<span><i style="background:{c}"></i>{t}</span>' for c, t in INSIDE)
+    legend = "".join(f'<li><span class="n">{n}</span><div><b>{h}</b><p>{d}</p></div></li>' for n, (h, d) in enumerate(t("legend"), 1))
+    keys = "".join(f'<span><i style="background:{c}"></i>{k}</span>' for c, k in zip(KEY_COLOURS, t("inside")))
+    script = {"en": "", "hi": "Noto Sans Devanagari", "or": "Noto Sans Oriya"}[LANG]
+    serif = {"en": "", "hi": "Noto Serif Devanagari", "or": "Noto Serif Oriya"}[LANG]
+    fonts = "" if LANG == "en" else f"&family={script.replace(' ', '+')}:wght@400;600;700;800&family={serif.replace(' ', '+')}:wght@500;600"
+    indic = "" if LANG == "en" else f'''
+  body {{ font-family: "Plus Jakarta Sans", "{script}", Arial, sans-serif; }}
+  .display {{ font-family: "Fraunces", "{serif}", Georgia, serif; }}
+  em {{ font-style: normal !important; }}
+  .eyebrow {{ letter-spacing: 0; }}
+  .lead, ol p {{ line-height: 1.6; }}'''
     return f'''<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>Solar DC Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<html lang="{LANG}"><head><meta charset="utf-8"><title>{t("title")}</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;600;700;800{fonts}&display=swap" rel="stylesheet">
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{ width: 2000px; background: #ffffff; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: #2b2118; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
@@ -515,30 +531,30 @@ def page():
   .enq .c {{ font-size: 21px; font-weight: 700; line-height: 1.7; }}
   .enq .c a {{ color: #fff; text-decoration: none; }}
   .enq .c small {{ color: #bfe8c9; font-size: 14px; letter-spacing: .1em; margin-left: 6px; }}
-  .enq img {{ height: 110px; }}
+  .enq img {{ height: 110px; }}{indic}
 </style></head><body>
 <header>
   <img src="../logo/div/div-logo-horizontal-two-tone.svg" alt="Div (दिव्)">
   <div>
-    <div class="eyebrow">Solar DC home · pictorial concept</div>
-    <h1 class="display">A home that runs on <em>its own sunshine</em></h1>
-    <p class="lead">A two-storey home: solar panels face south, the entrance faces east, and every light, fan, socket, the boundary lights and even the gate motor run on safe 48 V DC from the roof and battery.</p>
+    <div class="eyebrow">{t("eyebrow")}</div>
+    <h1 class="display">{t("h1")}</h1>
+    <p class="lead">{t("lead")}</p>
   </div>
 </header>
 <div class="top">
   <div class="scene">{iso}</div>
-  <div class="side"><h2 class="display">What you <em>see</em></h2><ol>{legend}</ol></div>
+  <div class="side"><h2 class="display">{t("see")}</h2><ol>{legend}</ol></div>
 </div>
 <div class="sec">
-  <h2 class="display">Inside: <em>everything runs on DC</em></h2>
+  <h2 class="display">{t("inside_h")}</h2>
   <div class="frame">{sec}</div>
-  <div class="keys">{keys}<span><i style="background:linear-gradient(#d93025 50%,#2b2b2b 50%)"></i>DC wiring (+ / −)</span></div>
+  <div class="keys">{keys}<span><i style="background:linear-gradient(#d93025 50%,#2b2b2b 50%)"></i>{t("wiring")}</span></div>
 </div>
 <section class="enq">
-  <h2 class="display">Want your home or project to run on <em>solar DC?</em></h2>
+  <h2 class="display">{t("enquiry")}</h2>
   <div class="c">Ameet Vikram Kothaari<small>IGBC AP</small><br>
     <a href="mailto:green@everestcomputer.com?subject=Enquiry%3A%20Solar%20DC%20home">green@everestcomputer.com</a><br>
-    <a href="https://wa.me/918093066161">WhatsApp +91-8093066161</a></div>
+    <a href="https://wa.me/918093066161">{t("whatsapp")} +91-8093066161</a></div>
   <img src="../logo/div/div-logo-stacked-on-dark-two-tone.svg" alt="Div (दिव्)">
 </section>
 </body></html>
@@ -546,5 +562,7 @@ def page():
 
 
 if __name__ == "__main__":
-    OUT.write_text(page())
-    print("wrote", OUT)
+    for LANG in sys.argv[1:] or list(TEXT):
+        out = HERE / ("dc-home.html" if LANG == "en" else f"dc-home-{LANG}.html")
+        out.write_text(page())
+        print("wrote", out)
