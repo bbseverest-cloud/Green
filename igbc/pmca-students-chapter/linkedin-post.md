@@ -7,8 +7,8 @@ IGBC Bhubaneswar Chapter is proud to launch the IGBC Students' Chapter at Piloo 
 The launch takes place in the august presence of:
 IGBC
 🔹 Ar. Manonjay Rath – Chairman, IGBC Bhubaneswar Chapter
-🔹 Shri Sidhesh Kumar Mishra – Deputy Director, IGBC
 🔹 Ameet Vikram Kothaari – IGBC AP and Convenor, IGBC Green Education
+🔹 Shri Sidhesh Kumar Mishra – Deputy Director, IGBC
 
 PMCA
 🔹 Ar. Dharitri Das – Principal, PMCA
