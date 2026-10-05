@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>IGBC Students' Chapter · PMCA · WhatsApp Status</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --green: #1f5c3a; --leaf: #93bf2a; --sky: #00aedf; --ink: #1d2a22; --muted: #5a6a60; --gold: #d9921a; }
+  body { width: 1080px; height: 1920px; overflow: hidden; position: relative; font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink);
+         background: linear-gradient(180deg, #ffffff 0%, #f5faec 55%, #e8f3d9 100%); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .display { font-family: "Fraunces", Georgia, serif; }
+  svg.bg { position: absolute; inset: 0; }
+  .wrap { position: relative; padding: 0 60px; }
+
+  /* top band behind WhatsApp's progress bar */
+  .band { height: 14px; background: linear-gradient(90deg, var(--leaf) 0 50%, var(--sky) 50%); }
+
+  .logos { margin-top: 96px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { width: 126px; height: 200px; position: relative; overflow: hidden; }
+  .logo img { position: absolute; width: 315px; left: -94px; top: -13px; }
+  .pmca { width: 236px; height: 134px; position: relative; overflow: hidden; }
+  .pmca img { position: absolute; width: 270px; left: -15px; top: -16px; }
+  .mid { text-align: center; }
+  .mid small { display: block; font-size: 17px; font-weight: 800; letter-spacing: .2em; color: var(--gold); line-height: 1.6; }
+  .mid b { display: inline-block; margin-top: 10px; font-size: 22px; font-weight: 800; letter-spacing: .16em; color: #fff; background: var(--green); padding: 10px 24px; border-radius: 30px; }
+
+  .title { margin-top: 34px; text-align: center; }
+  .title h1 { font-size: 74px; line-height: 1.02; font-weight: 700; color: var(--green); }
+  .title h1 em { display: block; margin-top: 8px; font-style: italic; font-weight: 500; font-size: 52px; color: var(--sky); }
+  .title p { margin-top: 18px; font-size: 29px; font-weight: 700; }
+  .title p span { color: var(--muted); font-weight: 600; }
+
+  .date { margin-top: 36px; background: var(--green); color: #fff; border-radius: 28px; padding: 20px 32px; display: flex; align-items: center; gap: 26px; }
+  .date .d { font-size: 92px; font-weight: 800; line-height: .9; }
+  .date .m strong { display: block; font-size: 34px; font-weight: 800; }
+  .date .m span { display: block; font-size: 21px; font-weight: 600; color: #cfe8d7; margin-top: 4px; }
+  .date .q { margin-left: auto; text-align: right; font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 23px; line-height: 1.35; color: #e8f5c8; max-width: 470px; }
+
+  h2 { margin-top: 30px; text-align: center; font-size: 19px; font-weight: 800; letter-spacing: .22em; color: var(--muted); }
+  .people { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .p { background: #fff; border: 1.5px solid #dcebc9; border-radius: 20px; padding: 18px 20px; text-align: center; box-shadow: 0 8px 20px rgba(31, 92, 58, .07); }
+  .p b { display: block; font-size: 25px; font-weight: 800; color: var(--green); line-height: 1.2; }
+  .p span { display: block; margin-top: 6px; font-size: 18.5px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+
+  .what { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .w { background: rgba(255, 255, 255, .7); border-radius: 20px; padding: 18px 16px; text-align: center; }
+  .w svg { width: 54px; height: 54px; }
+  .w p { margin-top: 8px; font-size: 19px; line-height: 1.35; font-weight: 600; }
+  .w p b { color: var(--green); font-weight: 800; }
+
+  .cert { margin-top: 24px; display: flex; gap: 26px; align-items: center; background: #fff; border: 1.5px solid #dcebc9; border-radius: 24px; padding: 18px 26px 18px 18px; box-shadow: 0 12px 28px rgba(31, 92, 58, .08); }
+  .cert img { flex: none; width: 330px; border-radius: 8px; border: 1px solid #e3eadb; box-shadow: 0 8px 18px rgba(0, 0, 0, .12); transform: rotate(-1.5deg); }
+  .cert small { font-size: 16px; font-weight: 800; letter-spacing: .18em; color: var(--gold); }
+  .cert h4 { margin-top: 8px; font-size: 29px; line-height: 1.22; font-weight: 700; color: var(--green); }
+
+  footer { position: absolute; left: 0; right: 0; bottom: 0; height: 268px; background: var(--green); color: #fff; text-align: center; padding-top: 38px; }
+  footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: linear-gradient(90deg, var(--leaf) 0 50%, var(--sky) 50%); }
+  footer h3 { font-size: 36px; font-weight: 700; line-height: 1.25; }
+  footer h3 em { font-style: italic; color: #d6ec93; }
+  footer p { margin-top: 14px; font-size: 19px; font-weight: 800; letter-spacing: .12em; color: #cfe8d7; }
+</style></head><body>
+
+<svg class="bg" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+  <g fill="none" stroke="#93bf2a" stroke-width="2" opacity=".2">
+    <path d="M1120 560c-120-40-210 0-250 110 110 50 210 20 250-110zM1120 560c-90 30-170 70-250 110"/>
+    <path d="M-40 1060c110-50 200-10 240 100-110 50-200 10-240-100zM-40 1060c80 30 160 60 240 100"/>
+  </g>
+</svg>
+
+<div class="band"></div>
+<div class="wrap">
+  <div class="logos">
+    <div class="logo"><img src="../../assets/igbc-logo.jpg" alt="Indian Green Building Council"></div>
+    <div class="mid"><small>IGBC BHUBANESWAR<br>CHAPTER</small><b>LAUNCH</b></div>
+    <div class="pmca"><img src="pmca-logo.jpg" alt="Piloo Mody College of Architecture, Cuttack"></div>
+  </div>
+
+  <div class="title">
+    <h1 class="display">IGBC Students' Chapter<em>a greener generation begins</em></h1>
+    <p>Piloo Mody College of Architecture <span>(PMCA), Cuttack</span></p>
+  </div>
+
+  <div class="date">
+    <div class="d">06</div>
+    <div class="m"><strong>October 2026</strong><span>Launch of the chapter</span></div>
+    <p class="q">"to inspire, instill and imbibe 'Green' approach for a sustainable tomorrow"</p>
+  </div>
+
+  <h2>IN THE AUGUST PRESENCE OF</h2>
+  <div class="people">
+    <div class="p"><b>Ar. Manonjay Rath</b><span>Chairman, IGBC Bhubaneswar Chapter</span></div>
+    <div class="p"><b>Ar. Dharitri Das</b><span>Principal, PMCA</span></div>
+    <div class="p"><b>Ar. Maitreyee Mishra</b><span>Professor and Academic Head, PMCA</span></div>
+    <div class="p"><b>Shri Sidhesh Kumar Mishra</b><span>Deputy Director, IGBC</span></div>
+    <div class="p"><b>Ar. Shankar Giri</b><span>Associate Professor and Faculty Mentor, IGBC Students' Chapter</span></div>
+    <div class="p"><b>Ameet Vikram Kothaari</b><span>IGBC AP · Convenor, IGBC Green Education</span></div>
+  </div>
+
+  <div class="what">
+    <div class="w"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="23" fill="#eaf4dc"/><path d="M11 19l12-6 12 6-12 6zM16 22v7c4 3 10 3 14 0v-7M35 19v8" fill="none" stroke="#1f5c3a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><b>Fourth-year students</b> lead the chapter all year</p></div>
+    <div class="w"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="23" fill="#e0f4fb"/><path d="M14 31c0-10 7-17 18-17 0 11-7 18-17 18M14 31c4-5 8-8 12-10" fill="none" stroke="#00aedf" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><b>Green practice</b> activities and knowledge sessions</p></div>
+    <div class="w"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="23" fill="#fbf0dc"/><path d="M30 16a10 10 0 1 0 2 9M30 10v6h-6" fill="none" stroke="#d9921a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><b>Circular architecture</b> from the education stage</p></div>
+  </div>
+
+  <div class="cert">
+    <img src="igbc-appreciation-certificate.png" alt="IGBC appreciation certificate for Piloo Mody College of Architecture">
+    <div><small>APPRECIATED BY IGBC</small><h4 class="display">IGBC appreciates PMCA for launching the chapter</h4></div>
+  </div>
+</div>
+
+<footer>
+  <h3>Creating ready <em>green professionals</em><br>for the ACE industry</h3>
+  <p>INDIAN GREEN BUILDING COUNCIL · www.igbc.in</p>
+</footer>
+</body></html>

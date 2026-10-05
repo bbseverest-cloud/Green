@@ -31,3 +31,11 @@ Congratulations to the PMCA leadership, faculty and students. We look forward to
 - `students-chapter-launch.html` – editable source; re-render with Playwright at a 1080 × 1350 viewport and `deviceScaleFactor: 2`
 - `pmca-logo.jpg` – PMCA logo used in the graphic
 - `igbc-appreciation-certificate.png` – page 1 of the IGBC certificate (PMCA.pdf), used in the graphic
+
+## WhatsApp Status
+
+- `whatsapp-status.jpg` – 1080 × 1920 px status image, rendered from `whatsapp-status.html` (Playwright, 1080 × 1920 viewport, JPEG quality 92)
+
+Caption to add when posting the status:
+
+🌱 IGBC Students' Chapter launched at Piloo Mody College of Architecture, Cuttack – 6 October 2026. A greener generation of architects begins! #IGBC #GreenEducation
