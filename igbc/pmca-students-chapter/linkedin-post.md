@@ -30,7 +30,6 @@ Congratulations to the PMCA leadership, faculty and students. We look forward to
 - `students-chapter-launch.png` – 2160 × 2700 px (4:5) image to attach to the post
 - `students-chapter-launch.html` – editable source; re-render with Playwright at a 1080 × 1350 viewport and `deviceScaleFactor: 2`
 - `pmca-logo.jpg` – PMCA logo used in the graphic
-- `igbc-appreciation-certificate.png` – page 1 of the IGBC certificate (PMCA.pdf), used in the graphic
 
 ## WhatsApp Status
 
