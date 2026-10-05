@@ -5,15 +5,18 @@
 IGBC Bhubaneswar Chapter is proud to launch the IGBC Students' Chapter at Piloo Mody College of Architecture (PMCA), Cuttack, on 6 October 2026.
 
 The launch takes place in the august presence of:
+IGBC
 🔹 Ar. Manonjay Rath – Chairman, IGBC Bhubaneswar Chapter
-🔹 Ar. Dharitri Das – Principal, PMCA
-🔹 Ar. Maitreyee Mishra – Professor and Academic Head, PMCA
 🔹 Shri Sidhesh Kumar Mishra – Deputy Director, IGBC
-🔹 Ar. Shankar Giri – Associate Professor and Faculty Mentor, IGBC Students' Chapter
 🔹 Ameet Vikram Kothaari – IGBC AP and Convenor, IGBC Green Education
 
+PMCA
+🔹 Ar. Dharitri Das – Principal, PMCA
+🔹 Ar. Maitreyee Mishra – Professor and Academic Head, PMCA
+🔹 Ar. Shankar Giri – Associate Professor and Faculty Mentor, IGBC Students' Chapter
+
 What the chapter will do:
-✅ Fourth-year students form the chapter and lead it through the year
+✅ Students form the chapter and drive it through the year
 ✅ Activities and knowledge sessions on green practices for sustainable architecture and construction, in sync with nature
 ✅ Hands-on exposure to IGBC rating systems, green materials, energy, water and indoor environment
 
